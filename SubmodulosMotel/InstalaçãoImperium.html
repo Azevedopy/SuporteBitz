@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalação Imperium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Definindo a paleta de cores para o tema GuiaGo (roxo/azul) */
+        .purple-title {
+            color: #5B21B6; /* Roxo escuro (similar a deep purple/indigo 800) */
+        }
+        .blue-subtitle {
+            color: #1D4ED8; /* Azul escuro (similar a blue 700) */
+        }
+        /* Estilo para a Trilha de Aprendizado */
+        .step-card {
+            background-color: #FFFFFF;
+            border-left: 5px solid #3B82F6; /* Linha azul (blue 500) à esquerda */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06); /* Sombra sutil */
+            transition: transform 0.2s;
+        }
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+        .step-number {
+            background-color: #DBEAFE; /* Azul muito claro (blue 100) */
+            color: #1D4ED8; /* Azul escuro (blue 700) */
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.5rem;
+            height: 2.5rem;
+        }
+        /* Ajuste para blocos de código */
+        .code-block {
+            background-color: #F3F4F6;
+            color: #1F2937;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-family: monospace;
+            overflow-x: auto;
+            white-space: nowrap;
+            border: 1px solid #E5E7EB;
+        }
+        /* Estilo para código em linha (Inline Code) */
+        code {
+            font-family: monospace;
+            color: #374151;
+            padding: 1px 4px; /* Adicionado um padding leve para melhor legibilidade */
+            border-radius: 3px;
+            background-color: #E5E7EB; /* Fundo cinza claro para distinguir o código */
+        }
+        .text-red-600 {
+            color: #DC2626;
+        }
+        /* Cores de destaque dentro dos blocos de código */
+        .code-block .text-yellow-400-alt { color: #2563EB; }
+        .code-block .text-green-400-alt { color: #16A34A; }
+        .code-block .text-red-300-alt { color: #DC2626; }
+
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 md:px-6 flex justify-between items-center h-16">
+            <h1 class="text-xl font-bold text-gray-700">⭐ Instalação Sistema Imperium</h1>
+            <div class="space-x-4">
+                <a href="#inicio" class="text-gray-600 hover:text-blue-700">Início</a>
+                <a href="#" class="text-blue-700 font-semibold border-b-2 border-blue-700 pb-1">Instalação</a>
+                <a href="#configuracao" class="text-gray-600 hover:text-blue-700">Configuração Imperium</a>
+                <a href="#testes" class="text-gray-600 hover:text-blue-700">Testes Finais</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 md:px-6 py-10">
+
+        <header class="text-center mb-12">
+            <div class="inline-flex items-center justify-center p-3 bg-indigo-100 rounded-full mb-4">
+                <span class="text-3xl text-indigo-700">🔧</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold black-title mb-2">Intalação Imperium Motel</h2>
+            <p class="text-2xl blue-subtitle font-medium">Instalação e Configuração Imperium Motel</p>
+            <p class="mt-4 text-gray-500">Eros Portela | Bitz Softwares | 2025</p>
+        </header>
+
+        <div class="max-w-4xl mx-auto mb-16">
+            <h3 class="text-2xl font-bold text-center text-gray-900 mb-6 flex items-center justify-center">
+                <span class="text-blue-500 mr-2 text-3xl">📖</span> Trilha de Aprendizado
+            </h3>
+
+            <a href="#passo-1-detalhe" class="block mb-4">
+                <div class="step-card p-4 rounded-lg flex items-center space-x-4">
+                    <div class="step-number rounded-full">1</div>
+                    <span class="text-lg font-semibold text-gray-700">Acesso e Instalação de Arquivos</span>
+                </div>
+            </a>
+
+            <a href="#passo-2-detalhe" class="block mb-4">
+                <div class="step-card p-4 rounded-lg flex items-center space-x-4">
+                    <div class="step-number rounded-full">2</div>
+                    <span class="text-lg font-semibold text-gray-700">Comandos do SQL e Preparação de Arquivos</span>
+                </div>
+            </a>
+
+            <a href="#passo-3-detalhe" class="block mb-4">
+                <div class="step-card p-4 rounded-lg flex items-center space-x-4">
+                    <div class="step-number rounded-full">3</div>
+                    <span class="text-lg font-semibold text-gray-700">Configuração de Serviços, Backup e Finalização</span>
+                </div>
+            </a>
+        </div>
+        
+        <hr class="border-gray-300 mb-10">
+
+        <section id="passo-1-detalhe" class="mb-12 p-6 bg-white rounded-lg shadow-xl border-t-4 border-blue-500">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">1. Acesso e Instalação de Arquivos (Softwares Base)</h2>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">1.1. Instalação do Imperium</h3>
+                <ul class="list-decimal list-inside space-y-3 text-gray-700 pl-4">
+                    <li>Execute o instalador do Imperium.</li>
+                    <li>Clique apenas em Avançar.</li>
+                    <li>Se a opção "Criar atalho na área de trabalho" estiver desmarcada, marque-a.</li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">1.2. Cópia de Arquivos Essenciais</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                    <li>Copie <code>criartablespace.sql</code> de <code>C:\Bitz Softwares\Utilitários</code> para a raiz: <code>C:\</code></li>
+                    <li>Copie todos os arquivos de <code>C:\Bitz Softwares\App\Dll</code> e cole em: <code>C:\Bitz Softwares\App\</code></li>
+                    <li>Extraia os arquivos de <code>Dlls.rar</code> na pasta: <code>C:\Bitz Softwares\App\</code></li>
+                    <li>Crie a pasta Atualizadores em: <code>C:\Bitz Softwares\</code></li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">1.3. Instalação do Oracle</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                    <li>Inicie o instalador do Oracle e clique somente em Avançar.</li>
+                    <li>Na aba de Senha, digite: <strong class="text-red-600">bitzdba</strong></li>
+                    <li>Aguarde a finalização da instalação.</li>
+                </ul>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">1.4. Instalação do Firebird</h3>
+                <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                    <li>Inicie o instalador do Firebird, localizado em <code>C:\Bitz Softwares\Utilitários</code>.</li>
+                    <li>Clique em Avançar e aguarde a conclusão.</li>
+                </ul>
+            </div>
+        </section>
+
+        <hr class="border-gray-300">
+
+        <section id="passo-2-detalhe" class="mb-12 p-6 bg-white rounded-lg shadow-xl border-t-4 border-blue-500">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">2. Comandos do SQL e Preparação de Arquivos</h2>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">2.1. Execução de Comandos SQL (Configuração do Tablespace)</h3>
+                <p class="text-gray-700 mb-4">Abra o programa Executar linhas de comando SQL e digite os comandos na sequência, linha por linha.</p>
+
+                <div class="code-block text-red-300-alt space-y-1">
+                    <p>connect system</p>
+                    <p>bitzdba</p>
+                    <p>@c:/criartablespace</p>
+                    <p>disconnect</p>
+                    <p>connect /as sysdba</p>
+                    <p>grant create any directory to BITZDBA;</p>
+                    <p>create directory EXP_DIR as 'X:\Backup';</p>
+                    <p>exit</p>
+                </div>
+
+                <div class="mt-6 p-4 bg-gray-100 rounded-md">
+                    <h4 class="font-bold text-gray-900">⚠️ Se for necessário alterar o diretório do Backup:</h4>
+                    <div class="code-block text-red-300-alt mt-2 space-y-1">
+                        <p>drop directory EXP_DIR;</p>
+                        <p>create directory EXP_DIR as 'X:\Backup';</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3 border-t pt-4">2.2. Atualização e Preparação dos Arquivos</h3>
+
+                <div class="mb-6">
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Localização e Cópia dos Arquivos</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Busque a versão mais recente em <code>T:\VERSOES\ano\mês</code>.</li>
+                        <li>Arquivos Principais: <strong class="text-blue-700">BDAT.FDB</strong>, <strong class="text-blue-700">imperium.exe</strong>, <strong class="text-blue-700">ServAutomacao.exe</strong>, e outros executáveis específicos (Auto-Atendimento, GateCam).</li>
+                        <li><strong class="text-red-600">Sincronização:</strong> Todos os arquivos, exceto <code>BITZSincronizador.exe</code>, estão em: <code>T:\IMPLANTACAO\Instaladores\Instalação Sinc</code>. O executável <code>BITZSincronizador.exe</code> está em <code>T:\VERSOES\ano\mês</code>.</li>
+                        <li>Transfira todos os arquivos para a pasta: <code>C:\Bitz Softwares\Atualizadores</code>.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Substituição dos Arquivos Antigos</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Vá para <code>C:\Bitz Softwares\App\</code> e apague os executáveis antigos.</li>
+                        <li>Vá para <code>C:\Bitz Softwares\BD\</code> e apague o arquivo <code>BDAT.FDB</code>.</li>
+                        <li>Copie os novos arquivos da pasta Atualizadores:
+                            <ul>
+                                <li>Arquivos .EXE para: <code>C:\Bitz Softwares\App\</code></li>
+                                <li>Arquivo BDAT.FDB para: <code>C:\Bitz Softwares\BD\</code></li>
+                            </ul>
+                        </li>
+                        <li>Transfira a base de dados do cliente (arquivo <strong class="text-red-600">.DMP</strong>) para: <code>X:\Backup</code>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-300">
+
+        <section id="passo-3-detalhe" class="mb-12 p-6 bg-white rounded-lg shadow-xl border-t-4 border-blue-500">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2">3. Configuração de Serviços, Backup e Finalização</h2>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">3.1. Configuração e Restauração com BitzBackup</h3>
+
+                <div class="mb-6">
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Configuração do Agendamento de Backup</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Execute o aplicativo <code>BitzBackup.exe</code> em <code>C:\Bitz Softwares\App\</code> (ele inicia minimizado, clique duas vezes no ícone na barra de tarefas).</li>
+                        <li>Na tela Backup, preencha os campos:
+                            <ul>
+                                <li>Pasta BIN Oracle: <code>C:\oraclexe\app\oracle\product\10.2.0\server\BIN</code></li>
+                                <li>Pasta de Destino Backup: <code>X:\Backup</code></li>
+                                <li>Pasta de Backup Remoto: <code>C:\Program Files (x86)\Google\Drive</code></li>
+                                <li>Pasta do WinRar: <code>C:\Program Files\WinRAR</code></li>
+                                <li><em class="text-red-600">Instale o WinRar se necessário (instalador em Utilitários).</em></li>
+                            </ul>
+                        </li>
+                        <li>Marque a programação: TODOS os dias e a cada 4 horas.</li>
+                        <li>Clique em Salvar.</li>
+                        <li>Crie um atalho do <code>BitzBackup.exe</code> e cole-o na pasta Inicializar do Windows.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Restauração da Base de Dados do Cliente</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Na aba Restore do BitzBackup, em Arquivo a Restaurar, selecione o arquivo .DMP do cliente que está em <code>X:\Backup</code>.</li>
+                        <li>Clique em Restaurar Backup.</li>
+                        <li>O aplicativo será minimizado (ícone de computador na barra de tarefas).</li>
+                        <li>Aguarde até que o ícone volte a ser o ícone padrão da Bitz e uma notificação informe que o processo foi finalizado.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-8 border-t pt-4">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">3.2. Finalização e Liberação de Porta</h3>
+
+                <div class="mb-6">
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Atualização da Base de Dados</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Abra o aplicativo <code>BITZUpdateDB.exe</code> em <code>C:\Bitz Softwares\Utilitários</code>.</li>
+                        <li>Em Banco de Dados Atualizador, clique na lupa e selecione o arquivo <code>BDAT.FDB</code> em <code>C:\Bitz Softwares\BD\</code>.</li>
+                        <li>Corrija o caminho para que fique neste formato: <code>127.0.0.1:C:\BITZ Softwares\BD\BDAT.FDB</code>.</li>
+                        <li>Clique em Atualizar e aguarde a mensagem de sucesso.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Liberação da Porta 1521</h4>
+                    <ul class="list-disc list-inside space-y-3 text-gray-700 pl-4">
+                        <li>É necessário liberar a porta 1521 no firewall para o IP do servidor.</li>
+                        <li><strong class="text-red-600">Próximo Passo:</strong> Iniciar os treinamentos de uso do sistema com o cliente.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-8 border-t pt-4">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-3">3.3. Configuração de Serviços: No-IP e Google Drive</h3>
+
+                <div class="mb-6">
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Instalação e Cadastro do No-IP</h4>
+                    <ul class="list-decimal list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Inicie a instalação do DUC (disponível em <code>C:\Bitz Softwares\Utilitários</code>).</li>
+                        <li>Acesse o site <a href="https://www.noip.com/login?ref_url=%2Fmembers%2Fdns%2F" target="_blank" class="text-blue-500 hover:underline">No-IP</a> na sua máquina, não na do cliente.
+                            <div class="mt-2 p-3 bg-yellow-50 rounded-md text-sm">
+                                <p>Login: <strong class="text-red-600">bitz@bitzsoftwares.com.br</strong></p>
+                                <p>Senha: <strong class="text-red-600">bitz2012</strong></p>
+                            </div>
+                        </li>
+                        <li>Clique em Add a Host. Crie o No-IP com o nome do motel (ex: <code>statusmotelvt</code>).</li>
+                        <li>Após criar, volte à máquina do cliente, vincule o No-IP no aplicativo DUC.</li>
+                        <li><strong class="text-red-600">IMPORTANTE:</strong> Em Edit Host, marque a opção: <code>Require a password to modify hosts</code>.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Instalação e Login do Google Drive</h4>
+                    <ul class="list-decimal list-inside space-y-3 text-gray-700 pl-4">
+                        <li>Instale o Google Drive (instalador em <code>C:\Bitz Softwares\Utilitários</code>).</li>
+                        <li><strong class="text-red-600">Na sua máquina</strong>, crie uma nova conta Google para o motel (ex: <code>statusmotelvt@gmail.com</code>).</li>
+                        <li>Na máquina do cliente, faça login no Google Drive com a conta recém-criada.</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-medium text-gray-800 mb-2">Configuração da Pasta de Backup Local</h4>
+                    <p class="text-gray-700">Crie uma pasta com o nome Backup na raiz:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 pl-4">
+                        <li>Prioridade: Disco D:\Backup</li>
+                        <li>Alternativa: Se houver apenas uma partição, crie em C:\Backup</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-6">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <p>&copy; 2025 Bitz Softwares. Guia de Treinamento.</p>
+        </div>
+    </footer>
+</body>
+</html>

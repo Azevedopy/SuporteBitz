@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de Mapeamento do Sistema - BITZ Softwares</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 25px;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 5px;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 5px solid #007bff;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+        .step strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        .note {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .code-block {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .code-title {
+            color: #ff9d00;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tutorial de Mapeamento do Sistema - BITZ Softwares</h1>
+
+        <h2>1. Configuração do Servidor 🖥️</h2>
+        <hr>
+
+        <div class="step">
+            <h3>1.1. Liberar a pasta do servidor</h3>
+            <ul>
+                <li>Busque a pasta <span class="highlight">“BITZ Softwares”</span> no disco “C”.</li>
+                <li>Clique com o botão direito sobre ela e vá em <span class="highlight">“Propriedades”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>1.2. Compartilhamento Avançado</h3>
+            <ul>
+                <li>Na janela de propriedades, selecione a aba <span class="highlight">“Compartilhamento”</span>.</li>
+                <li>Clique no botão <span class="highlight">“Compartilhamento Avançado...”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>1.3. Permissões de Compartilhamento</h3>
+            <ul>
+                <li>Marque o check-box <span class="highlight">“Compartilhar a pasta”</span>.</li>
+                <li>Em seguida, clique no botão <span class="highlight">“Permissões”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>1.4. Controle Total para Todos</h3>
+            <ul>
+                <li>No grupo <span class="highlight">“Todos”</span>, selecione a caixa <span class="highlight">“Controle total”</span> na coluna 'Permitir'.</li>
+                <li>Clique em <span class="highlight">“Aplicar”</span> e depois em <span class="highlight">“OK”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>1.5. Configuração de Segurança</h3>
+            <ul>
+                <li>Volte até as propriedades da pasta e, desta vez, acesse a aba <span class="highlight">“Segurança”</span>.</li>
+                <li>Clique no botão <span class="highlight">“Editar...”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>1.6. Adicionar Usuário</h3>
+            <ul>
+                <li>Na janela de permissões, clique em <span class="highlight">“Adicionar...”</span>.</li>
+                <li>Digite o nome do usuário <span class="highlight">“Todos”</span> na caixa de texto.</li>
+                <li>Clique em <span class="highlight">“Verificar nomes”</span> (o nome ficará sublinhado se estiver correto).</li>
+                <li>Clique em <span class="highlight">“OK”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>1.7. Finalizar Permissões do Servidor</h3>
+            <ul>
+                <li>Selecione o usuário <span class="highlight">“Todos”</span> que acabou de adicionar na lista.</li>
+                <li>Marque a caixa <span class="highlight">“Controle total”</span> na coluna 'Permitir'.</li>
+                <li>Clique em <span class="highlight">“Aplicar”</span> e depois em <span class="highlight">“OK”</span>.</li>
+            </ul>
+        </div>
+        
+        <hr>
+
+        <h2>2. Configuração na Estação (Cliente) 💻</h2>
+        <hr>
+
+        <div class="step">
+            <h3>2.1. Mapear Unidade de Rede</h3>
+            <ul>
+                <li>Acesse o executar do Windows (Pressione <span class="highlight">Windows+R</span>).</li>
+                <li>Digite o IP da máquina servidora que deseja mapear. Exemplo: <span class="highlight">\\\\192.168.1.10</span></li>
+                <li>Clique em <span class="highlight">OK</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>2.2. Configurar Unidade Mapeada</h3>
+            <ul>
+                <li>Localize a pasta <span class="highlight">“BITZ Softwares”</span> compartilhada.</li>
+                <li>Clique com o botão direito nela e selecione a opção <span class="highlight">“Mapear unidade de rede...”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>2.3. Selecionar Letra da Unidade</h3>
+            <ul>
+                <li>Na janela de mapeamento, selecione a unidade <span class="highlight">“B:”</span> na lista de unidades.</li>
+                <li>Clique em <span class="highlight">“Concluir”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>2.4. Instalação do InstantClient</h3>
+            <ul>
+                <li>Após mapear a unidade, vá até a pasta <span class="highlight">“C:/BITZ Softwares” > “Utilitários”</span>.</li>
+                <li>Execute o instalador <span class="highlight">“instantclient”</span>.</li>
+                <li>Prossiga a instalação até a tela de seleção de tarefas adicionais.</li>
+                <li><span class="highlight">IMPORTANTE:</span> Marque a opção <span class="highlight">“Adicionar o diretório do software na variável de sistema PATH”</span>.</li>
+            </ul>
+            <div class="note">
+                <strong>ATENÇÃO:</strong> Não esqueça de marcar o checkbox do PATH na instalação!
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>2.5. Configurar TNSNAMES.ORA</h3>
+            <ul>
+                <li>Após a instalação, acesse a pasta <span class="highlight">“C:\instantclient”</span>.</li>
+                <li>Abra o arquivo <span class="highlight">“TNSNAMES”</span> com o Bloco de Notas.</li>
+                <li>Altere os campos &lt;SERVIÇO&gt; e &lt;SID&gt; para <span class="highlight">“XE”</span>.</li>
+                <li>Altere o campo &lt;IP&gt; para o <span class="highlight">IP da máquina servidora</span> (ex: 192.168.1.10).</li>
+            </ul>
+            <p><strong>Conteúdo do TNSNAMES:</strong></p>
+            <div class="code-block">
+                <div class="code-title">Antes (DE)</div>
+                <pre><code>&lt;SERVICO&gt; =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = &lt;IP&gt;)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = &lt;SID&gt;)
+    )
+  )</code></pre>
+            </div>
+            <div class="code-block">
+                <div class="code-title">Depois (PARA)</div>
+                <pre><code>XE =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.1.10)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = XE)
+    )
+  )</code></pre>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>3. Variáveis de Ambiente ⚙️</h2>
+        <hr>
+
+        <div class="step">
+            <h3>3.1. Acessar Propriedades do Sistema</h3>
+            <ul>
+                <li>Em <span class="highlight">“Meu Computador”</span> ou <span class="highlight">“Este Computador”</span>, clique com o botão direito.</li>
+                <li>Selecione <span class="highlight">“Propriedades”</span>.</li>
+                <li>No menu lateral ou na janela que abrir, clique em <span class="highlight">“Configurações avançadas do sistema”</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>3.2. Abrir Variáveis</h3>
+            <ul>
+                <li>Na aba <span class="highlight">“Avançado”</span>, clique no botão <span class="highlight">“Variáveis de Ambiente...”</span> na parte inferior.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>3.3. Criar Variável TNS_ADMIN</h3>
+            <ul>
+                <li>Na seção <span class="highlight">“Variáveis de usuário”</span> (parte superior), clique em <span class="highlight">“Novo...”</span>.</li>
+                <li>Nome da variável: <span class="highlight">TNS_ADMIN</span></li>
+                <li>Valor da variável: <span class="highlight">C:\instantclient</span></li>
+                <li>Clique em <span class="highlight">OK</span>.</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>3.4. Ajustar Variável Path</h3>
+            <ul>
+                <li>Na seção <span class="highlight">“Variáveis de sistema”</span> (parte inferior), procure a variável <span class="highlight">“Path”</span> e clique em <span class="highlight">“Editar”</span>.</li>
+                <li>Mova o diretório <span class="highlight">“C:\instantclient”</span> para o topo da lista.</li>
+                <li><span class="highlight">Nota:</span> Em Windows antigos (Win 7), se for uma linha de texto, adicione <span class="highlight">'C:\instantclient;'</span> no início da linha.</li>
+            </ul>
+        </div>
+        
+        <hr>
+
+        <h2>4. Conclusão e Teste ✅</h2>
+        <hr>
+
+        <div class="step">
+            <h3>4.1. Finalização</h3>
+            <ul>
+                <li>O mapeamento foi finalizado.</li>
+                <li>Acesse a pasta <span class="highlight">“BITZ Softwares”</span> mapeada.</li>
+                <li>Crie um atalho do <span class="highlight">“Imperium.exe”</span> para a Área de Trabalho.</li>
+                <li>Execute o sistema e teste o acesso.</li>
+            </ul>
+        </div>
+
+        <div class="note" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+            <strong>Sucesso!</strong> As configurações de mapeamento e variáveis de ambiente foram concluídas.
+        </div>
+    </div>
+</body>
+</html>

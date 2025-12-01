@@ -1,0 +1,332 @@
+/* ===== VARIÁVEIS DE CORES ===== */
+:root {
+    /* Cores das Categorias */
+    --color-hotel: #3498db;
+    --color-motel: #27ae60;
+    --color-boas-praticas: #e74c3c;
+    
+    /* Cores dos Módulos - Hotel */
+    --color-modulo-1: #3498db;
+    --color-modulo-2: #3498db;
+    --color-modulo-3: #3498db;
+    --color-modulo-4: #3498db;
+    --color-modulo-5: #3498db;
+    --color-modulo-6: #3498db;
+    
+    /* Cores dos Módulos - Motel */
+    --color-modulo-7: #27ae60;
+    --color-modulo-8: #27ae60;
+    --color-modulo-9: #27ae60;
+    --color-modulo-10: #27ae60;
+    --color-modulo-11: #27ae60;
+    --color-modulo-12: #27ae60;
+    
+    /* Cores dos Módulos - Boas Práticas */
+    --color-modulo-13: #e74c3c;
+    --color-modulo-14: #e74c3c;
+    --color-modulo-15: #e74c3c;
+    --color-modulo-16: #e74c3c;
+    --color-modulo-17: #e74c3c;
+    --color-modulo-18: #e74c3c;
+    
+    /* Cores de Status */
+    --color-available: #27ae60;
+    --color-development: #3498db;
+    --color-coming-soon: #e74c3c;
+    
+    /* Cores Gerais */
+    --color-primary: #2c3e50;
+    --color-secondary: #34495e;
+    --color-background: #f5f5f5;
+    --color-white: #ffffff;
+    --color-gray: #666;
+    --color-light-gray: #e0e0e0;
+    --color-hover: #3498db;
+}
+
+/* ===== ESTILOS GERAIS ===== */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--color-background);
+}
+
+h1 {
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ===== LAYOUT DAS CATEGORIAS ===== */
+.categories-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.category {
+    background: var(--color-white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.category-title {
+    color: var(--color-primary);
+    font-size: 28px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== GRID DE MÓDULOS (6 COLUNAS) ===== */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+/* ===== CARDS DOS MÓDULOS ===== */
+.module-card {
+    background: var(--color-white);
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border-left: 5px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 180px;
+    justify-content: space-between;
+}
+
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.module-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.module-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.module-description {
+    font-size: 13px;
+    color: var(--color-gray);
+    margin-bottom: 15px;
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.module-status {
+    margin-top: auto;
+}
+
+.status-available {
+    background: var(--color-available);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.status-development {
+    background: var(--color-development);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* ===== CORES DAS CATEGORIAS ===== */
+.category-hotel .category-title {
+    border-color: var(--color-hotel);
+    color: var(--color-hotel);
+}
+
+.category-motel .category-title {
+    border-color: var(--color-motel);
+    color: var(--color-motel);
+}
+
+.category-boas-praticas .category-title {
+    border-color: var(--color-boas-praticas);
+    color: var(--color-boas-praticas);
+}
+
+/* ===== SISTEMA DE CORES PARA MÓDULOS ===== */
+
+/* Módulos do Hotel (1-6) */
+.module-1 { border-left-color: var(--color-modulo-1); }
+.module-1 .module-title { color: var(--color-modulo-1); }
+
+.module-2 { border-left-color: var(--color-modulo-2); }
+.module-2 .module-title { color: var(--color-modulo-2); }
+
+.module-3 { border-left-color: var(--color-modulo-3); }
+.module-3 .module-title { color: var(--color-modulo-3); }
+
+.module-4 { border-left-color: var(--color-modulo-4); }
+.module-4 .module-title { color: var(--color-modulo-4); }
+
+.module-5 { border-left-color: var(--color-modulo-5); }
+.module-5 .module-title { color: var(--color-modulo-5); }
+
+.module-6 { border-left-color: var(--color-modulo-6); }
+.module-6 .module-title { color: var(--color-modulo-6); }
+
+/* Módulos do Motel (7-12) */
+.module-7 { border-left-color: var(--color-modulo-7); }
+.module-7 .module-title { color: var(--color-modulo-7); }
+
+.module-8 { border-left-color: var(--color-modulo-8); }
+.module-8 .module-title { color: var(--color-modulo-8); }
+
+.module-9 { border-left-color: var(--color-modulo-9); }
+.module-9 .module-title { color: var(--color-modulo-9); }
+
+.module-10 { border-left-color: var(--color-modulo-10); }
+.module-10 .module-title { color: var(--color-modulo-10); }
+
+.module-11 { border-left-color: var(--color-modulo-11); }
+.module-11 .module-title { color: var(--color-modulo-11); }
+
+.module-12 { border-left-color: var(--color-modulo-12); }
+.module-12 .module-title { color: var(--color-modulo-12); }
+
+/* Módulos de Boas Práticas (13-18) */
+.module-13 { border-left-color: var(--color-modulo-13); }
+.module-13 .module-title { color: var(--color-modulo-13); }
+
+.module-14 { border-left-color: var(--color-modulo-14); }
+.module-14 .module-title { color: var(--color-modulo-14); }
+
+.module-15 { border-left-color: var(--color-modulo-15); }
+.module-15 .module-title { color: var(--color-modulo-15); }
+
+.module-16 { border-left-color: var(--color-modulo-16); }
+.module-16 .module-title { color: var(--color-modulo-16); }
+
+.module-17 { border-left-color: var(--color-modulo-17); }
+.module-17 .module-title { color: var(--color-modulo-17); }
+
+.module-18 { border-left-color: var(--color-modulo-18); }
+.module-18 .module-title { color: var(--color-modulo-18); }
+
+/* ===== DESIGN RESPONSIVO ===== */
+@media (max-width: 1200px) {
+    .modules-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .category {
+        padding: 20px 15px;
+    }
+    
+    .module-card {
+        padding: 20px 15px;
+        min-height: 160px;
+    }
+    
+    .category-title {
+        font-size: 24px;
+    }
+    
+    .module-title {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    body {
+        padding: 15px;
+    }
+}
+
+/* ===== SISTEMA DE BUSCA ===== */
+.search-container {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 25px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.search-box:focus {
+    border-color: var(--color-hover);
+    box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
+}
+
+.search-results {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: none;
+    margin-bottom: 30px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.no-results {
+    text-align: center;
+    color: var(--color-gray);
+    font-style: italic;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.results-title {
+    color: var(--color-primary);
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}

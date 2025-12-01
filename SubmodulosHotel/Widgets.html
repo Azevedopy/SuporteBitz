@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em Desenvolvimento - Widgets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0057d9 0%, #06dba0 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #0057d9;
+            margin-bottom: 15px;
+            font-size: 2rem;
+        }
+        
+        p {
+            color: #4d4d4d;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .invite-message {
+            background: #f0f8ff;
+            border: 2px solid #0057d9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .invite-message p {
+            color: #0057d9;
+            margin-bottom: 0;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0057d9, #06dba0);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 87, 217, 0.4);
+        }
+        
+        .progress {
+            margin: 25px 0;
+        }
+        
+        .progress-bar {
+            background: #ecf0f1;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(135deg, #0057d9, #06dba0);
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚧</div>
+        <h1>Em Desenvolvimento</h1>
+        <p>Para o conteúdo aparecer aqui, só depende de você!</p>
+        
+        <div class="progress">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <small>Em Breve</small>
+        </div>
+
+        <div class="invite-message">
+            <p>💡 <strong>Ah, que pena!</strong> Ainda não temos conteúdos sobre este módulo, mas você mesmo pode criar e me mandar, o que acha?</p>
+        </div>
+        
+        <p>Este módulo estará disponível assim que você fizer um conteudo top e mandar para o seu Líder Analisar.</p>
+        
+        <a href="../index1.html" class="back-button">← Voltar para o Portal</a>
+    </div>
+</body>
+</html>

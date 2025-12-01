@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas Avançadas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-description {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .card-footer {
+            margin-top: auto;
+            padding-top: 15px;
+        }
+        
+        .access-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+        
+        .access-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #2980b9, #34495e);
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../index1.html" class="back-button">← Voltar</a>
+
+        <header>
+            <h1>Técnicas Avançadas</h1>
+            <p class="subtitle">Em breve você vai aprender algo top aqui.</p>
+        </header>
+        
+        <div class="grid-container">
+            <!-- Tema 1 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Boas Práticas de Escrita no Chat</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Aprenda a ter Boas Prátrica de Escrita no Chat</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosBoasPraticas/BoasPraticasEscritaChat.html" class="access-button">
+                            Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 2 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Condução de Atendimento</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosBoasPraticas/ConduçãoAtendimento.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

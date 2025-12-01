@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento de Atendimento ao Cliente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .nav-active {
+            color: #1D4ED8;
+            font-weight: 600;
+            border-bottom-width: 2px;
+            border-color: #1D4ED8;
+        }
+        .tab-active {
+            background-color: #1D4ED8;
+            color: #FFFFFF;
+        }
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        /* Melhorias para mobile */
+        @media (max-width: 768px) {
+            .mobile-padding {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .mobile-text-center {
+                text-align: center;
+            }
+            .mobile-stack {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+    <div class="container mx-auto px-3 sm:px-4 md:px-6">
+        <!-- Botão Voltar -->
+        <a href="../index1.html" class="back-button">← Voltar</a>
+
+    <!-- Header / Navegação Fixa -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <nav class="container mx-auto px-3 sm:px-4 md:px-6 py-3 flex justify-between items-center">
+            <div class="font-bold text-lg sm:text-xl text-blue-700 mobile-text-center">
+                📚 Treinamento: Condução de Atendimentos
+            </div>
+            <div class="hidden md:flex space-x-4 lg:space-x-6">
+                <a href="#inicio" class="nav-link nav-active px-2 sm:px-3 py-1 text-sm sm:text-base">Início</a>
+                <a href="#principios" class="nav-link px-2 sm:px-3 py-1 text-sm sm:text-base">Princípios</a>
+                <a href="#processos" class="nav-link px-2 sm:px-3 py-1 text-sm sm:text-base">Processos</a>
+                <a href="#metricas" class="nav-link px-2 sm:px-3 py-1 text-sm sm:text-base">Métricas</a>
+                <a href="#treinamento" class="nav-link px-2 sm:px-3 py-1 text-sm sm:text-base">Plano</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#inicio" class="block py-3 px-4 text-base hover:bg-gray-100 nav-link-mobile border-b">Início</a>
+            <a href="#principios" class="block py-3 px-4 text-base hover:bg-gray-100 nav-link-mobile border-b">Princípios</a>
+            <a href="#processos" class="block py-3 px-4 text-base hover:bg-gray-100 nav-link-mobile border-b">Processos</a>
+            <a href="#metricas" class="block py-3 px-4 text-base hover:bg-gray-100 nav-link-mobile border-b">Métricas</a>
+            <a href="#treinamento" class="block py-3 px-4 text-base hover:bg-gray-100 nav-link-mobile">Plano</a>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+
+        <!-- Seção 1: Início (Slides 1, 2) -->
+        <section id="inicio" class="container mx-auto px-3 sm:px-4 md:px-6 py-12 sm:py-16 md:py-24 text-center mobile-padding">
+            <h1 class="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 mb-4">📚 Treinamento Completo</h1>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-700 mb-6">Condução de Atendimento ao Cliente</h2>
+            <p class="text-base sm:text-lg text-gray-600 mb-8 sm:mb-12">Instrutor: Eros Portela</p>
+
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-gray-700 mb-8 sm:mb-12">
+                Bem-vindo ao nosso programa de capacitação. Esta plataforma interativa foi desenhada para ir além de uma simples apresentação. Nosso objetivo é fornecer as ferramentas, processos e a mentalidade necessários para transformar cada interação com o cliente em uma experiência de solução eficaz e positiva.
+            </p>
+
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">🎯 Nosso Grande Objetivo</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+                    <span class="text-4xl sm:text-5xl mb-3 sm:mb-4 block">⚡</span>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Solucionadores Rápidos</h4>
+                    <p class="text-sm sm:text-gray-600">Capacidade de diagnosticar e resolver a dor do cliente com agilidade.</p>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+                    <span class="text-4xl sm:text-5xl mb-3 sm:mb-4 block">🗣️</span>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Comunicação Clara</h4>
+                    <p class="text-sm sm:text-gray-600">Traduzir o técnico para o humano, garantindo entendimento total.</p>
+                </div>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+                    <span class="text-4xl sm:text-5xl mb-3 sm:mb-4 block">🎯</span>
+                    <h4 class="text-lg sm:text-xl font-semibold mb-2">Foco Total no Cliente</h4>
+                    <p class="text-sm sm:text-gray-600">Ser o dono do problema e garantir que o cliente não precise retornar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Princípios (Slides 3, 4, 14) -->
+        <section id="principios" class="bg-white py-12 sm:py-16 md:py-20">
+            <div class="container mx-auto px-3 sm:px-4 md:px-6 mobile-padding">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8 sm:mb-12">🧠 Princípios Fundamentais</h2>
+                <p class="max-w-3xl mx-auto text-center text-base sm:text-lg text-gray-700 mb-12 sm:mb-16">
+                    Antes de aprender "o que fazer", precisamos solidificar "por que fazemos". Nossos princípios são a base de um atendimento de alta performance. Eles definem nossa cultura, nossa atitude e nosso compromisso com a solução.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 mb-12 sm:mb-16">
+                    <div class="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">O que é Atendimento de Verdade</h3>
+                        <div class="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                            <h4 class="text-base sm:text-lg font-semibold text-green-600">É...</h4>
+                            <ul class="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-gray-700">
+                                <li>Resolver a dor real do cliente</li>
+                                <li>Explicar o complexo de forma simples</li>
+                                <li>Garantir que **não volte** com o mesmo problema</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-3 sm:space-y-4">
+                            <h4 class="text-base sm:text-lg font-semibold text-red-600">Não é...</h4>
+                            <ul class="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-gray-700">
+                                <li>Ser apenas simpático e "tentar ajudar"</li>
+                                <li>Só responder um ticket ou e-mail</li>
+                                <li>Empurrar o problema pro próximo setor</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">🔥 Mindset Vencedor do Time</h3>
+                        <div class="space-y-3 sm:space-y-4">
+                            <h4 class="text-base sm:text-lg font-semibold text-blue-700">Nossas Regras de Ouro:</h4>
+                            <ul class="list-disc list-inside space-y-2 sm:space-y-3 text-sm sm:text-gray-700">
+                                <li class="text-base sm:text-lg"><strong class="text-gray-900">Somos donos do problema</strong> (do início ao fim)</li>
+                                <li class="text-base sm:text-lg">Se a resposta é "Não sei", a próxima frase é <strong class="text-gray-900">"Vou descobrir"</strong></li>
+                                <li class="text-base sm:text-lg">O cliente compra <strong class="text-gray-900">solução</strong>, não compra desculpas</li>
+                                <li class="text-base sm:text-lg"><strong class="text-gray-900">Alto padrão, SEMPRE.</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <blockquote class="text-xl sm:text-2xl md:text-3xl font-semibold italic text-blue-700 max-w-3xl mx-auto px-4">
+                        "Time bom cumpre SLA. Time foda cria fãs."
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Processos (Slides 5, 8, 9, 6) -->
+        <section id="processos" class="py-12 sm:py-16 md:py-20">
+            <div class="container mx-auto px-3 sm:px-4 md:px-6 mobile-padding">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8 sm:mb-12">🛠️ Processos Chave: O Como Fazer</h2>
+                <p class="max-w-3xl mx-auto text-center text-base sm:text-lg text-gray-700 mb-12 sm:mb-16">
+                    Consistência é a chave da excelência. Agrupamos aqui nossos principais roteiros e técnicas. Use esta seção como um guia de referência rápido para estruturar suas chamadas, lidar com clientes difíceis e garantir que a informação flua corretamente.
+                </p>
+
+                <!-- Navegação das Abas -->
+                <div class="mb-6 sm:mb-8 flex flex-wrap justify-center gap-2 sm:gap-4">
+                    <button class="tab-btn tab-active py-2 sm:py-3 px-3 sm:px-6 font-semibold rounded-lg shadow-md transition duration-300 text-xs sm:text-sm md:text-base" data-tab="tab-mece">1. Roteiro</button>
+                    <button class="tab-btn bg-white py-2 sm:py-3 px-3 sm:px-6 font-semibold rounded-lg shadow-md transition duration-300 text-xs sm:text-sm md:text-base" data-tab="tab-acalma">2. ACALMA</button>
+                    <button class="tab-btn bg-white py-2 sm:py-3 px-3 sm:px-6 font-semibold rounded-lg shadow-md transition duration-300 text-xs sm:text-sm md:text-base" data-tab="tab-handoff">3. Handoff</button>
+                    <button class="tab-btn bg-white py-2 sm:py-3 px-3 sm:px-6 font-semibold rounded-lg shadow-md transition duration-300 text-xs sm:text-sm md:text-base" data-tab="tab-comunicacao">4. Comunicação</button>
+                </div>
+
+                <!-- Conteúdo das Abas -->
+                <div class="bg-white p-4 sm:p-6 md:p-10 rounded-lg shadow-xl max-w-6xl mx-auto">
+                    
+                    <!-- Aba 1: Roteiro MECE (Slide 5) -->
+                    <div id="tab-mece" class="tab-content space-y-4 sm:space-y-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-4">Fluxo Consistente para a Resolução</h3>
+                        <p class="text-sm sm:text-gray-600">Este é o nosso roteiro padrão de atendimento. Seguir estes 5 passos garante que nada seja esquecido e que o cliente se sinta seguro.</p>
+                        <div class="space-y-3 sm:space-y-4">
+                            <div class="flex items-start p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <span class="text-xl sm:text-2xl font-bold text-blue-600 mr-3 sm:mr-4">1️⃣</span>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg">Conectar</h4>
+                                    <p class="text-xs sm:text-gray-600">Humanização e segurança. Crie rapport antes de pular para o problema.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <span class="text-xl sm:text-2xl font-bold text-blue-600 mr-3 sm:mr-4">2️⃣</span>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg">Diagnosticar</h4>
+                                    <p class="text-xs sm:text-gray-600">Use perguntas inteligentes e um check-list simples. Não assuma, investigue.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 sm:p-4 bg-gray-50 rounded-lg">
+                                <span class="text-xl sm:text-2xl font-bold text-blue-600 mr-3 sm:mr-4">3️⃣</span>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg">Solucionar</h4>
+                                    <p class="text-xs sm:text-gray-600">Se possível, **resolva na call**. Se depender de terceiros, dê um prazo CLARO.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 sm:p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                                <span class="text-xl sm:text-2xl font-bold text-yellow-600 mr-3 sm:mr-4">4️⃣</span>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg text-yellow-800">Confirmar Entendimento</h4>
+                                    <p class="text-xs sm:text-gray-700">"Para garantir que estamos na mesma página..." Faça o cliente repetir o combinado. (Sem isso retrabalho)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start p-3 sm:p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                                <span class="text-xl sm:text-2xl font-bold text-yellow-600 mr-3 sm:mr-4">5️⃣</span>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg text-yellow-800">Encerrar com Prevenção</h4>
+                                    <p class="text-xs sm:text-gray-700">"Da próxima vez, você pode evitar isso fazendo..." (Sem isso caos amanhã)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aba 2: Técnica ACALMA (Slide 8) -->
+                    <div id="tab-acalma" class="tab-content hidden space-y-4 sm:space-y-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-4">👊 Lidando com Clientes Difíceis (ACALMA)</h3>
+                        <p class="text-sm sm:text-gray-600 mb-4 sm:mb-6">O cliente está frustrado. Nossa missão é ser o extintor. Use este acrônimo para desarmar a situação e assumir o controle.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center"><strong class="text-xl sm:text-2xl font-bold text-blue-600">A</strong>colher<br><span class="text-xs sm:text-sm">(Valide a frustração dele)</span></div>
+                            <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center"><strong class="text-xl sm:text-2xl font-bold text-blue-600">C</strong>onfirmar<br><span class="text-xs sm:text-sm">(Repita o que ele disse)</span></div>
+                            <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center"><strong class="text-xl sm:text-2xl font-bold text-blue-600">A</strong>ssumir<br><span class="text-xs sm:text-sm">("Eu vou resolver isso")</span></div>
+                            <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center"><strong class="text-xl sm:text-2xl font-bold text-blue-600">L</strong>evar<br><span class="text-xs sm:text-sm">(Apresente o plano)</span></div>
+                            <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center"><strong class="text-xl sm:text-2xl font-bold text-blue-600">M</strong>ostrar<br><span class="text-xs sm:text-sm">(Próximos passos)</span></div>
+                            <div class="p-3 sm:p-4 bg-gray-50 rounded-lg text-center"><strong class="text-xl sm:text-2xl font-bold text-blue-600">A</strong>companhar<br><span class="text-xs sm:text-sm">(Fechamento)</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Aba 3: Handoff (Slide 9) -->
+                    <div id="tab-handoff" class="tab-content hidden space-y-4 sm:space-y-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-4">🔄 Encaminhamento Sem Abandono (Handoff)</h3>
+                        <p class="text-sm sm:text-gray-600 mb-4 sm:mb-6">Encaminhar não é largar. É orquestrar a solução. O cliente não pode ter que repetir a história. Use este checklist antes de transferir:</p>
+                        <ul class="space-y-2 sm:space-y-3">
+                            <li class="flex items-center text-sm sm:text-lg"><span class="text-xl sm:text-2xl mr-2 sm:mr-3">✅</span> O que já foi feito (e o que falhou).</li>
+                            <li class="flex items-center text-sm sm:text-lg"><span class="text-xl sm:text-2xl mr-2 sm:mr-3">📎</span> Evidências, logs e IDs anexadas.</li>
+                            <li class="flex items-center text-sm sm:text-lg"><span class="text-xl sm:text-2xl mr-2 sm:mr-3">🧩</span> O cliente está ciente para quem vai e por quê.</li>
+                            <li class="flex items-center text-sm sm:text-lg"><span class="text-xl sm:text-2xl mr-2 sm:mr-3">⏱️</span> Prazo claro para a próxima atualização.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Aba 4: Comunicação (Slide 6) -->
+                    <div id="tab-comunicacao" class="tab-content hidden space-y-4 sm:space-y-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-4">✍️ Comunicação de Alta Performance</h3>
+                        <p class="text-sm sm:text-gray-600 mb-4 sm:mb-6">O cliente precisa entender. Nossa comunicação deve ser simples, direta e humana.</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full min-w-max text-xs sm:text-sm">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="p-2 sm:p-3 text-left font-semibold text-red-600">❌ Evite</th>
+                                        <th class="p-2 sm:p-3 text-left font-semibold text-green-600">✅ Prefira</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="p-2 sm:p-3 align-top">"Erro sistêmico por inconsistência no *front-end*."</td>
+                                        <td class="p-2 sm:p-3 align-top">"O campo X está vazio, e precisamos preencher juntos para prosseguir."</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-2 sm:p-3 align-top">"Seu chamado foi escalado e está em análise."</td>
+                                        <td class="p-2 sm:p-3 align-top">"Conversei com a equipe técnica. Eles vão analisar e te retorno até as 15h."</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-2 sm:p-3 align-top">"Prezado, referente à sua solicitação..." (texto longo)</td>
+                                        <td class="p-2 sm:p-3 align-top">"Olá [Nome], sobre [problema]:<br>• A causa era X.<br>• A solução é Y." (bullets)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Métricas (Slides 7, 13, 11, 10) -->
+        <section id="metricas" class="bg-white py-12 sm:py-16 md:py-20">
+            <div class="container mx-auto px-3 sm:px-4 md:px-6 mobile-padding">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8 sm:mb-12">📈 Métricas e Evolução Contínua</h2>
+                <p class="max-w-3xl mx-auto text-center text-base sm:text-lg text-gray-700 mb-12 sm:mb-16">
+                    O que não é medido, não é gerenciado. Nossas métricas definem o sucesso e guiam nossa evolução. Aqui, visualizamos nossos alvos de performance e os rituais que usamos para melhorar continuamente.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
+                    <div class="bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg order-2 lg:order-1">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 text-center">Metas de Performance e Certificação</h3>
+                        <p class="text-center text-sm sm:text-gray-600 mb-4 sm:mb-6">Estas são as metas que definem um "Resolvedor Profissional".</p>
+                        <div class="w-full max-w-lg mx-auto h-64 sm:h-80 md:h-96 relative">
+                            <canvas id="metricsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6 sm:space-y-8 order-1 lg:order-2">
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">📣 Feedback e Evolução</h3>
+                            <p class="text-sm sm:text-gray-700 mb-3 sm:mb-4">Erro não vira tabú  vira **melhoria**. Nosso ritual semanal é focado em ação:</p>
+                            <ul class="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-gray-700">
+                                <li>1 exemplo TOP da semana (para replicar)</li>
+                                <li>1 erro (anonimizado) para aprender</li>
+                                <li>Definição de **Ação Imediata** de melhoria</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">🚀 Proatividade = Clientes Promotores</h3>
+                            <p class="text-sm sm:text-gray-700 mb-3 sm:mb-4">Ir além do básico é o que cria fãs. Se um problema se repetiu, o **processo falhou**.</p>
+                            <ul class="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-gray-700">
+                                <li>Monitorar chamados que já deram problema.</li>
+                                <li>Fazer **Recontato Proativo**: "Ficou tudo certo com a solução de ontem?"</li>
+                                <li>Identificar tendências e agir *antes* que o cliente ligue.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 5: Treinamento (Slides 12, 15) -->
+        <section id="treinamento" class="py-12 sm:py-16 md:py-20">
+            <div class="container mx-auto px-3 sm:px-4 md:px-6 mobile-padding">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8 sm:mb-12">🎯 Plano de Treinamento</h2>
+                <p class="max-w-3xl mx-auto text-center text-base sm:text-lg text-gray-700 mb-12 sm:mb-16">
+                    A teoria é a base, mas a prática leva à maestria. Esta seção detalha como vamos solidificar esse conhecimento e quais ferramentas você receberá para usar no seu dia a dia.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8 sm:gap-10 lg:gap-16 max-w-4xl mx-auto">
+                    <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Dinâmicas do Treinamento</h3>
+                        <p class="text-sm sm:text-gray-600 mb-3 sm:mb-4">Vamos praticar em cenários reais:</p>
+                        <h4 class="font-semibold text-base sm:text-lg mb-2">Simulações Práticas:</h4>
+                        <ul class="list-disc list-inside space-y-1 sm:space-y-2 text-sm sm:text-gray-700">
+                            <li>Cliente bravo/furioso</li>
+                            <li>Cliente novato/confuso</li>
+                            <li>Cliente pedindo o impossível</li>
+                            <li>Cliente apressado / com urgência</li>
+                            <li>Cliente insatisfeito com atendimento anterior</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-6 sm:py-8">
+        <div class="container mx-auto px-3 sm:px-4 md:px-6 text-center">
+            <p class="text-sm sm:text-base">&copy; 2025 Treinamento Mestre. Todos os direitos reservados.</p>
+            <p class="text-sm sm:text-base mt-2">Construído para excelência no atendimento.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- Lógica do Menu Mobile ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Lógica das Abas (Tabs) ---
+            const tabContainer = document.querySelector('#processos');
+            const tabButtons = tabContainer.querySelectorAll('.tab-btn');
+            const tabContents = tabContainer.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTab = button.getAttribute('data-tab');
+
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('bg-white');
+                    });
+                    
+                    button.classList.add('tab-active');
+                    button.classList.remove('bg-white');
+
+                    tabContents.forEach(content => {
+                        if (content.id === targetTab) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // --- Lógica do Gráfico de Métricas (Chart.js) ---
+            const ctx = document.getElementById('metricsChart');
+            if (ctx) {
+                function formatLabel(value, maxChars) {
+                    if (typeof value !== 'string') return value;
+                    const words = value.split(' ');
+                    let currentLine = '';
+                    const lines = [];
+                    words.forEach(word => {
+                        if ((currentLine + word).length > maxChars) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    });
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+
+                new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            'FCR (Resolver na 1ª)', 
+                            'CSAT (Cliente Feliz)', 
+                            'Reabertura (Zero Retrabalho)'
+                        ],
+                        datasets: [{
+                            label: 'Meta de Performance (%)',
+                            data: [80, 90, 90],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(22, 163, 74, 0.7)',
+                                'rgba(239, 68, 68, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(22, 163, 74, 1)',
+                                'rgba(239, 68, 68, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            if (context.label.includes('Reabertura')) {
+                                                label += `Abaixo de ${context.parsed.y}%`;
+                                            } else {
+                                                label += `Acima de ${context.parsed.y}%`;
+                                            }
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    callback: function(value) {
+                                        const label = this.getLabelForValue(value);
+                                        return formatLabel(label, 12);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Lógica de Navegação Ativa (ScrollSpy) ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('nav-active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                rootMargin: '-50% 0px -50% 0px',
+                threshold: 0
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+        });
+    </script>
+</body>
+</html>

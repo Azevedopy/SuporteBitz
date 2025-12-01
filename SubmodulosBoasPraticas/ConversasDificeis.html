@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: Conversas Difíceis e Desescalonamento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Warm Neutral (bg-gray-50/bg-white, text-gray-900, accent-red-700/blue-700) -->
+    <!-- Structure: Replicates the previous 5-section structure, focusing on emotional intelligence and conflict resolution. -->
+    <style>
+        .nav-active {
+            color: #B91C1C; /* text-red-700 */
+            font-weight: 600;
+            border-bottom-width: 2px;
+            border-color: #B91C1C;
+        }
+        .tab-active {
+            background-color: #B91C1C; /* bg-red-700 */
+            color: #FFFFFF; /* text-white */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+    <!-- Header / Navegação Fixa -->
+    <header class="sticky top-0 bg-white shadow-md z-50">
+        <nav class="container mx-auto px-4 md:px-6 py-3 flex justify-between items-center">
+            <div class="font-bold text-xl text-red-700">
+                🚨 Treinamento Crítico
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#inicio" class="nav-link nav-active">Início</a>
+                <a href="#mindset" class="nav-link">Mindset</a>
+                <a href="#resolve" class="nav-link">R.E.S.O.L.V.E.</a>
+                <a href="#impacto" class="nav-link">Impacto</a>
+                <a href="#dinamicas" class="nav-link">Prática</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#inicio" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Início</a>
+            <a href="#mindset" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Mindset</a>
+            <a href="#resolve" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">R.E.S.O.L.V.E.</a>
+            <a href="#impacto" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Impacto</a>
+            <a href="#dinamicas" class="block py-2 px-4 text-sm hover:bg-gray-100 nav-link-mobile">Prática</a>
+        </div>
+    </header>
+
+    <!-- Seção 1: Início -->
+    <section id="inicio" class="container mx-auto px-4 md:px-6 py-16 md:py-24 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">📢 Conversas Difíceis e Críticas</h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-red-700 mb-6">Técnicas de Desescalonamento e Recuperação de Clientes</h2>
+        <p class="text-lg text-gray-600 mb-12">Instrutor: Eros Portela</p>
+
+        <p class="max-w-3xl mx-auto text-lg text-gray-700 mb-12">
+            Lidar com a raiva e a frustração do cliente é inevitável. Este treinamento não é sobre evitar conflitos, mas sim sobre como transformá-los nos maiores pontos de retenção. Aprenda a desarmar a situação e sair com um cliente mais leal do que antes.
+        </p>
+
+        <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">🎯 O Foco da Maestria em Crises</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+                <span class="text-5xl mb-4 block">🛡️</span>
+                <h4 class="text-xl font-semibold mb-2">Manter a Calma</h4>
+                <p class="text-gray-600">Ser a âncora emocional, não importa a fúria do cliente.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+                <span class="text-5xl mb-4 block">🤝</span>
+                <h4 class="text-xl font-semibold mb-2">Gerar Aliança</h4>
+                <p class="text-gray-600">Mudar o foco da culpa para a solução (Nós contra o Problema).</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg transform transition hover:scale-105 duration-300">
+                <span class="text-5xl mb-4 block">🥇</span>
+                <h4 class="text-xl font-semibold mb-2">Recuperar a Confiança</h4>
+                <p class="text-gray-600">Finalizar a conversa com o cliente agradecendo a ajuda, não o culpando.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 2: Mindset e Princípios de Desescalonamento -->
+    <section id="mindset" class="bg-white py-16 md:py-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">🧠 Mindset da Inteligência Emocional</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-700 mb-16">
+                Sua atitude é 90% da solução. Ao invés de reagir, escolha ser o agente que desliga o alarme.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mb-16 max-w-5xl mx-auto">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Empatia vs. Simpatia vs. Culpa</h3>
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-green-700">✅ Empatia (Nosso Foco)</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong class="text-gray-900">Significa:</strong> "Eu reconheço a validade da sua frustração."</li>
+                            <li><strong class="text-gray-900">Exemplo:</strong> "Eu entendo perfeitamente porque a demora de x horas o deixou irritado."</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4 mt-6">
+                        <h4 class="text-xl font-semibold text-red-600">❌ Simpatia/Culpa (O que Evitar)</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><strong class="text-gray-900">Simpatia:</strong> Concordar ou dar razão técnica ("Ah, isso é realmente um absurdo").</li>
+                            <li><strong class="text-gray-900">Culpa:</strong> Reagir à ofensa ("Não é minha culpa" ou "Não precisa ser mal-educado").</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">🔇 Regras da Desescalada</h3>
+                    <div class="space-y-4">
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li class="text-lg"><strong class="text-red-700">VOZ:</strong> Fale mais lento e um tom abaixo do normal.</li>
+                            <li class="text-lg"><strong class="text-red-700">OUVIR:</strong> Deixe o cliente desabafar o suficiente (Mantenha-se mudo).</li>
+                            <li class="text-lg"><strong class="text-red-700">PAUSA:</strong> Use o silêncio. Pausas transmitem controle.</li>
+                            <li class="text-lg"><strong class="text-red-700">OBJETIVO:</strong> Lembrar que o alvo é o problema, não você.</li>
+                        </ul>
+                    </div>
+                    <div class="text-center mt-6 p-4 bg-red-100 rounded-lg">
+                        <p class="font-bold text-red-800">
+                            Nunca interrompa a raiva Interrompa o ciclo da raiva.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: Processo R.E.S.O.L.V.E. -->
+    <section id="resolve" class="py-16 md:py-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">🗺️ O Roteiro R.E.S.O.L.V.E. (Passo a Passo da Crise)</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-700 mb-16">
+                Este é o nosso roteiro de 7 passos para guiar a conversa de volta à racionalidade e entregar uma solução satisfatória.
+            </p>
+
+            <!-- Conteúdo em Tab (usando uma única aba para o acrônimo) -->
+            <div class="bg-white p-6 md:p-10 rounded-lg shadow-xl max-w-5xl mx-auto">
+                <div id="tab-resolve" class="space-y-6">
+                    <h3 class="text-2xl font-bold text-red-700 mb-4 text-center">Roteiro Completo de Desescalonamento</h3>
+                    <p class="text-gray-600 mb-8 text-center">Use este acrônimo como sua bússola em momentos de pressão.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- R - Reconhecer -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">R</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Reconhecer a Emoção</h4>
+                            <p class="text-sm text-gray-700 clear-both">"Obrigado por nos informar, sei que essa situação é extremamente frustrante."</p>
+                        </div>
+                        
+                        <!-- E - Escutar -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">E</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Escutar Ativamente</h4>
+                            <p class="text-sm text-gray-700 clear-both">Deixe-o falar 90% do tempo. Não interrompa. Resuma o problema após o desabafo.</p>
+                        </div>
+
+                        <!-- S - Sentir -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">S</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Sentir com o Cliente (Validar)</h4>
+                            <p class="text-sm text-gray-700 clear-both">"Se eu estivesse no seu lugar, também estaria bravo/chateado com o erro X."</p>
+                        </div>
+
+                        <!-- O - Oferecer Opções -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">O</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Oferecer Opções</h4>
+                            <p class="text-sm text-gray-700 clear-both">Nunca prometa o impossível. Dê 2 ou 3 caminhos possíveis para a solução.</p>
+                        </div>
+
+                        <!-- L - Liderar a Próxima Ação -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">L</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Liderar a Próxima Ação</h4>
+                            <p class="text-sm text-gray-700 clear-both">"Vamos seguir com a Opção B. Meu próximo passo será... e você não precisa fazer mais nada."</p>
+                        </div>
+
+                        <!-- V - Verificar Aceitação -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">V</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Verificar Aceitação</h4>
+                            <p class="text-sm text-gray-700 clear-both">"O plano está claro para o senhor? Há algo mais que eu possa fazer hoje sobre isso?"</p>
+                        </div>
+
+                        <!-- E - Encerrar Positivamente -->
+                        <div class="p-5 bg-red-50 rounded-lg shadow-md border-t-4 border-red-500">
+                            <span class="text-3xl font-extrabold text-red-700 mr-3 block float-left">E</span>
+                            <h4 class="font-bold text-lg text-red-800 mb-1">Encerrar Positivamente</h4>
+                            <p class="text-sm text-gray-700 clear-both">Agradeça a paciência e reforce a confiança ("Conte sempre com meu suporte direto").</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Impacto e Métricas -->
+    <section id="impacto" class="bg-white py-16 md:py-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">📈 Medindo o Sucesso na Crise</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-700 mb-16">
+                Conversas difíceis impactam diretamente nossas métricas de retenção e eficiência. Focamos em 3 indicadores para avaliar a desescalada.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Nossas Metas de Desescalonamento</h3>
+                    <p class="text-center text-gray-600 mb-6">Métricas focadas em recuperar o cliente em vez de apenas resolver o ticket.</p>
+                    <div class="w-full max-w-lg mx-auto h-80 md:h-96 relative">
+                        <canvas id="metricsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">🚫 Taxa de Escalada (Redução)</h3>
+                        <p class="text-gray-700 mb-4">Se você usou o R.E.S.O.L.V.E. e o cliente ainda pediu para falar com o gerente o processo falhou. Nossa meta é manter a Taxa de Escalada Abaixo de 5%.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">❤️ Votos de Confiança (CSAT Crítico)</h3>
+                        <p class="text-gray-700 mb-4">O CSAT (Satisfação) é medido em todos os casos, mas o CSAT em Casos Críticos (aqueles que começam com raiva) é o nosso teste de fogo. Queremos de satisfação mesmo após um problema.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4">🔄 Reversão de Crise</h3>
+                        <p class="text-gray-700 mb-4">A habilidade de transformar um cliente que pensava em cancelar em um cliente que permanece. Essa é a Retenção Ativa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: Treinamento e Prática -->
+    <section id="dinamicas" class="py-16 md:py-20">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">🎮 Dinâmicas e Simulações (A Prática Leva ao Controle)</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-700 mb-16">
+                Não há como dominar crises sem simulação. Prepare-se para atuar sob pressão.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Prática em Campo (Role-Playing)</h3>
+                    <p class="text-gray-600 mb-4">Vamos aplicar o R.E.S.O.L.V.E. em cenários de alta tensão:</p>
+                    <h4 class="font-semibold text-xl text-red-700 mb-2">Cenários:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 mb-6">
+                        <li>Acúmulo de Falhas: O cliente já ligou 3 vezes pelo mesmo problema.</li>
+                        <li>Reembolso Negado: O cliente exige algo que não podemos entregar.</li>
+                        <li>Linguagem Ofensiva: O cliente usa abuso verbal (Limite da tolerância).</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">Reforço e Feedback</h3>
+                    <p class="text-gray-600 mb-4">Após cada dinâmica, faremos uma análise profunda em 3 eixos:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-lg p-3 bg-red-50 rounded-md"><span class="text-xl mr-3 text-red-700">🗣️</span> Tom de Voz (Pausas, Calma e Ritmo).</li>
+                        <li class="flex items-center text-lg p-3 bg-red-50 rounded-md"><span class="text-xl mr-3 text-red-700">⚖️</span> Liderança na Conversa (Assumiu o controle?).</li>
+                        <li class="flex items-center text-lg p-3 bg-red-50 rounded-md"><span class="text-xl mr-3 text-red-700">✅</span> Aplicação Completa do R.E.S.O.L.V.E.</li>
+                    </ul>
+                    <p class="text-sm text-gray-500 mt-4">Todo feedback é construtivo. O objetivo é a sua evolução.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+            <p>&copy; 2025 Treinamento Crítico. Mestre em Desescalonamento.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- Lógica do Menu Mobile ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.nav-link-mobile');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Lógica do Gráfico de Métricas (Chart.js) ---
+            const ctx = document.getElementById('metricsChart');
+            if (ctx) {
+                // Função para quebrar labels longos
+                function formatLabel(value, maxChars) {
+                    if (typeof value !== 'string') return value;
+                    const words = value.split(' ');
+                    let currentLine = '';
+                    const lines = [];
+                    words.forEach(word => {
+                        if ((currentLine + word).length > maxChars) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    });
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+
+                new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            'Taxa de Escalada (Alvo: Máx)', 
+                            'CSAT em Casos Críticos (Alvo: Mín)', 
+                            'Reversão de Crise (Retenção)'
+                        ],
+                        datasets: [{
+                            label: 'Meta de Performance (%)',
+                            data: [60, 75, 92], // Metas: Escalada <= 60%, CSAT >= 75%, Reversão >= 92%
+                            backgroundColor: [
+                                'rgba(239, 68, 68, 0.7)',  // Red - Escalada (Low is good)
+                                'rgba(59, 130, 246, 0.7)', // Blue - CSAT (High is good)
+                                'rgba(22, 163, 74, 0.7)'   // Green - Reversão (High is good)
+                            ],
+                            borderColor: [
+                                'rgba(239, 68, 68, 1)',
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(22, 163, 74, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            if (context.label.includes('Escalada')) {
+                                                label += `Máximo de ${context.parsed.y}%`;
+                                            } else {
+                                                label += `Mínimo de ${context.parsed.y}%`;
+                                            }
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    callback: function(value) {
+                                        const label = this.getLabelForValue(value);
+                                        return formatLabel(label, 15); // Quebra a cada 15 chars
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Lógica de Navegação Ativa (ScrollSpy) ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('nav-active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('nav-active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                rootMargin: '-50% 0px -50% 0px',
+                threshold: 0
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+        });
+    </script>
+</body>
+</html>

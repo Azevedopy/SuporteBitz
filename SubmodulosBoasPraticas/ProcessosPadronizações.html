@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: Processos de Tickets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .nav-active {
+            color: #1D4ED8;
+            font-weight: 600;
+            border-bottom-width: 2px;
+            border-color: #1D4ED8;
+        }
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+    <div class="container mx-auto px-3 sm:px-4 md:px-6">
+        <!-- Botão Voltar -->
+        <a href="../index1.html" class="back-button">← Voltar</a>
+
+        <!-- Header / Navegação Fixa -->
+        <header class="sticky top-0 bg-white shadow-md z-50 mb-8">
+            <nav class="container mx-auto px-3 sm:px-4 md:px-6 py-3">
+                <div class="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
+                    <div class="font-bold text-lg sm:text-xl md:text-2xl text-blue-700 text-center sm:text-left">
+                        📚 Treinamento: Condução de Tickets
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
+                        <a href="#" class="nav-active px-3 py-2 text-sm sm:text-base rounded-lg transition duration-300">Início</a>
+                        <a href="#" class="px-3 py-2 text-sm sm:text-base text-gray-600 hover:text-blue-700 rounded-lg transition duration-300">Princípios</a>
+                        <a href="#" class="px-3 py-2 text-sm sm:text-base text-gray-600 hover:text-blue-700 rounded-lg transition duration-300">Processos</a>
+                        <a href="#" class="px-3 py-2 text-sm sm:text-base text-gray-600 hover:text-blue-700 rounded-lg transition duration-300">Métricas</a>
+                        <a href="#" class="px-3 py-2 text-sm sm:text-base text-gray-600 hover:text-blue-700 rounded-lg transition duration-300">Plano</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="max-w-6xl mx-auto">
+            
+            <!-- Seção Hero -->
+            <section class="text-center mb-12 sm:mb-16">
+                <div class="text-5xl sm:text-6xl md:text-7xl mb-2">📚</div>
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Treinamento Completo</h1>
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-blue-700 mb-8">Processos e Padronização dos Tickets</h2>
+                
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                    <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                        Bem-vindo ao nosso programa de capacitação. Esta plataforma interativa foi desenhada para ir
+                        além de uma simples apresentação. Nosso objetivo é fornecer as ferramentas, processos e a
+                        mentalidade necessários para transformar cada interação com o ticket em uma experiência de
+                        solução eficaz e positiva, garantindo a <strong class="text-blue-700">padronização</strong>.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Seção Objetivo -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-blue-700 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">🎯 Nosso Grande Objetivo</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-3 mt-1">✓</span>
+                                <span>Alinhar como identificar e registrar <strong>incidentes</strong> e <strong>solicitações de melhoria</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-3 mt-1">✓</span>
+                                <span>Garantir padronização no atendimento e resolução.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-3 mt-1">✓</span>
+                                <span>Reduzir tempo de resposta e retrabalho.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-3 mt-1">✓</span>
+                                <span>Aumentar satisfação e transparência com o cliente.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-3 mt-1">✓</span>
+                                <span>Capacitar a equipe na utilização efetiva do Movidesk.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Trilha de Aprendizado -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-green-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">🗺️ Trilha de Aprendizado</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-3 mt-1">•</span>
+                                <span>Mudança na estrutura dos tickets de <strong>melhoria</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-3 mt-1">•</span>
+                                <span>Capacitação na criação de ticket de <strong>incidente</strong>.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-3 mt-1">•</span>
+                                <span>Vinculação de usuários a organizações.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-3 mt-1">•</span>
+                                <span>Vinculação de tickets filhos (relacionados).</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Entrada e Registro -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-purple-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">📞 Entrada e Registro da Solicitação</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <div class="mb-6">
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Canais de Atendimento:</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <strong class="text-blue-700">Chat:</strong>
+                                    <p class="text-sm text-gray-600 mt-1">Para suporte rápido e comunicação instantânea.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <strong class="text-blue-700">E-mail:</strong>
+                                    <p class="text-sm text-gray-600 mt-1">Para solicitações que demandam mais detalhes ou anexos.</p>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <strong class="text-blue-700">Telefone:</strong>
+                                    <p class="text-sm text-gray-600 mt-1">Para interações diretas e resolução imediata de urgências.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Triagem:</h4>
+                            <ol class="space-y-3 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">1</span>
+                                    <span><strong>Saudações:</strong> Início profissional e cordial do atendimento.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">2</span>
+                                    <span><strong>Coleta de Informações:</strong> Levantamento detalhado dos dados relevantes sobre a solicitação.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">3</span>
+                                    <span><strong>Contato Inicial:</strong> Ligar para o cliente para esclarecer dúvidas ou obter mais detalhes cruciais para a análise.</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Ticket Incidente -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-red-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">🛠️ Criação do Ticket Incidente</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <p class="text-sm sm:text-base text-gray-700 mb-6">
+                            Um Incidente é uma interrupção inesperada em um serviço ou a redução de sua qualidade. A criação do ticket deve seguir 3 passos:
+                        </p>
+                        <ol class="space-y-6 text-sm sm:text-base text-gray-700">
+                            <li>
+                                <strong class="text-red-700">Coleta de informações</strong>
+                                <ul class="mt-2 space-y-2 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="text-red-600 mr-2 mt-1">•</span>
+                                        <span>Entender o relato do cliente em detalhe</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-red-600 mr-2 mt-1">•</span>
+                                        <span>Mapear todos os processos realizados até o erro</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong class="text-red-700">Gravação e Evidências</strong>
+                                <ul class="mt-2 space-y-2 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="text-red-600 mr-2 mt-1">•</span>
+                                        <span>Solicitar <strong>vídeo da ocorrência</strong> (fluxo completo até o erro)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-red-600 mr-2 mt-1">•</span>
+                                        <span>Contextualizar: descrever o ponto da divergência</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong class="text-red-700">Replicação da Situação</strong>
+                                <ul class="mt-2 space-y-2 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="text-red-600 mr-2 mt-1">•</span>
+                                        <span>Reproduzir a ocorrência em <strong>base de testes</strong></span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-red-600 mr-2 mt-1">•</span>
+                                        <span>Conferir se não houve falha de configuração ou etapa omitida</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Ticket Melhoria -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-green-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">✨ Criação do Ticket de Melhoria</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <p class="text-sm sm:text-base text-gray-700 mb-6">
+                            Uma Melhoria é uma solicitação de alteração que não decorre de um erro, mas de uma nova funcionalidade ou aprimoramento.
+                        </p>
+                        <ol class="space-y-6 text-sm sm:text-base text-gray-700">
+                            <li>
+                                <strong class="text-green-700">Coleta de Necessidade</strong>
+                                <ul class="mt-2 space-y-2 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="text-green-600 mr-2 mt-1">•</span>
+                                        <span>Entender qual é a <strong>real necessidade</strong> do cliente</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-600 mr-2 mt-1">•</span>
+                                        <span>Verificar se <strong>já existe</strong> uma funcionalidade no sistema</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong class="text-green-700">Entendimento da Solicitação</strong>
+                                <ul class="mt-2 space-y-2 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="text-green-600 mr-2 mt-1">•</span>
+                                        <span>Detalhar como o cliente espera que a nova funcionalidade opere</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-600 mr-2 mt-1">•</span>
+                                        <span>Identificar o que ele deseja visualizar ou ajustar</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong class="text-green-700">Validação com o Cliente</strong>
+                                <ul class="mt-2 space-y-2 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="text-green-600 mr-2 mt-1">•</span>
+                                        <span>Repassar o entendimento coletado de forma clara e <strong>confirmar</strong></span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-600 mr-2 mt-1">•</span>
+                                        <span>Evitar retrabalho garantindo alinhamento antes do registro definitivo</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Níveis de Prioridade -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-yellow-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">🚨 Níveis de Prioridade Detalhados</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                <h4 class="text-lg font-semibold text-green-800 mb-2">🟢 Baixa</h4>
+                                <p class="text-sm text-gray-700 mb-2"><strong>Descrição:</strong> Utilizada apenas em tickets de atendimento (dúvidas, orientações).</p>
+                                <p class="text-xs text-gray-600 italic"><em>Exemplo: Pergunta sobre um recurso pouco utilizado, solicitação de um manual.</em></p>
+                            </div>
+
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                                <h4 class="text-lg font-semibold text-yellow-800 mb-2">🟡 Média</h4>
+                                <p class="text-sm text-gray-700 mb-2"><strong>Descrição:</strong> Incidentes que não interrompem as operações essenciais, mas causam algum desconforto ou limitação.</p>
+                                <p class="text-xs text-gray-600 italic"><em>Exemplo: Problema intermitente em um sistema, falha de um recurso secundário.</em></p>
+                            </div>
+
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                                <h4 class="text-lg font-semibold text-red-800 mb-2">🔴 Alta</h4>
+                                <p class="text-sm text-gray-700 mb-2"><strong>Descrição:</strong> Incidentes que afetam diretamente e criticamente o operacional, causando <strong>paralisação</strong> ou <strong>impacto significativo</strong> nos serviços.</p>
+                                <p class="text-xs text-gray-600 italic"><em>Exemplo: Sistema fora do ar, interrupção de serviço essencial.</em></p>
+                            </div>
+
+                            <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-gray-600">
+                                <h4 class="text-lg font-semibold text-gray-800 mb-2">⚫ Crítica</h4>
+                                <p class="text-sm text-gray-700 mb-2"><strong>Descrição:</strong> Situações emergenciais de altíssimo impacto, que comprometem a <strong>continuidade do negócio</strong> (riscos financeiros/legais). Demandam resposta e mobilização imediata.</p>
+                                <p class="text-xs text-gray-600 italic"><em>Exemplo: Indisponibilidade total da plataforma para todos os clientes, vazamento de dados sensíveis.</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Procedimento Pós-Registro -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-blue-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">🔗 Procedimento Pós-Registro (Vinculação e Acompanhamento)</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <div class="mb-6">
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Vinculação dos Tickets</h4>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2 mt-1">•</span>
+                                    <span>Sempre <strong>vincular tickets de atendimento</strong> ao ticket principal criado.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2 mt-1">•</span>
+                                    <span>Garante <strong>rastreabilidade</strong> e <strong>histórico único</strong>.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Acompanhamento</h4>
+                            <ul class="space-y-2 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2 mt-1">•</span>
+                                    <span>Revisão <strong>semanal</strong> dos status das solicitações.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2 mt-1">•</span>
+                                    <span>Garantir que nada fique <strong>parado</strong> ou <strong>sem retorno</strong> ao cliente.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Encerramento -->
+            <section class="mb-12 sm:mb-16">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-green-600 text-white p-4 sm:p-6">
+                        <h3 class="text-xl sm:text-2xl font-bold text-center">✅ Procedimento de Encerramento (Melhorias e Incidentes)</h3>
+                    </div>
+                    <div class="p-4 sm:p-6 md:p-8">
+                        <div class="mb-6">
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Encerramento de Melhorias</h4>
+                            <ol class="space-y-3 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">1</span>
+                                    <span>Validar se a melhoria foi entregue <strong>conforme especificado</strong>.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">2</span>
+                                    <span><strong>Comunicar</strong> ao cliente sobre a nova funcionalidade e <strong>orientar</strong> sobre o uso.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">3</span>
+                                    <span>Solicitar <strong>feedback</strong> do cliente.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">4</span>
+                                    <span><strong>Encerrar ticket</strong> após validação positiva.</span>
+                                </li>
+                            </ol>
+                        </div>
+                        <div>
+                            <h4 class="text-lg sm:text-xl font-semibold text-gray-900 mb-3">Encerramento de Incidentes</h4>
+                            <ol class="space-y-3 text-sm sm:text-base text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">1</span>
+                                    <span>Validar se o ajuste foi aplicado corretamente.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">2</span>
+                                    <span>Entrar em <strong>contato com o cliente</strong> → solicitar testes em conjunto.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-1 flex-shrink-0">3</span>
+                                    <span>Após confirmação de funcionamento → proceder com <strong>encerramento</strong>.</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-gray-300 py-6 sm:py-8 mt-8">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm sm:text-base">BITZ SOFTWARES | "Ninguém constrói nada sozinho"</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

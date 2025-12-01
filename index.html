@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Tutoriais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .menu {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .menu a {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #007acc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .menu a:hover {
+            background: #005a9e;
+        }
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-box:focus {
+            border-color: #007acc;
+            box-shadow: 0 0 8px rgba(0, 122, 204, 0.3);
+        }
+        .search-results {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .result-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007acc;
+        }
+        .result-item a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+        }
+        .result-item:hover {
+            background: #e9ecef;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        .category-title {
+            color: #007acc;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>    
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar tutorial...">
+    </div>
+    
+    <div class="search-results" id="searchResults"></div>
+    
+    <div id="originalContent">
+        <h1>Bitz Hotel</h1>
+        <div class="menu">
+            <a href="Impressão_de_Extrato_da_hospedagem_ja_encerrada.html" data-title="Impressão de Extrato">Impressão de Extrato</a>
+            <a href="transferencia_de_consumo.html" data-title="Transferência de Consumo">Transferência de Consumo</a>
+        </div>
+        
+        <h1>Bitz Motel</h1>
+        <div class="menu">
+            <a href="Tutorial_instalação_imperium.html" data-title="Tutorial Instalação Imperium">Tutorial Instalação Imperium</a>
+            <a href="mapeamento_imperium.html" data-title="Mapeamento Imperium">Mapeamento Imperium</a>
+            <a href="Configurando_guia_go.html" data-title="Configurando Guia Go">Configurando Guia Go</a>
+        </div>
+        
+        <h1>Boas Práticas</h1>
+        <div class="menu">
+            <a href="Condução_atendimento.html" data-title="Condução de Atendimento">Condução de Atendimento</a>
+            <a href="Conversas_dificeis.html" data-title="Conversas Difíceis">Conversas Difíceis</a>
+            <a href="Controle_emocional.html" data-title="Controle Emocional">Controle Emocional</a>
+            <a href="Boas_praticas_escrita_chat.html" data-title="Boas Práticas Escrita Chat">Boas Práticas Escrita Chat</a>
+            <a href="Processos_e_padronizações.html" data-title="Processos e Padronizações">Processos e Padronizações</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const originalContent = document.getElementById('originalContent');
+            const allLinks = document.querySelectorAll('.menu a');
+            
+            // Função para normalizar texto (remover acentos e converter para minúsculas)
+            function normalizeText(text) {
+                return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+            }
+            
+            // Função para buscar tutoriais
+            function searchTutorials(searchTerm) {
+                const normalizedSearch = normalizeText(searchTerm);
+                const results = [];
+                
+                // Buscar em todos os links
+                allLinks.forEach(link => {
+                    const title = link.getAttribute('data-title') || link.textContent;
+                    const href = link.getAttribute('href');
+                    const category = link.closest('.menu').previousElementSibling.textContent;
+                    
+                    const normalizedTitle = normalizeText(title);
+                    
+                    // Verificar se o termo de busca está no título
+                    if (normalizedTitle.includes(normalizedSearch)) {
+                        results.push({
+                            title: title,
+                            href: href,
+                            category: category
+                        });
+                    }
+                });
+                
+                return results;
+            }
+            
+            // Função para exibir resultados
+            function displayResults(results) {
+                if (results.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">Nenhum tutorial encontrado. Tente usar termos diferentes.</div>';
+                    searchResults.style.display = 'block';
+                    originalContent.style.display = 'none';
+                } else {
+                    let html = '<h3>Resultados da Busca:</h3>';
+                    
+                    results.forEach(result => {
+                        html += `
+                            <div class="result-item">
+                                <a href="${result.href}">${result.title}</a>
+                                <div class="category-title">${result.category}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    searchResults.innerHTML = html;
+                    searchResults.style.display = 'block';
+                    originalContent.style.display = 'none';
+                }
+            }
+            
+            // Função para limpar busca e mostrar conteúdo original
+            function clearSearch() {
+                searchResults.style.display = 'none';
+                searchInput.value = '';
+                originalContent.style.display = 'block';
+            }
+            
+            // Event listener para input de busca
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.trim();
+                
+                if (searchTerm.length === 0) {
+                    clearSearch();
+                    return;
+                }
+                
+                if (searchTerm.length < 2) {
+                    searchResults.innerHTML = '<div class="no-results">Digite pelo menos 2 caracteres...</div>';
+                    searchResults.style.display = 'block';
+                    originalContent.style.display = 'none';
+                    return;
+                }
+                
+                const results = searchTutorials(searchTerm);
+                displayResults(results);
+            });
+            
+            // Event listener para tecla Escape
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    clearSearch();
+                    this.blur();
+                }
+            });
+            
+            // Focar no campo de busca quando a página carregar
+            searchInput.focus();
+        });
+    </script>
+</body>
+</html>
