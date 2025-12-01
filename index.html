@@ -3,224 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Tutoriais</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .menu {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .menu a {
-            display: block;
-            padding: 10px;
-            margin: 5px 0;
-            background: #007acc;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        .menu a:hover {
-            background: #005a9e;
-        }
-        .search-container {
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .search-box {
-            width: 100%;
-            max-width: 500px;
-            padding: 12px 20px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-            transition: all 0.3s;
-        }
-        .search-box:focus {
-            border-color: #007acc;
-            box-shadow: 0 0 8px rgba(0, 122, 204, 0.3);
-        }
-        .search-results {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: none;
-        }
-        .result-item {
-            padding: 10px;
-            margin: 5px 0;
-            background: #f8f9fa;
-            border-radius: 4px;
-            border-left: 4px solid #007acc;
-        }
-        .result-item a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-        }
-        .result-item:hover {
-            background: #e9ecef;
-        }
-        .no-results {
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            padding: 20px;
-        }
-        .category-title {
-            color: #007acc;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-    </style>
+    <title>Portal de Treinamentos</title>
+    <link rel="stylesheet" href="Styles/styles.css">
 </head>
-<body>    
+<body>
+    <h1>📚 Portal de Treinamentos</h1>
+    
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar tutorial...">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Buscar módulo...">
     </div>
     
     <div class="search-results" id="searchResults"></div>
     
     <div id="originalContent">
-        <h1>Bitz Hotel</h1>
-        <div class="menu">
-            <a href="Impressão_de_Extrato_da_hospedagem_ja_encerrada.html" data-title="Impressão de Extrato">Impressão de Extrato</a>
-            <a href="transferencia_de_consumo.html" data-title="Transferência de Consumo">Transferência de Consumo</a>
-        </div>
-        
-        <h1>Bitz Motel</h1>
-        <div class="menu">
-            <a href="Tutorial_instalação_imperium.html" data-title="Tutorial Instalação Imperium">Tutorial Instalação Imperium</a>
-            <a href="mapeamento_imperium.html" data-title="Mapeamento Imperium">Mapeamento Imperium</a>
-            <a href="Configurando_guia_go.html" data-title="Configurando Guia Go">Configurando Guia Go</a>
-        </div>
-        
-        <h1>Boas Práticas</h1>
-        <div class="menu">
-            <a href="Condução_atendimento.html" data-title="Condução de Atendimento">Condução de Atendimento</a>
-            <a href="Conversas_dificeis.html" data-title="Conversas Difíceis">Conversas Difíceis</a>
-            <a href="Controle_emocional.html" data-title="Controle Emocional">Controle Emocional</a>
-            <a href="Boas_praticas_escrita_chat.html" data-title="Boas Práticas Escrita Chat">Boas Práticas Escrita Chat</a>
-            <a href="Processos_e_padronizações.html" data-title="Processos e Padronizações">Processos e Padronizações</a>
+        <div class="categories-container">
+            
+            <!-- Categoria: Bitz Hotel -->
+            <div class="category category-hotel">
+                <h2 class="category-title">🏨 Bitz Hotel</h2>
+                <div class="modules-grid">
+                    
+                    <!-- Módulo 1: Widgets -->
+                    <a href="ModulosHotel/Widgets.html" class="module-card module-1">
+                        <div class="module-icon">⚙️</div>
+                        <h3 class="module-title">Widgets</h3>
+                        <p class="module-description">Ferramentas e utilitários do sistema</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 2: Acesso Rápido -->
+                    <a href="ModulosHotel/AcessoRapido.html" class="module-card module-2">
+                        <div class="module-icon">🚀</div>
+                        <h3 class="module-title">Acesso Rápido</h3>
+                        <p class="module-description">Atalhos e funcionalidades rápidas</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 3: Auditoria (Interno) -->
+                    <a href="ModulosHotel/Auditoria.html" class="module-card module-3">
+                        <div class="module-icon">📊</div>
+                        <h3 class="module-title">Auditoria (Interno)</h3>
+                        <p class="module-description">Controles e relatórios internos</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 4: Bitz Channel -->
+                    <a href="ModulosHotel/BitzChannel.html" class="module-card module-4">
+                        <div class="module-icon">🚀</div>
+                        <h3 class="module-title">Bitz Channel</h3>
+                        <p class="module-description">Em Desenvolvimento...</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 5: Painel de UH's -->
+                    <a href="ModulosHotel/PainelUHs.html" class="module-card module-5">
+                        <div class="module-icon">🏠</div>
+                        <h3 class="module-title">Painel de UH's</h3>
+                        <p class="module-description">Gestão de unidades habitacionais</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 6: Nova Reserva -->
+                    <a href="ModulosHotel/NovaReserva.html" class="module-card module-6">
+                        <div class="module-icon">📅</div>
+                        <h3 class="module-title">Nova Reserva</h3>
+                        <p class="module-description">Em Desenvolvimento...</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                    <!-- Módulo 7: Mapa Tarifário -->
+                    <a href="ModulosHotel/MapaTarifario.html" class="module-card module-6">
+                        <div class="module-icon">📅</div>
+                        <h3 class="module-title">Mapa Tarifário</h3>
+                        <p class="module-description">Em Desenvolvimento...</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                     <!-- Módulo 8: Mapa de Ocupação -->
+                    <a href="ModulosHotel/MapadeOcupação.html" class="module-card module-6">
+                        <div class="module-icon">📅</div>
+                        <h3 class="module-title">Mapa de Ocupação</h3>
+                        <p class="module-description">Em Desenvolvimento...</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                     <!-- Módulo 9: Mapa de Garagem -->
+                    <a href="ModulosHotel/MapadeGaragem.html" class="module-card module-6">
+                        <div class="module-icon">📅</div>
+                        <h3 class="module-title">Mapa de Garagem</h3>
+                        <p class="module-description">Em Desenvolvimento...</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <!-- Categoria: Bitz Motel -->
+            <div class="category category-motel">
+                <h2 class="category-title">🚪 Bitz Motel</h2>
+                <div class="modules-grid">
+                    
+                    <!-- Módulo 1: Configurações-->
+                    <a href="ModulosMotel/Configuracoes.html" class="module-card module-7">
+                        <div class="module-icon">💻</div>
+                        <h3 class="module-title">Configurações</h3>
+                        <p class="module-description">Configuração e uso do sistema principal</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 2: Guia Go -->
+                    <a href="ModulosMotel/GuiaGo.html" class="module-card module-8">
+                        <div class="module-icon">🔗</div>
+                        <h3 class="module-title">Guia Go</h3>
+                        <p class="module-description">Conexão com outros sistemas e APIs</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 3: Check-in/Check-out -->
+                    <a href="ModulosMotel/EmDesenvolvimento.html" class="module-card module-9">
+                        <div class="module-icon">🔑</div>
+                        <h3 class="module-title">Em Desenvolvimento...</h3>
+                        <p class="module-description">Procedimentos de entrada e saída</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 4: Gestão de Suítes -->
+                    <a href="ModulosMotel/EmDesenvolvimento.html" class="module-card module-10">
+                        <div class="module-icon">🏠</div>
+                        <h3 class="module-title">Em Desenvolvimento...</h3>
+                        <p class="module-description">Administração das unidades</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 5: Segurança -->
+                    <a href="ModulosMotel/EmDesenvolvimento.html" class="module-card module-11">
+                        <div class="module-icon">🛡️</div>
+                        <h3 class="module-title">Em Desenvolvimento...</h3>
+                        <p class="module-description">Procedimentos e protocolos de segurança</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento...</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 6: Relatórios -->
+                    <a href="ModulosMotel/EmDesenvolvimento.html" class="module-card module-12">
+                        <div class="module-icon">📈</div>
+                        <h3 class="module-title">Em Desenvolvimento...</h3>
+                        <p class="module-description">Relatórios gerenciais e analíticos</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento...</span>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+            
+            <!-- Categoria: Boas Práticas -->
+            <div class="category category-boas-praticas">
+                <h2 class="category-title">⭐ Boas Práticas e Processos</h2>
+                <div class="modules-grid">
+                    
+                    <!-- Módulo 1: Atendimento ao Cliente -->
+                    <a href="ModuloBoasPraticas/AtendimentoaoCliente.html" class="module-card module-13">
+                        <div class="module-icon">💁</div>
+                        <h3 class="module-title">Atendimento ao Cliente</h3>
+                        <p class="module-description">Excelência no atendimento e relacionamento</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                    <!-- Módulo 2: Comunicação -->
+                    <a href="ModuloBoasPraticas/QualidadeNoAtendimento.html" class="module-card module-14">
+                        <div class="module-icon">🎯</div>
+                        <h3 class="module-title">Qualidade no Atendimento</h3>
+                        <p class="module-description">Técnicas de comunicação eficaz</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                    
+                     <!-- Módulo 6: Técnicas Avançadas -->
+                    <a href="ModuloBoasPraticas/TecnicasAvançadas.html" class="module-card module-18">
+                        <div class="module-icon">🚀</div>
+                        <h3 class="module-title">Técnicas Avançadas</h3>
+                        <p class="module-description">Habilidades avançadas de atendimento</p>
+                        <div class="module-status">
+                            <span class="status-development">Em Desenvolvimento</span>
+                        </div>
+                    </a> 
+
+                    <!-- Módulo 4: Processos e Padronização -->
+                    <a href="ModuloBoasPraticas/ProcessosPadronizacoes.html" class="module-card module-16">
+                        <div class="module-icon">📋</div>
+                        <h3 class="module-title">Processos e Padronização</h3>
+                        <p class="module-description">Padrões e fluxos de trabalho</p>
+                        <div class="module-status">
+                            <span class="status-available">Disponível</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            const originalContent = document.getElementById('originalContent');
-            const allLinks = document.querySelectorAll('.menu a');
-            
-            // Função para normalizar texto (remover acentos e converter para minúsculas)
-            function normalizeText(text) {
-                return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-            }
-            
-            // Função para buscar tutoriais
-            function searchTutorials(searchTerm) {
-                const normalizedSearch = normalizeText(searchTerm);
-                const results = [];
-                
-                // Buscar em todos os links
-                allLinks.forEach(link => {
-                    const title = link.getAttribute('data-title') || link.textContent;
-                    const href = link.getAttribute('href');
-                    const category = link.closest('.menu').previousElementSibling.textContent;
-                    
-                    const normalizedTitle = normalizeText(title);
-                    
-                    // Verificar se o termo de busca está no título
-                    if (normalizedTitle.includes(normalizedSearch)) {
-                        results.push({
-                            title: title,
-                            href: href,
-                            category: category
-                        });
-                    }
-                });
-                
-                return results;
-            }
-            
-            // Função para exibir resultados
-            function displayResults(results) {
-                if (results.length === 0) {
-                    searchResults.innerHTML = '<div class="no-results">Nenhum tutorial encontrado. Tente usar termos diferentes.</div>';
-                    searchResults.style.display = 'block';
-                    originalContent.style.display = 'none';
-                } else {
-                    let html = '<h3>Resultados da Busca:</h3>';
-                    
-                    results.forEach(result => {
-                        html += `
-                            <div class="result-item">
-                                <a href="${result.href}">${result.title}</a>
-                                <div class="category-title">${result.category}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    searchResults.innerHTML = html;
-                    searchResults.style.display = 'block';
-                    originalContent.style.display = 'none';
-                }
-            }
-            
-            // Função para limpar busca e mostrar conteúdo original
-            function clearSearch() {
-                searchResults.style.display = 'none';
-                searchInput.value = '';
-                originalContent.style.display = 'block';
-            }
-            
-            // Event listener para input de busca
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.trim();
-                
-                if (searchTerm.length === 0) {
-                    clearSearch();
-                    return;
-                }
-                
-                if (searchTerm.length < 2) {
-                    searchResults.innerHTML = '<div class="no-results">Digite pelo menos 2 caracteres...</div>';
-                    searchResults.style.display = 'block';
-                    originalContent.style.display = 'none';
-                    return;
-                }
-                
-                const results = searchTutorials(searchTerm);
-                displayResults(results);
-            });
-            
-            // Event listener para tecla Escape
-            searchInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    clearSearch();
-                    this.blur();
-                }
-            });
-            
-            // Focar no campo de busca quando a página carregar
-            searchInput.focus();
-        });
-    </script>
+    <script src="JavaScript/script.js"></script>
 </body>
 </html>

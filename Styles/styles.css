@@ -2,8 +2,8 @@
 :root {
     /* Cores das Categorias */
     --color-hotel: #3498db;
-    --color-motel: #e74c3c;
-    --color-atendimento: #27ae60;
+    --color-motel: #27ae60;
+    --color-boas-praticas: #e74c3c;
     
     /* Cores dos Módulos - Hotel */
     --color-modulo-1: #3498db;
@@ -14,20 +14,25 @@
     --color-modulo-6: #3498db;
     
     /* Cores dos Módulos - Motel */
-    --color-modulo-7: #e74c3c;
-    --color-modulo-8: #e74c3c;
-    --color-modulo-9: #e74c3c;
-    --color-modulo-10: #e74c3c;
-    --color-modulo-11: #e74c3c;
-    --color-modulo-12: #e74c3c;
+    --color-modulo-7: #27ae60;
+    --color-modulo-8: #27ae60;
+    --color-modulo-9: #27ae60;
+    --color-modulo-10: #27ae60;
+    --color-modulo-11: #27ae60;
+    --color-modulo-12: #27ae60;
     
-    /* Cores dos Módulos - Atendimento */
-    --color-modulo-13: #27ae60;
-    --color-modulo-14: #27ae60;
-    --color-modulo-15: #27ae60;
-    --color-modulo-16: #27ae60;
-    --color-modulo-17: #27ae60;
-    --color-modulo-18: #27ae60;
+    /* Cores dos Módulos - Boas Práticas */
+    --color-modulo-13: #e74c3c;
+    --color-modulo-14: #e74c3c;
+    --color-modulo-15: #e74c3c;
+    --color-modulo-16: #e74c3c;
+    --color-modulo-17: #e74c3c;
+    --color-modulo-18: #e74c3c;
+    
+    /* Cores de Status */
+    --color-available: #27ae60;
+    --color-development: #3498db;
+    --color-coming-soon: #e74c3c;
     
     /* Cores Gerais */
     --color-primary: #2c3e50;
@@ -79,125 +84,76 @@ h1 {
     gap: 10px;
 }
 
-/* ===== GRID DE MÓDULOS ===== */
+/* ===== GRID DE MÓDULOS (6 COLUNAS) ===== */
 .modules-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 20px;
 }
 
-.module {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
+/* ===== CARDS DOS MÓDULOS ===== */
+.module-card {
+    background: var(--color-white);
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     border-left: 5px solid;
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s ease;
+    align-items: center;
+    text-align: center;
+    min-height: 180px;
+    justify-content: space-between;
 }
 
-.module:hover {
-    transform: translateY(-2px);
+.module-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.module-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
 .module-title {
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: 18px;
     font-weight: bold;
+    margin-bottom: 8px;
     line-height: 1.3;
-    min-height: 40px;
-    display: flex;
-    align-items: center;
 }
 
-/* ===== LISTA DE TREINAMENTOS ===== */
-.trainings-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.module-description {
+    font-size: 13px;
+    color: var(--color-gray);
+    margin-bottom: 15px;
+    line-height: 1.4;
     flex-grow: 1;
 }
 
-.training-card {
-    background: var(--color-white);
-    color: var(--color-primary);
-    padding: 12px 15px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border: 1px solid var(--color-light-gray);
-    font-size: 14px;
+.module-status {
+    margin-top: auto;
 }
 
-.training-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-    border-color: var(--color-hover);
-}
-
-.training-title {
-    font-weight: bold;
-    margin-bottom: 4px;
-    line-height: 1.3;
-}
-
-.training-duration {
+.status-available {
+    background: var(--color-available);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
     font-size: 11px;
-    color: var(--color-gray);
+    font-weight: bold;
 }
 
-/* ===== SISTEMA DE BUSCA ===== */
-.search-container {
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.search-box {
-    width: 100%;
-    max-width: 500px;
-    padding: 15px 25px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 25px;
-    outline: none;
-    transition: all 0.3s;
-}
-
-.search-box:focus {
-    border-color: var(--color-hover);
-    box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
-}
-
-.search-results {
-    background: var(--color-white);
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    display: none;
-    margin-bottom: 30px;
-}
-
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.no-results {
-    text-align: center;
-    color: var(--color-gray);
-    font-style: italic;
-    padding: 40px;
-    font-size: 18px;
-}
-
-.results-title {
-    color: var(--color-primary);
-    font-size: 22px;
-    margin-bottom: 20px;
-    text-align: center;
+.status-development {
+    background: var(--color-development);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
 }
 
 /* ===== CORES DAS CATEGORIAS ===== */
@@ -211,9 +167,9 @@ h1 {
     color: var(--color-motel);
 }
 
-.category-atendimento .category-title {
-    border-color: var(--color-atendimento);
-    color: var(--color-atendimento);
+.category-boas-praticas .category-title {
+    border-color: var(--color-boas-praticas);
+    color: var(--color-boas-praticas);
 }
 
 /* ===== SISTEMA DE CORES PARA MÓDULOS ===== */
@@ -256,7 +212,7 @@ h1 {
 .module-12 { border-left-color: var(--color-modulo-12); }
 .module-12 .module-title { color: var(--color-modulo-12); }
 
-/* Módulos de Atendimento (13-18) */
+/* Módulos de Boas Práticas (13-18) */
 .module-13 { border-left-color: var(--color-modulo-13); }
 .module-13 .module-title { color: var(--color-modulo-13); }
 
@@ -298,12 +254,9 @@ h1 {
         padding: 20px 15px;
     }
     
-    .module {
-        padding: 15px;
-    }
-    
-    .training-card {
-        padding: 10px 12px;
+    .module-card {
+        padding: 20px 15px;
+        min-height: 160px;
     }
     
     .category-title {
@@ -311,8 +264,7 @@ h1 {
     }
     
     .module-title {
-        font-size: 14px;
-        min-height: 35px;
+        font-size: 16px;
     }
 }
 
@@ -324,4 +276,57 @@ h1 {
     body {
         padding: 15px;
     }
+}
+
+/* ===== SISTEMA DE BUSCA ===== */
+.search-container {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 25px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.search-box:focus {
+    border-color: var(--color-hover);
+    box-shadow: 0 0 12px rgba(52, 152, 219, 0.3);
+}
+
+.search-results {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: none;
+    margin-bottom: 30px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.no-results {
+    text-align: center;
+    color: var(--color-gray);
+    font-style: italic;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.results-title {
+    color: var(--color-primary);
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
 }
