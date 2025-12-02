@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressão de Extrato de Hospedagem Encerrada - Sistema Bitz</title>
+    <title>Resolver Erro: Não há tarifa cadastrada - Sistema Bitz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -26,7 +26,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
             color: white;
             padding: 30px 20px;
             border-radius: 10px 10px 0 0;
@@ -63,13 +63,46 @@
             margin-bottom: 20px;
         }
         
-        .intro-box {
-            background-color: #e8f0fe;
+        .error-box {
+            background-color: #fee2e2;
+            border: 2px solid #ef4444;
+            color: #b91c1c;
             padding: 20px;
             border-radius: 8px;
             margin: 15px 0;
-            border-left: 4px solid #3b82f6;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
         }
+        
+        .error-box i {
+            margin-right: 15px;
+            font-size: 24px;
+        }
+        
+        .explanation-box {
+            background-color: #1a73e8;
+            border-left: 4px solid #1a73e8;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .example-box {
+            background-color: #1a73e8;
+            border: 1px solid #bae6fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+         .example1-box {
+            background-color: #bae6fd;
+            border: 1px solid #bae6fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
         
         .steps-container {
             display: flex;
@@ -115,8 +148,8 @@
         
         .step-nav-item.active {
             background-color: #e8f0fe;
-            border-left: 4px solid #3b82f6;
-            color: #3b82f6;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
             font-weight: bold;
         }
         
@@ -127,14 +160,14 @@
             width: 28px;
             height: 28px;
             background-color: #e8f0fe;
-            color: #3b82f6;
+            color: #1a73e8;
             border-radius: 50%;
             margin-right: 12px;
             font-weight: bold;
         }
         
         .step-nav-item.active .step-number {
-            background-color: #3b82f6;
+            background-color: #1a73e8;
             color: white;
         }
         
@@ -154,7 +187,7 @@
         
         .step-title {
             font-size: 24px;
-            color: #3b82f6;
+            color: #1a73e8;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f0f0;
@@ -170,7 +203,7 @@
             padding: 2px 6px;
             border-radius: 3px;
             font-weight: bold;
-            color: #3b82f6;
+            color: #1a73e8;
         }
         
         .link-box {
@@ -183,13 +216,13 @@
         }
         
         .link-box i {
-            color: #3b82f6;
+            color: #1a73e8;
             margin-right: 10px;
             font-size: 20px;
         }
         
         .link-box a {
-            color: #3b82f6;
+            color: #1a73e8;
             font-weight: bold;
             text-decoration: none;
         }
@@ -198,11 +231,65 @@
             text-decoration: underline;
         }
         
+        .option-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .option-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .option-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .option-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .field-item {
+            background-color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .field-item strong {
+            color: #1a73e8;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
         .btn-action {
-            background-color: #3b82f6;
+            background-color: #1a73e8;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
@@ -213,105 +300,22 @@
         }
         
         .btn-action:hover {
-            background-color: #1d4ed8;
+            background-color: #0d47a1;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(29, 78, 216, 0.2);
+            box-shadow: 0 4px 8px rgba(13, 71, 161, 0.2);
         }
         
         .btn-action i {
             margin-right: 8px;
         }
         
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
+        .btn-save {
+            background-color: #10b981;
         }
         
-        .filter-item {
-            background-color: #f8f9fa;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #e9ecef;
-            display: flex;
-            align-items: center;
-        }
-        
-        .filter-item i {
-            color: #3b82f6;
-            margin-right: 10px;
-            width: 20px;
-        }
-        
-        .option-box {
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid;
-        }
-        
-        .option-consolidado {
-            background-color: #d1fae5;
-            border-left-color: #10b981;
-        }
-        
-        .option-simplificado {
-            background-color: #fef3c7;
-            border-left-color: #f59e0b;
-        }
-        
-        .option-net {
-            background-color: #fee2e2;
-            border-left-color: #ef4444;
-        }
-        
-        .option-impressao {
-            background-color: #dbeafe;
-            border-left-color: #3b82f6;
-        }
-        
-        .option-termica {
-            background-color: #f3f4f6;
-            border-left-color: #6b7280;
-        }
-        
-        .option-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        
-        .option-header i {
-            margin-right: 10px;
-            font-size: 18px;
-        }
-        
-        .icons-example {
-            display: flex;
-            justify-content: space-around;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        
-        .icon-item {
-            text-align: center;
-            padding: 15px;
-            width: 120px;
-        }
-        
-        .icon-circle {
-            width: 60px;
-            height: 60px;
-            background-color: #f0f7ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            color: #3b82f6;
-            font-size: 24px;
+        .btn-save:hover {
+            background-color: #059669;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.2);
         }
         
         .info-list {
@@ -322,6 +326,8 @@
         .info-list li {
             padding: 10px 0;
             border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
         }
         
         .info-list li:last-child {
@@ -329,7 +335,7 @@
         }
         
         .info-list i {
-            color: #3b82f6;
+            color: #1a73e8;
             margin-right: 10px;
             width: 20px;
         }
@@ -355,11 +361,11 @@
         
         .prev-btn {
             background-color: #f0f7ff;
-            color: #3b82f6;
+            color: #1a73e8;
         }
         
         .next-btn {
-            background-color: #3b82f6;
+            background-color: #1a73e8;
             color: white;
         }
         
@@ -406,7 +412,7 @@
                 font-size: 22px;
             }
             
-            .filter-grid {
+            .field-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -429,16 +435,28 @@
         <header>
             <div class="logo-container">
                 <div class="logo-icon">
-                    <i class="fas fa-print"></i>
+                    <i class="fas fa-exclamation-triangle"></i>
                 </div>
                 <div>
-                    <h1>Impressão de Extrato de Hospedagem Encerrada</h1>
-                    <p class="subtitle">Módulo: Hospedagens - Guia completo para geração de extratos</p>
+                    <h1>Mensagem de erro: "Não há tarifa cadastrada para a quantidade de pessoas informada"</h1>
+                    <p class="subtitle">Como resolver esse problema passo a passo</p>
                 </div>
             </div>
             
-            <div class="intro-box">
-                <p><strong>Visão Geral:</strong> A impressão do extrato da hospedagem é um processo flexível. Ele pode ser realizado <strong>mesmo após o check-out</strong> da reserva ter sido concluído. Siga os passos abaixo para gerar o documento.</p>
+            <div class="error-box">
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Erro:</strong> "Não há tarifa cadastrada para a quantidade de pessoas informada"
+                </div>
+            </div>
+            
+            <div class="explanation-box">
+                <p><strong>O que significa essa mensagem?</strong></p>
+                <p>O sistema não encontrou nenhuma tarifa registrada para a quantidade exata de pessoas inserida na reserva.</p>
+                
+                <div class="example-box">
+                    <p><strong>Exemplo:</strong> Você tentou fazer uma reserva para 3 adultos, mas no sistema só há tarifas cadastradas para até 2 adultos. Por isso, a reserva não pode ser concluída.</p>
+                </div>
             </div>
         </header>
         
@@ -446,208 +464,166 @@
             <div class="steps-nav">
                 <div class="step-nav-item active" data-step="1">
                     <span class="step-number">1</span>
-                    Acessar Hospedagens
+                    Verificar tarifas cadastradas
                 </div>
                 <div class="step-nav-item" data-step="2">
                     <span class="step-number">2</span>
-                    Aplicar Filtros
+                    Confirmar capacidade do quarto
                 </div>
                 <div class="step-nav-item" data-step="3">
                     <span class="step-number">3</span>
-                    Expandir e Selecionar
+                    Cadastrar nova tarifa
                 </div>
                 <div class="step-nav-item" data-step="4">
                     <span class="step-number">4</span>
-                    Configurar Impressão
+                    Conclusão
                 </div>
             </div>
             
             <div class="steps-content">
                 <!-- Passo 1 -->
                 <div class="step-content active" id="step-1">
-                    <h2 class="step-title">Passo 1: Acessar Hospedagens</h2>
+                    <h2 class="step-title">Passo 1: Verificar as tarifas cadastradas</h2>
                     <div class="step-description">
-                        <p>No menu da lateral esquerdo, localize e clique na opção <span class="highlight">"Hospedagens"</span>.</p>
+                        <p>Você precisa checar se já existe um valor configurado no sistema para a quantidade de pessoas da reserva. Há duas formas de fazer isso:</p>
                         
-                        <div class="link-box">
-                            <i class="fas fa-external-link-alt"></i>
-                            <div>
-                                <p>Ou utilize o link direto: <a href="https://hotel.bitzsoftwares.com.br/sistema/locacao/" target="_blank">Tela de Hospedagens</a></p>
-                            </div>
-                        </div>
-                        
-                        <div class="step-description">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Opções de Filtro Inicial</h3>
-                            <p class="text-gray-600 mb-3">Na tela de Hospedagens, você encontra filtros para facilitar sua busca:</p>
-                            
-                            <div class="filter-grid">
-                                <div class="filter-item">
-                                    <i class="fas fa-bed"></i>
-                                    <div>
-                                        <strong>Quartos:</strong> Hospedagens de um quarto específico
-                                    </div>
+                        <div class="option-container">
+                            <div class="option-box">
+                                <div class="option-header">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Opção 1: Acessar a tela Tarifas NOVO</span>
                                 </div>
-                                <div class="filter-item">
-                                    <i class="far fa-calendar-alt"></i>
+                                <p>Vá no menu lateral:</p>
+                                <p><span class="highlight">Cadastros > Operacional > Calendário de Tarifas > Tarifas NOVO</span></p>
+                                
+                                <div class="link-box">
+                                    <i class="fas fa-external-link-alt"></i>
                                     <div>
-                                        <strong>Período:</strong> Busca por datas específicas
+                                        <p>Ou utilize o link: <a href="https://hotel.bitzsoftwares.com.br/sistema/tarifa/" target="_blank">TARIFAS</a></p>
                                     </div>
                                 </div>
                             </div>
                             
-                            <p class="text-gray-600 mt-3">As opções de período incluem:</p>
-                            <ul class="info-list">
-                                <li><i class="fas fa-calendar"></i> "sem período definido"</li>
-                                <li><i class="fas fa-calendar-day"></i> "amanhã"</li>
-                                <li><i class="fas fa-calendar-check"></i> "definir um período"</li>
-                                <li><i class="fas fa-sun"></i> "hoje"</li>
-                                <li><i class="fas fa-calendar-alt"></i> "este mês"</li>
-                                <li><i class="fas fa-calendar-week"></i> "últimos 7 dias"</li>
-                                <li><i class="fas fa-calendar-week"></i> "últimos 15 dias"</li>
-                                <li><i class="fas fa-calendar-week"></i> "últimos 30 dias"</li>
-                                <li><i class="fas fa-calendar-minus"></i> "mês passado"</li>
-                            </ul>
+                            <div class="option-box">
+                                <div class="option-header">
+                                    <i class="fas fa-map"></i>
+                                    <span>Opção 2: Usar o Mapa Tarifário</span>
+                                </div>
+                                <p>No menu lateral direito, clique em <span class="highlight">Mapa Tarifário</span></p>
+                                
+                                <div class="link-box">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <div>
+                                        <p>Ou acesse diretamente pelo link: <a href="https://hotel.bitzsoftwares.com.br/sistema/mapa/tarifa/" target="_blank">MAPA TARIFÁRIO</a></p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <p>Após essa verificação, vamos validar se o quarto comporta essa quantidade de pessoas.</p>
                     </div>
                 </div>
                 
                 <!-- Passo 2 -->
                 <div class="step-content" id="step-2">
-                    <h2 class="step-title">Passo 2: Aplicar Filtros e Localizar a Hospedagem</h2>
+                    <h2 class="step-title">Passo 2: Confirmar se o quarto comporta a quantidade de pessoas</h2>
                     <div class="step-description">
-                        <p>Após definir o período desejado, clique no botão cinza <span class="highlight">"Filtrar"</span> que possui o ícone de funil (<i class="fas fa-filter"></i>) para carregar as hospedagens.</p>
+                        <p>Antes de cadastrar uma nova tarifa, é necessário verificar se o quarto permite essa quantidade de hóspedes.</p>
                         
-                        <button class="btn-action">
-                            <i class="fas fa-filter"></i> Filtrar
-                        </button>
-                        
-                        <div class="step-description">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Campos de Busca Disponíveis</h3>
-                            <p class="text-gray-600 mb-3">Você pode refinar sua busca utilizando os seguintes campos na lista:</p>
-                            
-                            <div class="filter-grid">
-                                <div class="filter-item">
-                                    <i class="fas fa-hashtag"></i>
-                                    <div>Código da hospedagem</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-list-ol"></i>
-                                    <div>Código da reserva</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-user"></i>
-                                    <div>Titular</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-building"></i>
-                                    <div>CNPJ</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-door-open"></i>
-                                    <div>UH (Unidade Habitacional)</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <div>Data inicial/final</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-dollar-sign"></i>
-                                    <div>Faturamento / Total</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-plane-departure"></i>
-                                    <div>Agência</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-info-circle"></i>
-                                    <div>Situação</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-file-invoice-dollar"></i>
-                                    <div>Documento fiscal</div>
-                                </div>
+                        <div class="link-box">
+                            <i class="fas fa-external-link-alt"></i>
+                            <div>
+                                <p>Acesse: <span class="highlight">Cadastros > Operacional > Classificação de UH</span></p>
+                                <p>Ou use o link direto: <a href="https://hotel.bitzsoftwares.com.br/sistema/tipoquarto/" target="_blank">CLASSIFICAÇÕES DE UH</a></p>
                             </div>
+                        </div>
+                        
+                        <p>Clique em <span class="highlight">"Editar"</span> na classificação do quarto que você deseja usar e verifique os seguintes campos:</p>
+                        
+                        <div class="field-grid">
+                            <div class="field-item">
+                                <strong>Máximo de adultos</strong>
+                                <div>Limite de adultos permitidos</div>
+                            </div>
+                            <div class="field-item">
+                                <strong>Máximo de crianças</strong>
+                                <div>Limite de crianças permitidas</div>
+                            </div>
+                            <div class="field-item">
+                                <strong>Número máximo de pessoas</strong>
+                                <div>Total máximo de hóspedes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="example1-box">
+                            <p><strong>Importante:</strong> Se a quantidade de pessoas que você quer colocar na reserva for maior do que os limites acima, o sistema não permitirá cadastrar a tarifa. Nesse caso:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-bed"></i> Escolha outra classificação de quarto</li>
+                                <li><i class="fas fa-user-friends"></i> Ajuste a quantidade de hóspedes</li>
+                                <li><i class="fas fa-cogs"></i> Se possível, ajuste esses campos de limite</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Passo 3 -->
                 <div class="step-content" id="step-3">
-                    <h2 class="step-title">Passo 3: Expandir Opções e Selecionar Extrato</h2>
+                    <h2 class="step-title">Passo 3: Cadastrar uma tarifa para uma quantidade de pessoas específica</h2>
                     <div class="step-description">
-                        <p>Ao encontrar a hospedagem desejada, localize o ícone de <span class="highlight">"Flecha"</span> (<i class="fas fa-chevron-down"></i>) na linha da hospedagem e clique nele para expandir as opções.</p>
+                        <p>Agora que você confirmou que a quantidade de pessoas é permitida para o quarto, siga os passos para cadastrar o valor:</p>
                         
-                        <div class="icons-example">
-                            <div class="icon-item">
-                                <div class="icon-circle">
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <p>Ícone de flecha</p>
-                            </div>
-                            <div class="icon-item">
-                                <div class="icon-circle">
-                                    <i class="fas fa-file-arrow-down"></i>
-                                </div>
-                                <p>Arquivo com flecha</p>
+                        <div class="link-box">
+                            <i class="fas fa-external-link-alt"></i>
+                            <div>
+                                <p>No sistema, clique na aba lateral direita e localize a opção <span class="highlight">Mapa Tarifário</span></p>
+                                <p>Ou acesse diretamente pelo link: <a href="https://hotel.bitzsoftwares.com.br/sistema/mapa/tarifa/" target="_blank">MAPA TARIFÁRIO</a></p>
                             </div>
                         </div>
                         
-                        <p class="mt-4">Dentro das opções expandidas, procure pelo <span class="highlight">terceiro ícone</span>, que é o ícone de <span class="highlight">"Arquivo com flecha para baixo"</span> (<i class="fas fa-file-arrow-down"></i>). Clicar neste ícone abrirá as três opções de extrato:</p>
+                        <ol class="info-list">
+                            <li><i class="fas fa-arrow-up"></i> No canto superior da tela, clique em <span class="highlight">"Atualizar Preço"</span></li>
+                            <li><i class="far fa-calendar"></i> Informe a <span class="highlight">data inicial</span> e <span class="highlight">final</span> em que essa tarifa vai valer</li>
+                            <li><i class="fas fa-tag"></i> Escolha qual tarifa você quer alterar</li>
+                            <li><i class="fas fa-list"></i> O sistema mostrará todos os quartos e quantidades de pessoas configuradas</li>
+                            <li><i class="fas fa-search"></i> Identifique o campo referente à quantidade de pessoas que você precisa (ex: 3 adultos)</li>
+                            <li><i class="fas fa-edit"></i> Se o campo estiver vazio ou com valor 0, digite o novo valor da diária</li>
+                            <li><i class="fas fa-save"></i> Clique no botão de salvar (ícone de disquete no canto inferior)</li>
+                        </ol>
                         
-                        <div class="option-box option-consolidado">
-                            <div class="option-header">
-                                <i class="fas fa-file-circle-check"></i>
-                                <span>Consolidado</span>
-                            </div>
-                            <p>É a versão mais completa. Contém todas as informações de consumos, serviços, itens detalhados e separados por lançamento, além de mostrar todos os recebimentos.</p>
-                        </div>
-                        
-                        <div class="option-box option-simplificado">
-                            <div class="option-header">
-                                <i class="fas fa-file-lines"></i>
-                                <span>Simplificado</span>
-                            </div>
-                            <p>Agrupa as informações em lançamentos únicos. Se houver mais de um item igual, eles são somados em uma única linha com a quantidade total.</p>
-                        </div>
-                        
-                        <div class="option-box option-net">
-                            <div class="option-header">
-                                <i class="fas fa-file-shield"></i>
-                                <span>Extrato geral (com tarifa NET)</span>
-                            </div>
-                            <p>Utilizado em situações com agência responsável onde a tarifa é oculta (tarifa NET). Não é informado o valor das diárias para o hóspede, apenas os consumos.</p>
+                        <div style="text-align: center; margin-top: 30px;">
+                            <button class="btn-action">
+                                <i class="fas fa-tag"></i> Atualizar Preço
+                            </button>
+                            
+                            <button class="btn-action btn-save">
+                                <i class="fas fa-save"></i> Salvar Tarifa
+                            </button>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Passo 4 -->
                 <div class="step-content" id="step-4">
-                    <h2 class="step-title">Passo 4: Configurar Impressão</h2>
+                    <h2 class="step-title">Passo 4: Conclusão</h2>
                     <div class="step-description">
-                        <p>Após gerar o extrato no formato desejado, você será direcionado para o relatório.</p>
-                        
-                        <p>Em cima do relatório do extrato, haverá a opção da impressão. Você terá duas modalidades:</p>
-                        
-                        <div class="option-box option-impressao">
-                            <div class="option-header">
-                                <i class="fas fa-print"></i>
-                                <span>Impressão Normal (A4 / PDF)</span>
-                            </div>
-                            <p>Saída para impressora A4. Abre a janela de impressão do navegador para escolher a impressora ou <strong>Salvar como PDF</strong>. Geralmente usado para registrar na ficha do cliente.</p>
+                        <p>Após seguir todos os passos e salvar a nova tarifa, o sistema estará pronto para aceitar reservas com a quantidade de pessoas que estava causando o erro.</p>
+            
+                        <div class="example1-box" style="margin-top: 20px;">
+                            <h3>Resumo do processo:</h3>
+                            <ul class="info-list">
+                                <li><i class="fas fa-search"></i> <strong>Verifique</strong> se existe tarifa para a quantidade de pessoas</li>
+                                <li><i class="fas fa-bed"></i> <strong>Confirme</strong> se o quarto suporta essa quantidade</li>
+                                <li><i class="fas fa-tag"></i> <strong>Cadastre</strong> a tarifa específica se necessário</li>
+                                <li><i class="fas fa-check"></i> <strong>Conclua</strong> a reserva normalmente</li>
+                            </ul>
                         </div>
-                        
-                        <div class="option-box option-termica">
-                            <div class="option-header">
-                                <i class="fas fa-ticket-simple"></i>
-                                <span>Impressão EFC (Térmica / Cupom)</span>
-                            </div>
-                            <p>Utilizada caso o hotel use impressora térmica. Imprime o extrato em formato de cupom fiscal de tamanho reduzido.</p>
-                        </div>
-                        
+
                         <div class="success-container">
                             <i class="fas fa-check-circle"></i>
-                            Processo Concluído! A impressão será enviada para a impressora selecionada.
+                            Problema resolvido! O sistema já poderá aceitar reservas com a nova quantidade de pessoas, aplicando corretamente a tarifa cadastrada.
                         </div>
+                        
+                        <p style="margin-top: 20px;"><strong>Dica:</strong> Mantenha seu mapa tarifário sempre atualizado para evitar esse tipo de erro no futuro. Certifique-se de cadastrar tarifas para todas as combinações de ocupação possíveis em cada tipo de quarto.</p>
                     </div>
                 </div>
                 
@@ -663,8 +639,7 @@
         </div>
         
         <footer>
-            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
-            <p>Este guia foi elaborado para otimizar o procedimento de emissão de extratos pós check-out.</p>
+            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em Novembro de 2025</p>
         </footer>
     </div>
 
@@ -758,6 +733,18 @@
                 } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
                     goToStep(currentStep + 1);
                 }
+            });
+            
+            // Adicionar interação aos botões de ação
+            const actionButtons = document.querySelectorAll('.btn-action');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.classList.contains('btn-save')) {
+                        alert('Tarifa salva com sucesso! O sistema agora aceitará reservas para essa quantidade de pessoas.');
+                    } else {
+                        alert('Abrindo tela para atualizar preços...');
+                    }
+                });
             });
         });
     </script>

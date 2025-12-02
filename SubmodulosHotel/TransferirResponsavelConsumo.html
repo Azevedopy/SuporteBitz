@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Transferir o Responsável pelo Consumo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .pronto-container {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .pronto-container i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #1a73e8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .consumo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .consumo-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .consumo-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .consumo-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .btn-editar {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .btn-editar i {
+            margin-right: 5px;
+        }
+        
+        .field-list {
+            list-style-type: none;
+        }
+        
+        .field-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .field-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .field-name {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            .consumo-table {
+                font-size: 14px;
+            }
+            
+            .consumo-table th, .consumo-table td {
+                padding: 8px 10px;
+            }
+        }
+         .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModulosHotel/PainelUHs.html" class="back-button">← Voltar</a>
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div>
+                    <h1>Como Transferir o Responsável pelo Consumo</h1>
+                    <p class="subtitle">Guia passo a passo para alterar o responsável pelos consumos de uma UH</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Acessar o Painel de UH's
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Localizar o quarto (UH)
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Visualizar os consumos
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Editar o consumo
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Entender os campos de edição
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Alterar o responsável
+                </div>
+                <div class="step-nav-item" data-step="7">
+                    <span class="step-number">7</span>
+                    Salvar a alteração
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">Passo 1: Acessar o Painel de UH's</h2>
+                    <div class="step-description">
+                        <p>Na tela inicial do sistema, localize o botão "Painel de UH's".</p>
+                        
+                        <div class="link-box">
+                            <i class="fas fa-external-link-alt"></i>
+                            <div>
+                                <p>Ou utilize o link direto: <a href="https://hotel.bitzsoftwares.com.br/hotel/painel/uh/" target="_blank">PAINEL DE UH's</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Dica:</strong> O Painel de UH's é a central de controle de todas as unidades habitacionais (quartos) do hotel. A partir dele você pode visualizar o status de cada quarto, hospedagens ativas e consumos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">Passo 2: Localizar o quarto (UH)</h2>
+                    <div class="step-description">
+                        <p>No Painel de UH’s, encontre o quarto no qual deseja alterar o responsável pelo consumo.</p>
+                        
+                        <p>Com o quarto aberto, observe que existem três ícones alinhados:</p>
+                        
+                        <div class="icons-example">
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <p>Informações da hospedagem</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <p>Consumos</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <p>Financeiro</p>
+                            </div>
+                        </div>
+                        
+                        <p>O ícone de cubo fica entre o ícone da casa e o ícone do cifrão.</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Importante:</strong> Passe o mouse sobre o cubo para confirmar: aparecerá a indicação de que se trata do menu de Consumo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">Passo 3: Visualizar os consumos</h2>
+                    <div class="step-description">
+                        <p>Ao clicar no ícone de Consumo, a tela irá mostrar os registros de consumo em ordem da data mais recente para a mais antiga.</p>
+                        
+                        <p>As informações exibidas serão:</p>
+                        
+                        <table class="consumo-table">
+                            <thead>
+                                <tr>
+                                    <th>Campo</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Descrição</strong></td>
+                                    <td>O que foi consumido</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Responsável</strong></td>
+                                    <td>Quem é atualmente responsável pelo consumo</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PDV</strong></td>
+                                    <td>Ponto de Venda associado ao consumo</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>NF</strong></td>
+                                    <td>Nota fiscal relacionada (se houver)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Qtd.</strong></td>
+                                    <td>Quantidade consumida</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total</strong></td>
+                                    <td>Valor total do consumo</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ações</strong></td>
+                                    <td>Opções para editar ou excluir o consumo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">Passo 4: Editar o consumo</h2>
+                    <div class="step-description">
+                        <p>Abaixo das ações de cada linha de consumo, haverá um botão azul chamado "Editar".</p>
+                        
+                        <button class="btn-editar">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        
+                        <p>Clique no botão "Editar" para iniciar o processo de alteração do responsável pelo consumo.</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Atenção:</strong> Certifique-se de que está editando o consumo correto. Verifique a descrição e a data do consumo antes de prosseguir.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">Passo 5: Entender os campos de edição</h2>
+                    <div class="step-description">
+                        <p>Ao clicar em "Editar", aparecerão os seguintes campos:</p>
+                        
+                        <ul class="field-list">
+                            <li><span class="field-name">UH - HOSPEDAGEM:</span> Identificação da unidade habitacional e da hospedagem.</li>
+                            <li><span class="field-name">Descrição:</span> Item consumido (Exemplo: taxa de turismo).</li>
+                            <li><span class="field-name">Data:</span> Data do consumo.</li>
+                            <li><span class="field-name">Quantidade:</span> Quantidade do item consumido.</li>
+                            <li><span class="field-name">Valor Unitário:</span> Preço por unidade do item.</li>
+                            <li><span class="field-name">Valor Total:</span> Valor final (Quantidade × Valor Unitário).</li>
+                            <li><span class="field-name">PDV:</span> Indica de qual ponto de venda o item foi lançado.</li>
+                            <li><span class="field-name">Hóspede do Consumo:</span> Pessoa atualmente atribuída ao consumo.</li>
+                            <li><span class="field-name">Observação:</span> Espaço para observações adicionais (opcional).</li>
+                            <li><span class="field-name">Justificativa:</span> Campo para explicar alterações feitas.</li>
+                            <li><span class="field-name">Última alteração realizada por:</span> Mostra quem fez a última edição.</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Foco do tutorial:</strong> A maioria desses campos é editável, mas este tutorial foca apenas na troca do responsável pelo consumo (campo "Hóspede do Consumo").</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">Passo 6: Alterar o responsável pelo consumo</h2>
+                    <div class="step-description">
+                        <p>No campo <strong>Hóspede do Consumo</strong>, clique para abrir as opções disponíveis.</p>
+                        
+                        <p>Serão exibidos:</p>
+                        
+                        <ul class="field-list">
+                            <li><span class="field-name">Hóspedes da hospedagem:</span> Todos os hóspedes registrados naquela UH.</li>
+                            <li><span class="field-name">Acompanhantes:</span> Pessoas que estão acompanhando os hóspedes principais.</li>
+                            <li><span class="field-name">Empresa de faturamento:</span> Se houver uma empresa cadastrada para faturamento.</li>
+                        </ul>
+                        
+                        <p>Selecione o novo responsável desejado na lista de opções.</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Dica:</strong> Se você não encontrar a pessoa que procura, verifique se ela está cadastrada como hóspede ou acompanhante na hospedagem atual.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 7 -->
+                <div class="step-content" id="step-7">
+                    <h2 class="step-title">Passo 7: Salvar a alteração</h2>
+                    <div class="step-description">
+                        <p>Após selecionar o novo responsável, clique em "Salvar" para confirmar a mudança.</p>
+                        
+                        <div class="highlight-box">
+                            <p><strong>Importante:</strong> O sistema pode solicitar uma justificativa para a alteração, especialmente se houver mudança de valores. Preencha o campo de justificativa de forma clara e objetiva.</p>
+                        </div>
+                        
+                        <div class="pronto-container" style="width: 100%; justify-content: center; margin-top: 30px;">
+                            <i class="fas fa-rocket"></i>
+                            Pronto! 🚀 A troca de responsável pelo consumo foi realizada com sucesso.
+                        </div>
+                        
+                        <p style="margin-top: 20px;">O sistema retornará à tela de consumos e você poderá verificar que o responsável pelo consumo foi alterado. A alteração ficará registrada no histórico do sistema.</p>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
+            <p>Dúvidas? Entre em contato com o suporte técnico.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 7;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo - NO ÚLTIMO PASSO, ESCONDER O BOTÃO "PRÓXIMO"
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

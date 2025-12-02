@@ -42,6 +42,196 @@
             font-size: 1.2rem;
         }
         
+        /* Estilos do Buscador */
+        .search-section {
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .search-box:focus {
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+        
+        .search-box::placeholder {
+            color: #95a5a6;
+        }
+        
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 500px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            margin-top: 10px;
+            padding: 0;
+        }
+        
+        /* Cabeçalho dos resultados */
+        .results-header {
+            padding: 20px 20px 15px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fafafa;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .results-title {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .results-count {
+            font-size: 14px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Lista de resultados - ESTILO VERTICAL */
+        .results-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .result-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .result-item:hover {
+            background-color: #f8fafc;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Cabeçalho do item */
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .item-title {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        
+        .item-type {
+            font-size: 11px;
+            color: #3498db;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #e3f2fd;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+        }
+        
+        /* Sistema e descrição */
+        .item-system {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .item-description {
+            font-size: 14px;
+            color: #7f8c8d;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        /* Status */
+        .item-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #2e7d32;
+        }
+        
+        .status-dot.disponivel {
+            background-color: #2e7d32;
+        }
+        
+        .status-dot.indisponivel {
+            background-color: #c62828;
+        }
+        
+        .status-text {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        /* Sistema nome */
+        .system-name {
+            font-size: 14px;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .system-name:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+        
+        /* Sem resultados */
+        .no-results {
+            padding: 30px 20px;
+            text-align: center;
+            color: #7f8c8d;
+        }
+        
+        .no-results p {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        /* Estilos dos cards existentes */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -128,28 +318,56 @@
         .back-button:hover {
             background: #7f8c8d;
         }
+
+        /* Scrollbar personalizada */
+        .search-results::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .search-results::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .search-results::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        .search-results::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Botão Voltar -->
-        <a href="../index1.html" class="back-button">← Voltar para o Portal</a>
+        <a href="../index.html" class="back-button">← Voltar</a>
 
         <header>
             <h1>Painel de UH's</h1>
             <p class="subtitle">Ferramentas e utilitários do sistema Bitz Hotel</p>
         </header>
         
+        <!-- Buscador Adicionado Aqui -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" 
+                       placeholder="🔍 Buscar módulos e conteúdos...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+        
         <div class="grid-container">
-            <!-- Widget 1 -->
+            <!-- Seus cards aqui (mantenha todos os cards existentes) -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Transferência de Consumos</h2>
+                    <h2 class="card-title">Link de Satisfação</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Aprenda a realizar check-in de forma rápida e eficiente, otimizando o processo de recepção de hóspedes.</p>
+                    <p class="card-description">Aqui você aprenderá como reenviar o link de satisfação.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/TransferenciaDeConsumo.html" class="access-button">
+                        <a href="../SubmodulosHotel/LinkSatisfacao.html" class="access-button">
                             Clique Aqui
                         </a>
                     </div>
@@ -159,10 +377,10 @@
             <!-- Widget 2 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Impressão de Extrato de Hospedagens já Encerradas</h2>
+                    <h2 class="card-title">Impressão de Extrato de Hospedagens</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Domine as ferramentas de gestão de reservas e otimize a ocupação do seu hotel.</p>
+                    <p class="card-description">Aqui você aprenderá como imprimir um extrato de hospedagem que já está encerrada</p>
                     <div class="card-footer">
                         <a href="../SubmodulosHotel/ImpressãoDeExtratoDaHospedagemJaEncerrada.html" class="access-button">
                             Clique Aqui
@@ -174,57 +392,117 @@
             <!-- Widget 3 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                    <h2 class="card-title">Transferir Responsável de Consumo</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Controle e visualize o status de todas as unidades habitacionais do hotel.</p>
+                    <p class="card-description">Neste conteúdo você verá como fazer uma transferência de consumo entre Responsáveis.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/TransferirResponsavelConsumo.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Widget 4 -->
+            <!-- Tema 4 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                    <h2 class="card-title">Transferir Consumo de Quarto</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Visualize a ocupação em tempo real de todas as unidades do hotel.</p>
+                    <p class="card-description">Neste conteúdo você verá como fazer uma transferência de consumo entre quartos(UHs).</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/TransferenciaConsumosQuartos.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Widget 5 -->
+            <!-- Tema 5 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                    <h2 class="card-title">Tarifas não Cadastradas</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Consulte e gerencie as tarifas aplicadas em diferentes períodos.</p>
+                    <p class="card-description">Neste conteúdo você verá como fazer uma transferência de consumo entre quartos(UHs).</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/TarifasCadastradas.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Widget 6 -->
+            <!-- Tema 6 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                    <h2 class="card-title">Excluir itens lançados errados</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Aprenda a transferir consumos entre unidades e reservas.</p>
+                    <p class="card-description">Neste conteúdo você verá como fazer a exclusão de itens lançados errados na UH.</p></p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/ExcluirItensLançados.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 7 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Erro de Rateio de Adiantamento nas Reservas</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Neste conteúdo você verá como corrigir erros de Rateio no adiantamento de Reservas.</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosHotel/ExcluirItensLançados.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 8 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">UH está indisponível</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Neste conteúdo você verá como corrigir uma UH que esta indisponível no check-in.</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosHotel/UhIndisponivel.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 9 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Transferir acompanhante de Quarto</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Neste conteúdo você verá como transferir um acompanhante para outro Quarto.</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosHotel/TransferirAcompanhante.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 10 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Limpeza em Massa</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Neste conteúdo você verá como realizar uma limpeza em massa.</p>
+                    <div class="card-footer">
+                        <a href="../SubmodulosHotel/LimpezaEmMassa.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
@@ -232,4 +510,196 @@
             </div>
         </div>
     </div>
-</body>
+
+    <script>
+    // Dados extraídos dos seus cards
+    const courseData = [
+        {
+            id: 1,
+            title: "Link de Satisfação",
+            description: "Aqui você aprenderá como reenviar o link de satisfação.",
+            link: "../SubmodulosHotel/LinkSatisfacao.html"
+        },
+        {
+            id: 2,
+            title: "Impressão de Extrato de Hospedagens",
+            description: "Aqui você aprenderá como imprimir um extrato de hospedagem que já está encerrada",
+            link: "../SubmodulosHotel/ImpressãoDeExtratoDaHospedagemJaEncerrada.html"
+        },
+        {
+            id: 3,
+            title: "Transferir Responsável de Consumo",
+            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre Responsáveis.",
+            link: "../SubmodulosHotel/TransferirResponsavelConsumo.html"
+        },
+        {
+            id: 4,
+            title: "Transferir Consumo de Quarto",
+            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre quartos(UHs).",
+            link: "../SubmodulosHotel/TransferenciaConsumosQuartos.html"
+        },
+        {
+            id: 5,
+            title: "Tarifas não Cadastradas",
+            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre quartos(UHs).",
+            link: "../SubmodulosHotel/TarifasCadastradas.html"
+        },
+        {
+            id: 6,
+            title: "Excluir itens lançados errados",
+            description: "Neste conteúdo você verá como fazer a exclusão de itens lançados errados na UH.",
+            link: "../SubmodulosHotel/ExcluirItensLançados.html"
+        },
+        {
+            id: 7,
+            title: "Erro de Rateio de Adiantamento nas Reservas",
+            description: "Neste conteúdo você verá como corrigir erros de Rateio no adiantamento de Reservas.",
+            link: "../SubmodulosHotel/ExcluirItensLançados.html"
+        },
+        {
+            id: 8,
+            title: "UH está indisponível",
+            description: "Neste conteúdo você verá como corrigir uma UH que esta indisponível no check-in.",
+            link: "../SubmodulosHotel/UhIndisponivel.html"
+        },
+        {
+            id: 9,
+            title: "Transferir acompanhante de Quarto",
+            description: "Neste conteúdo você verá como transferir um acompanhante para outro Quarto.",
+            link: "../SubmodulosHotel/TransferirAcompanhante.html"
+        },
+        {
+            id: 10,
+            title: "Limpeza em Massa",
+            description: "Neste conteúdo você verá como realizar uma limpeza em massa.",
+            link: "../SubmodulosHotel/LimpezaEmMassa.html"
+        }
+    ];
+
+    // Variável para controlar os cards originais
+    let originalCardsHTML = '';
+
+    // Função de busca
+    function performSearch(searchTerm) {
+        const gridContainer = document.querySelector('.grid-container');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Salvar HTML original dos cards na primeira vez
+        if (!originalCardsHTML) {
+            originalCardsHTML = gridContainer.innerHTML;
+        }
+        
+        searchTerm = searchTerm.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            // Se campo vazio, mostrar todos os cards originais
+            gridContainer.innerHTML = originalCardsHTML;
+            searchResults.style.display = 'none';
+            return;
+        }
+        
+        let results = [];
+        
+        // Buscar em todos os módulos
+        courseData.forEach(module => {
+            const moduleMatch = module.title.toLowerCase().includes(searchTerm) || 
+                               module.description.toLowerCase().includes(searchTerm);
+            
+            if (moduleMatch) {
+                results.push(module);
+            }
+        });
+        
+        // Mostrar resultados nos cards
+        displayResultsInCards(results, searchTerm);
+        
+        // Esconder completamente o dropdown de resultados
+        searchResults.style.display = 'none';
+    }
+
+    // Exibir resultados nos cards da grade
+    function displayResultsInCards(results, searchTerm) {
+        const gridContainer = document.querySelector('.grid-container');
+        
+        if (results.length === 0) {
+            gridContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                    <h3 style="color: #2c3e50; margin-bottom: 10px; font-size: 1.5rem;">Nenhum módulo encontrado</h3>
+                    <p style="color: #7f8c8d; font-size: 1rem;">Nenhum resultado encontrado para "<strong>${searchTerm}</strong>"</p>
+                    <p style="color: #95a5a6; font-size: 0.9rem; margin-top: 10px;">Tente usar palavras-chave diferentes</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Adicionar contador de resultados
+        let html = `
+            <div style="grid-column: 1 / -1; margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #3498db;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="color: #2c3e50; margin: 0; font-size: 1.2rem;">Resultados da Busca</h3>
+                        <p style="color: #3498db; margin: 5px 0 0 0; font-size: 0.9rem; font-weight: 600;">${results.length} módulo(s) encontrado(s)</p>
+                    </div>
+                    <button onclick="clearSearch()" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                        Limpar Busca
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        results.forEach(module => {
+            html += `
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">${module.title}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">${module.description}</p>
+                        <div class="card-footer">
+                            <a href="${module.link}" class="access-button">
+                                Clique Aqui
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        gridContainer.innerHTML = html;
+    }
+
+    // Função para limpar a busca
+    function clearSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const gridContainer = document.querySelector('.grid-container');
+        
+        searchInput.value = '';
+        gridContainer.innerHTML = originalCardsHTML;
+    }
+
+    // Adicionar evento de input
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Buscar ao digitar
+        searchInput.addEventListener('input', function(e) {
+            performSearch(e.target.value);
+        });
+        
+        // Fechar com ESC
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Escape') {
+                clearSearch();
+            }
+        });
+        
+        // Restaurar cards ao clicar no botão voltar
+        const backButton = document.querySelector('.back-button');
+        if (backButton) {
+            backButton.addEventListener('click', function() {
+                clearSearch();
+            });
+        }
+    });
+</script>
