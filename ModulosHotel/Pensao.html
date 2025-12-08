@@ -114,6 +114,7 @@
             background: linear-gradient(135deg, #2980b9, #34495e);
         }
 
+        /* Botão Voltar*/
         .back-button {
             display: inline-block;
             background: #95a5a6;
@@ -128,6 +129,124 @@
         .back-button:hover {
             background: #7f8c8d;
         }
+
+        /* Estilos do Buscador */
+        .search-section {
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .search-box:focus {
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+        
+        .search-box::placeholder {
+            color: #95a5a6;
+        }
+        
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 500px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            margin-top: 10px;
+            padding: 0;
+        }
+        
+        /* Cabeçalho dos resultados */
+        .results-header {
+            padding: 20px 20px 15px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fafafa;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .results-title {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .results-count {
+            font-size: 14px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Lista de resultados - ESTILO VERTICAL */
+        .results-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .result-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .result-item:hover {
+            background-color: #f8fafc;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Cabeçalho do item */
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .item-title {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        
+        .item-type {
+            font-size: 11px;
+            color: #3498db;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #e3f2fd;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -139,17 +258,26 @@
             <h1>Pensão</h1>
             <p class="subtitle">Ferramentas e utilitários do sistema Bitz Hotel</p>
         </header>
+
+        <!-- Buscador Adicionado Aqui -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" 
+                       placeholder="🔍 Buscar módulos e conteúdos...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
         
         <div class="grid-container">
             <!-- Widget 1 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento</h2>
+                    <h2 class="card-title">Como confirmar que o hóspede Tomou Café da Manhã</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">>Em breve você vai aprender algo top aqui.</p>
+                    <p class="card-description">Aprenda como marcar a confirmação do hóspede na Pensão.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/ComoMarcarPensão.html" class="access-button">
                             Clique Aqui
                         </a>
                     </div>
@@ -162,9 +290,9 @@
                     <h2 class="card-title">Em Desenvolvimento...</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">>Em breve você vai aprender algo top aqui.</p>
+                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../ModulosHotel/EmDesenvolvimento.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
@@ -177,9 +305,9 @@
                     <h2 class="card-title">Em Desenvolvimento...</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">>Em breve você vai aprender algo top aqui.</p>
+                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="..//ModulosHotel/EmDesenvolvimento.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
@@ -187,4 +315,156 @@
             </div>
         </div>
     </div>
+
+    <script>
+    // Dados extraídos dos seus cards
+    const courseData = [
+        {
+            id: 1,
+            title: "Como confirmar que o hóspede Tomou Café da Manhã",
+            description: "Aprenda como marcar a confirmação do hóspede na Pensão.",
+            link: "../SubmodulosHotel/ComoMarcarPensão.html"
+        },
+        {
+            id: 2,
+            title: "Em Desenvolvimento...",
+            description: "Em breve você vai aprender algo top aqui.",
+            link: "../ModulosHotel/EmDesenvolvimento.html"
+        },
+        {
+            id: 3,
+            title: "Em Desenvolvimento...",
+            description: "Em breve você vai aprender algo top aqui.",
+            link: "../ModulosHotel/EmDesenvolvimento.html"
+        }
+    
+    ];
+
+     // Variável para controlar os cards originais
+    let originalCardsHTML = '';
+
+    // Função de busca
+    function performSearch(searchTerm) {
+        const gridContainer = document.querySelector('.grid-container');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Salvar HTML original dos cards na primeira vez
+        if (!originalCardsHTML) {
+            originalCardsHTML = gridContainer.innerHTML;
+        }
+        
+        searchTerm = searchTerm.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            // Se campo vazio, mostrar todos os cards originais
+            gridContainer.innerHTML = originalCardsHTML;
+            searchResults.style.display = 'none';
+            return;
+        }
+        
+        let results = [];
+        
+        // Buscar em todos os módulos
+        courseData.forEach(module => {
+            const moduleMatch = module.title.toLowerCase().includes(searchTerm) || 
+                               module.description.toLowerCase().includes(searchTerm);
+            
+            if (moduleMatch) {
+                results.push(module);
+            }
+        });
+        
+        // Mostrar resultados nos cards
+        displayResultsInCards(results, searchTerm);
+        
+        // Esconder completamente o dropdown de resultados
+        searchResults.style.display = 'none';
+    }
+
+    // Exibir resultados nos cards da grade
+    function displayResultsInCards(results, searchTerm) {
+        const gridContainer = document.querySelector('.grid-container');
+        
+        if (results.length === 0) {
+            gridContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                    <h3 style="color: #2c3e50; margin-bottom: 10px; font-size: 1.5rem;">Nenhum módulo encontrado</h3>
+                    <p style="color: #7f8c8d; font-size: 1rem;">Nenhum resultado encontrado para "<strong>${searchTerm}</strong>"</p>
+                    <p style="color: #95a5a6; font-size: 0.9rem; margin-top: 10px;">Tente usar palavras-chave diferentes</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Adicionar contador de resultados
+        let html = `
+            <div style="grid-column: 1 / -1; margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #3498db;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="color: #2c3e50; margin: 0; font-size: 1.2rem;">Resultados da Busca</h3>
+                        <p style="color: #3498db; margin: 5px 0 0 0; font-size: 0.9rem; font-weight: 600;">${results.length} módulo(s) encontrado(s)</p>
+                    </div>
+                    <button onclick="clearSearch()" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                        Limpar Busca
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        results.forEach(module => {
+            html += `
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">${module.title}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">${module.description}</p>
+                        <div class="card-footer">
+                            <a href="${module.link}" class="access-button">
+                                Clique Aqui
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        gridContainer.innerHTML = html;
+    }
+
+    // Função para limpar a busca
+    function clearSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const gridContainer = document.querySelector('.grid-container');
+        
+        searchInput.value = '';
+        gridContainer.innerHTML = originalCardsHTML;
+    }
+
+    // Adicionar evento de input
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Buscar ao digitar
+        searchInput.addEventListener('input', function(e) {
+            performSearch(e.target.value);
+        });
+        
+        // Fechar com ESC
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Escape') {
+                clearSearch();
+            }
+        });
+        
+        // Restaurar cards ao clicar no botão voltar
+        const backButton = document.querySelector('.back-button');
+        if (backButton) {
+            backButton.addEventListener('click', function() {
+                clearSearch();
+            });
+        }
+    });
+</script>
 </body>

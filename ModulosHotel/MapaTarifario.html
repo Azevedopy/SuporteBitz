@@ -144,12 +144,12 @@
             <!-- Widget 1 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento</h2>
+                    <h2 class="card-title">Como editar o valor da tarifa na V2</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">Em breve você vai aprender algo top aqui.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/EditarValorTarifa.html" class="access-button">
                             Clique Aqui
                         </a>
                     </div>
@@ -159,12 +159,12 @@
             <!-- Widget 2 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                    <h2 class="card-title">Como visualizar o valor da tarifa na V2</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">Em breve você vai aprender algo top aqui.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/ValorTarifa.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
@@ -187,4 +187,162 @@
             </div>
         </div>
     </div>
+
+    <script>
+    // Dados extraídos dos seus cards
+    const courseData = [
+        {
+            id: 1,
+            title: "Como editar o valor da tarifa na V2",
+            description: "Aqui você aprenderá como reenviar o link de satisfação.",
+            link: "../SubmodulosHotel/LinkSatisfacao.html"
+        },
+        {
+            id: 2,
+            title: "2",
+            description: "Aqui você aprenderá como imprimir um extrato de hospedagem que já está encerrada",
+            link: "../SubmodulosHotel/ImpressãoDeExtratoDaHospedagemJaEncerrada.html"
+        },
+        {
+            id: 3,
+            title: "3",
+            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre Responsáveis.",
+            link: "../SubmodulosHotel/TransferirResponsavelConsumo.html"
+        },
+        {
+            id: 4,
+            title: "4",
+            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre quartos(UHs).",
+            link: "../SubmodulosHotel/TransferenciaConsumosQuartos.html"
+        },        
+    
+    ];
+
+    // Variável para controlar os cards originais
+    let originalCardsHTML = '';
+
+    // Função de busca
+    function performSearch(searchTerm) {
+        const gridContainer = document.querySelector('.grid-container');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Salvar HTML original dos cards na primeira vez
+        if (!originalCardsHTML) {
+            originalCardsHTML = gridContainer.innerHTML;
+        }
+        
+        searchTerm = searchTerm.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            // Se campo vazio, mostrar todos os cards originais
+            gridContainer.innerHTML = originalCardsHTML;
+            searchResults.style.display = 'none';
+            return;
+        }
+        
+        let results = [];
+        
+        // Buscar em todos os módulos
+        courseData.forEach(module => {
+            const moduleMatch = module.title.toLowerCase().includes(searchTerm) || 
+                               module.description.toLowerCase().includes(searchTerm);
+            
+            if (moduleMatch) {
+                results.push(module);
+            }
+        });
+        
+        // Mostrar resultados nos cards
+        displayResultsInCards(results, searchTerm);
+        
+        // Esconder completamente o dropdown de resultados
+        searchResults.style.display = 'none';
+    }
+
+    // Exibir resultados nos cards da grade
+    function displayResultsInCards(results, searchTerm) {
+        const gridContainer = document.querySelector('.grid-container');
+        
+        if (results.length === 0) {
+            gridContainer.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+                    <h3 style="color: #2c3e50; margin-bottom: 10px; font-size: 1.5rem;">Nenhum módulo encontrado</h3>
+                    <p style="color: #7f8c8d; font-size: 1rem;">Nenhum resultado encontrado para "<strong>${searchTerm}</strong>"</p>
+                    <p style="color: #95a5a6; font-size: 0.9rem; margin-top: 10px;">Tente usar palavras-chave diferentes</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Adicionar contador de resultados
+        let html = `
+            <div style="grid-column: 1 / -1; margin-bottom: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #3498db;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3 style="color: #2c3e50; margin: 0; font-size: 1.2rem;">Resultados da Busca</h3>
+                        <p style="color: #3498db; margin: 5px 0 0 0; font-size: 0.9rem; font-weight: 600;">${results.length} módulo(s) encontrado(s)</p>
+                    </div>
+                    <button onclick="clearSearch()" style="background: #3498db; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.3s;">
+                        Limpar Busca
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        results.forEach(module => {
+            html += `
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">${module.title}</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">${module.description}</p>
+                        <div class="card-footer">
+                            <a href="${module.link}" class="access-button">
+                                Clique Aqui
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        gridContainer.innerHTML = html;
+    }
+
+    // Função para limpar a busca
+    function clearSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const gridContainer = document.querySelector('.grid-container');
+        
+        searchInput.value = '';
+        gridContainer.innerHTML = originalCardsHTML;
+    }
+
+    // Adicionar evento de input
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Buscar ao digitar
+        searchInput.addEventListener('input', function(e) {
+            performSearch(e.target.value);
+        });
+        
+        // Fechar com ESC
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Escape') {
+                clearSearch();
+            }
+        });
+        
+        // Restaurar cards ao clicar no botão voltar
+        const backButton = document.querySelector('.back-button');
+        if (backButton) {
+            backButton.addEventListener('click', function() {
+                clearSearch();
+            });
+        }
+    });
+</script>
 </body>

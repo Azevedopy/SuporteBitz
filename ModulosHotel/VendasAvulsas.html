@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Rápido</title>
+    <title>Venda Avulsa</title>
     <style>
         * {
             margin: 0;
@@ -113,23 +113,7 @@
             box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
             background: linear-gradient(135deg, #2980b9, #34495e);
         }
-
-        /* Botão Voltar*/
-        .back-button {
-            display: inline-block;
-            background: #95a5a6;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: #7f8c8d;
-        }
-
+        
         /* Estilos do Buscador */
         .search-section {
             margin-bottom: 30px;
@@ -247,15 +231,31 @@
             border-radius: 12px;
             margin-left: 10px;
         }
+        
+        /* Boltão Voltar */
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #7f8c8d;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Botão Voltar -->
         <a href="../index.html" class="back-button">← Voltar</a>
-
+        
         <header>
-            <h1>Acesso Rápido</h1>
+            <h1>Venda Avulsa</h1>
             <p class="subtitle">Ferramentas e utilitários do sistema Bitz Hotel</p>
         </header>
 
@@ -268,24 +268,24 @@
             </div>
         </div>
         
+        
         <div class="grid-container">
-             <div class="grid-container">
-            <!-- Tema 1 -->
+            <!-- Widget 1 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                    <h2 class="card-title">Como Editar Venda Avulsa</h2>
                 </div>
                 <div class="card-body">
-                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
+                    <p class="card-description">Aprenda como editar uma venda avulsa.</p>
                     <div class="card-footer">
-                        <a href="../ModulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../SubmodulosHotel/EditarVendaAvulsa.html" class="access-button">
                             Clique Aqui
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Tema 2 -->
+            <!-- Widget 2 -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Em Desenvolvimento...</h2>
@@ -300,7 +300,7 @@
                 </div>
             </div>
 
-            <!-- Tema 3 -->
+            <!-- Widget 3 -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Em Desenvolvimento...</h2>
@@ -322,11 +322,10 @@
     const courseData = [
         {
             id: 1,
-            title: "Em Desenvolvimento...",
-            description: "Em breve você vai aprender algo top aqui.",
-            link: "../ModulosHotel/EmDesenvolvimento.html"
+            title: "Como Editar Venda Avulsa",
+            description: "Aprenda como editar uma venda avulsa.",
+            link: "../SubmodulosHotel/EditarVendaAvulsa.html"
         },
-
         {
             id: 2,
             title: "Em Desenvolvimento...",
@@ -469,4 +468,3 @@
         }
     });
 </script>
-</body>

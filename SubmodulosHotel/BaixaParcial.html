@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressão de Extrato de Hospedagem Encerrada - Sistema Bitz</title>
+    <title>Como Fazer Baixa Parcial - Sistema Bitz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -26,7 +26,7 @@
         }
         
         header {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
             color: white;
             padding: 30px 20px;
             border-radius: 10px 10px 0 0;
@@ -64,11 +64,11 @@
         }
         
         .intro-box {
-            background-color: #3b82f6;
+            background-color: #1a73e8;
             padding: 20px;
             border-radius: 8px;
             margin: 15px 0;
-            border-left: 4px solid #3b82f6;
+            border-left: 4px solid #1a73e8;
         }
         
         .steps-container {
@@ -115,8 +115,8 @@
         
         .step-nav-item.active {
             background-color: #e8f0fe;
-            border-left: 4px solid #3b82f6;
-            color: #3b82f6;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
             font-weight: bold;
         }
         
@@ -127,14 +127,14 @@
             width: 28px;
             height: 28px;
             background-color: #e8f0fe;
-            color: #3b82f6;
+            color: #1a73e8;
             border-radius: 50%;
             margin-right: 12px;
             font-weight: bold;
         }
         
         .step-nav-item.active .step-number {
-            background-color: #3b82f6;
+            background-color: #1a73e8;
             color: white;
         }
         
@@ -154,7 +154,7 @@
         
         .step-title {
             font-size: 24px;
-            color: #3b82f6;
+            color: #1a73e8;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f0f0;
@@ -170,7 +170,7 @@
             padding: 2px 6px;
             border-radius: 3px;
             font-weight: bold;
-            color: #3b82f6;
+            color: #1a73e8;
         }
         
         .link-box {
@@ -183,109 +183,19 @@
         }
         
         .link-box i {
-            color: #3b82f6;
+            color: #1a73e8;
             margin-right: 10px;
             font-size: 20px;
         }
         
         .link-box a {
-            color: #3b82f6;
+            color: #1a73e8;
             font-weight: bold;
             text-decoration: none;
         }
         
         .link-box a:hover {
             text-decoration: underline;
-        }
-        
-        .btn-action {
-            background-color: #3b82f6;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            margin: 10px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-action:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(29, 78, 216, 0.2);
-        }
-        
-        .btn-action i {
-            margin-right: 8px;
-        }
-        
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .filter-item {
-            background-color: #f8f9fa;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #e9ecef;
-            display: flex;
-            align-items: center;
-        }
-        
-        .filter-item i {
-            color: #3b82f6;
-            margin-right: 10px;
-            width: 20px;
-        }
-        
-        .option-box {
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid;
-        }
-        
-        .option-consolidado {
-            background-color: #d1fae5;
-            border-left-color: #10b981;
-        }
-        
-        .option-simplificado {
-            background-color: #fef3c7;
-            border-left-color: #f59e0b;
-        }
-        
-        .option-net {
-            background-color: #fee2e2;
-            border-left-color: #ef4444;
-        }
-        
-        .option-impressao {
-            background-color: #dbeafe;
-            border-left-color: #3b82f6;
-        }
-        
-        .option-termica {
-            background-color: #f3f4f6;
-            border-left-color: #6b7280;
-        }
-        
-        .option-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        
-        .option-header i {
-            margin-right: 10px;
-            font-size: 18px;
         }
         
         .icons-example {
@@ -310,7 +220,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 10px;
-            color: #3b82f6;
+            color: #1a73e8;
             font-size: 24px;
         }
         
@@ -322,6 +232,8 @@
         .info-list li {
             padding: 10px 0;
             border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
         }
         
         .info-list li:last-child {
@@ -329,7 +241,7 @@
         }
         
         .info-list i {
-            color: #3b82f6;
+            color: #1a73e8;
             margin-right: 10px;
             width: 20px;
         }
@@ -355,11 +267,11 @@
         
         .prev-btn {
             background-color: #f0f7ff;
-            color: #3b82f6;
+            color: #1a73e8;
         }
         
         .next-btn {
-            background-color: #3b82f6;
+            background-color: #1a73e8;
             color: white;
         }
         
@@ -391,6 +303,139 @@
             border-top: 1px solid #eee;
         }
         
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .field-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 14px;
+        }
+        
+        .field-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .field-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .field-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .highlight-green {
+            background-color: #e8f5e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .highlight-orange {
+            background-color: #fff3e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #ef6c00;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
         @media (max-width: 768px) {
             .steps-nav {
                 flex: 0 0 100%;
@@ -406,19 +451,21 @@
                 font-size: 22px;
             }
             
-            .filter-grid {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 24px;
             }
-        }
-         .back-button {
-            display: inline-block;
-            background: #95a5a6;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            transition: background 0.3s ease;
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .field-table {
+                font-size: 12px;
+            }
+            
+            .field-table th, .field-table td {
+                padding: 8px 10px;
+            }
         }
     </style>
 </head>
@@ -426,19 +473,20 @@
     <div class="container">
         <!-- Botão Voltar -->
         <a href="../ModulosHotel/PainelUHs.html" class="back-button">← Voltar</a>
+
         <header>
             <div class="logo-container">
                 <div class="logo-icon">
-                    <i class="fas fa-print"></i>
+                    <i class="fas fa-receipt"></i>
                 </div>
                 <div>
-                    <h1>Impressão de Extrato de Hospedagem Encerrada</h1>
-                    <p class="subtitle">Módulo: Hospedagens - Guia completo para geração de extratos</p>
+                    <h1>Como Fazer Baixa Parcial</h1>
+                    <p class="subtitle">Guia completo para realizar baixa parcial de consumos com emissão de nota fiscal no sistema Bitz</p>
                 </div>
             </div>
             
             <div class="intro-box">
-                <p><strong>Visão Geral:</strong> A impressão do extrato da hospedagem é um processo flexível. Ele pode ser realizado <strong>mesmo após o check-out</strong> da reserva ter sido concluído. Siga os passos abaixo para gerar o documento.</p>
+                <p>A baixa parcial é realizada em situações em que o cliente realizou o pagamento de um consumo na hora, e precisa que seja emitida nota no momento do consumo.</p>
             </div>
         </header>
         
@@ -446,126 +494,76 @@
             <div class="steps-nav">
                 <div class="step-nav-item active" data-step="1">
                     <span class="step-number">1</span>
-                    Acessar Hospedagens
+                    Acesso ao Quarto
                 </div>
                 <div class="step-nav-item" data-step="2">
                     <span class="step-number">2</span>
-                    Aplicar Filtros
+                    Achar Baixa Parcial
                 </div>
                 <div class="step-nav-item" data-step="3">
                     <span class="step-number">3</span>
-                    Expandir e Selecionar
+                    Opções da Baixa
                 </div>
                 <div class="step-nav-item" data-step="4">
                     <span class="step-number">4</span>
-                    Configurar Impressão
+                    Emitir Nota Fiscal
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Realizar Baixa
                 </div>
             </div>
             
             <div class="steps-content">
                 <!-- Passo 1 -->
                 <div class="step-content active" id="step-1">
-                    <h2 class="step-title">Passo 1: Acessar Hospedagens</h2>
+                    <h2 class="step-title">Passo 1: Acessar o quarto no painel de hospedagens</h2>
                     <div class="step-description">
-                        <p>No menu da lateral esquerdo, localize e clique na opção <span class="highlight">"Hospedagens"</span>.</p>
+                        <p>No menu da lateral esquerda, busque a opção <span class="highlight">"painéis"</span> ou acesse pelo botão:</p>
                         
                         <div class="link-box">
                             <i class="fas fa-external-link-alt"></i>
                             <div>
-                                <p>Ou utilize o link direto: <a href="https://hotel.bitzsoftwares.com.br/sistema/locacao/" target="_blank">Tela de Hospedagens</a></p>
+                                <p><a href="https://hotel.bitzsoftwares.com.br/hotel/painel/uh/" target="_blank">PAINEL DE UH'S</a></p>
                             </div>
                         </div>
                         
-                        <div class="step-description">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Opções de Filtro Inicial</h3>
-                            <p class="text-gray-600 mb-3">Na tela de Hospedagens, você encontra filtros para facilitar sua busca:</p>
-                            
-                            <div class="filter-grid">
-                                <div class="filter-item">
-                                    <i class="fas fa-bed"></i>
-                                    <div>
-                                        <strong>Quartos:</strong> Hospedagens de um quarto específico
-                                    </div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="far fa-calendar-alt"></i>
-                                    <div>
-                                        <strong>Período:</strong> Busca por datas específicas
-                                    </div>
-                                </div>
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Acessando a hospedagem</span>
                             </div>
-                            
-                            <p class="text-gray-600 mt-3">As opções de período incluem:</p>
-                            <ul class="info-list">
-                                <li><i class="fas fa-calendar"></i> "sem período definido"</li>
-                                <li><i class="fas fa-calendar-day"></i> "amanhã"</li>
-                                <li><i class="fas fa-calendar-check"></i> "definir um período"</li>
-                                <li><i class="fas fa-sun"></i> "hoje"</li>
-                                <li><i class="fas fa-calendar-alt"></i> "este mês"</li>
-                                <li><i class="fas fa-calendar-week"></i> "últimos 7 dias"</li>
-                                <li><i class="fas fa-calendar-week"></i> "últimos 15 dias"</li>
-                                <li><i class="fas fa-calendar-week"></i> "últimos 30 dias"</li>
-                                <li><i class="fas fa-calendar-minus"></i> "mês passado"</li>
-                            </ul>
+                            <p>Ao acessar a hospedagem, você vai precisar entrar dentro da hospedagem em questão.</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Passo 2 -->
                 <div class="step-content" id="step-2">
-                    <h2 class="step-title">Passo 2: Aplicar Filtros e Localizar a Hospedagem</h2>
+                    <h2 class="step-title">Passo 2: Achar a baixa parcial</h2>
                     <div class="step-description">
-                        <p>Após definir o período desejado, clique no botão cinza <span class="highlight">"Filtrar"</span> que possui o ícone de funil (<i class="fas fa-filter"></i>) para carregar as hospedagens.</p>
+                        <p>Após acessar a hospedagem que necessita fazer a baixa, você vai precisar entrar na aba de consumos dentro do quarto.</p>
                         
-                        <button class="btn-action">
-                            <i class="fas fa-filter"></i> Filtrar
-                        </button>
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-box"></i>
+                                <span>Aba de Consumos</span>
+                            </div>
+                            <p>Vai ser a segunda opção com ícone de caixa. Vai ser necessário descer a página e encontrar a opção <span class="highlight">"baixar consumos $"</span>, vai ser a segunda opção que fica acima dos consumos que já estão lançados.</p>
+                        </div>
                         
-                        <div class="step-description">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Campos de Busca Disponíveis</h3>
-                            <p class="text-gray-600 mb-3">Você pode refinar sua busca utilizando os seguintes campos na lista:</p>
-                            
-                            <div class="filter-grid">
-                                <div class="filter-item">
-                                    <i class="fas fa-hashtag"></i>
-                                    <div>Código da hospedagem</div>
+                        <div class="icons-example">
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-box"></i>
                                 </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-list-ol"></i>
-                                    <div>Código da reserva</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-user"></i>
-                                    <div>Titular</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-building"></i>
-                                    <div>CNPJ</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-door-open"></i>
-                                    <div>UH (Unidade Habitacional)</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <div>Data inicial/final</div>
-                                </div>
-                                <div class="filter-item">
+                                <p>Aba Consumos</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
                                     <i class="fas fa-dollar-sign"></i>
-                                    <div>Faturamento / Total</div>
                                 </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-plane-departure"></i>
-                                    <div>Agência</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-info-circle"></i>
-                                    <div>Situação</div>
-                                </div>
-                                <div class="filter-item">
-                                    <i class="fas fa-file-invoice-dollar"></i>
-                                    <div>Documento fiscal</div>
-                                </div>
+                                <p>Baixar Consumos</p>
                             </div>
                         </div>
                     </div>
@@ -573,80 +571,116 @@
                 
                 <!-- Passo 3 -->
                 <div class="step-content" id="step-3">
-                    <h2 class="step-title">Passo 3: Expandir Opções e Selecionar Extrato</h2>
+                    <h2 class="step-title">Passo 3: Após acessar a baixa parcial</h2>
                     <div class="step-description">
-                        <p>Ao encontrar a hospedagem desejada, localize o ícone de <span class="highlight">"Flecha"</span> (<i class="fas fa-chevron-down"></i>) na linha da hospedagem e clique nele para expandir as opções.</p>
+                        <p>A tela de baixa parcial oferece várias opções e configurações:</p>
                         
-                        <div class="icons-example">
-                            <div class="icon-item">
-                                <div class="icon-circle">
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <p>Ícone de flecha</p>
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Campos de Identificação</span>
                             </div>
-                            <div class="icon-item">
-                                <div class="icon-circle">
-                                    <i class="fas fa-file-arrow-down"></i>
-                                </div>
-                                <p>Arquivo com flecha</p>
-                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-user"></i> <strong>Pessoa para o fechamento parcial:</strong> Essa opção é utilizada se foi outra pessoa que vai fazer o pagamento do consumo em nome da pessoa que está cadastrada no quarto. Essa pessoa precisa ter cadastro no sistema para poder fazer o pagamento (não é uma opção obrigatória).</li>
+                                <li><i class="fas fa-user-check"></i> <strong>Hóspede Responsável:</strong> Essa opção vai ser utilizada para filtrar apenas os consumos que estão em nome da pessoa que está no quarto, tanto para o titular, quanto para o(os) acompanhante(es) e empresa de faturamento. Se deixar sem selecionar nenhuma pessoa/empresa, o sistema vai mostrar todos os lançamentos que estão no quarto.</li>
+                            </ul>
                         </div>
                         
-                        <p class="mt-4">Dentro das opções expandidas, procure pelo <span class="highlight">terceiro ícone</span>, que é o ícone de <span class="highlight">"Arquivo com flecha para baixo"</span> (<i class="fas fa-file-arrow-down"></i>). Clicar neste ícone abrirá as três opções de extrato:</p>
-                        
-                        <div class="option-box option-consolidado">
-                            <div class="option-header">
-                                <i class="fas fa-file-circle-check"></i>
-                                <span>Consolidado</span>
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-tags"></i>
+                                <span>Abas de Filtragem</span>
                             </div>
-                            <p>É a versão mais completa. Contém todas as informações de consumos, serviços, itens detalhados e separados por lançamento, além de mostrar todos os recebimentos.</p>
+                            <p><strong>Aba de "produtos" e de "serviços":</strong></p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-cube"></i> A aba de produtos vai filtrar apenas os produtos que estão lançados em nome da pessoa/empresa que foi selecionada.</li>
+                                <li><i class="fas fa-concierge-bell"></i> A aba de serviços vai filtrar apenas os serviços que estão lançados em nome da pessoa/empresa que foi selecionada.</li>
+                            </ul>
                         </div>
                         
-                        <div class="option-box option-simplificado">
-                            <div class="option-header">
-                                <i class="fas fa-file-lines"></i>
-                                <span>Simplificado</span>
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Abas de Configuração</span>
                             </div>
-                            <p>Agrupa as informações em lançamentos únicos. Se houver mais de um item igual, eles são somados em uma única linha com a quantidade total.</p>
-                        </div>
-                        
-                        <div class="option-box option-net">
-                            <div class="option-header">
-                                <i class="fas fa-file-shield"></i>
-                                <span>Extrato geral (com tarifa NET)</span>
-                            </div>
-                            <p>Utilizado em situações com agência responsável onde a tarifa é oculta (tarifa NET). Não é informado o valor das diárias para o hóspede, apenas os consumos.</p>
+                            <p><strong>Aba de "recebimento", "documentos fiscais" e "transferir":</strong></p>
+                            
+                            <ul class="info-list">
+                                <li><i class="fas fa-money-bill-wave"></i> <strong>Recebimento:</strong> Vai puxar as formas de pagamentos que podem ser utilizadas para fazer a baixa. As opções são: Dinheiro, Cartão, Depósito, Cortesia, Faturado, Outros.</li>
+                                <li><i class="fas fa-file-invoice"></i> <strong>Documentos Fiscais:</strong> Utilizada para escolher que tipo de nota você vai emitir na baixa do consumo. Você vai escolher em nome de que pessoa vai sair a nota dos consumos/serviços que está sendo baixado. Opções: NF-e, NFC-e, NFS-e.</li>
+                                <li><i class="fas fa-random"></i> <strong>Transferir:</strong> Utilizada caso seja preciso fazer a transferência do consumo para a outra pessoa que está no quarto, no caso se for transferir um consumo que está em nome do titular para o nome da empresa ou acompanhante, e vice versa.</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Passo 4 -->
                 <div class="step-content" id="step-4">
-                    <h2 class="step-title">Passo 4: Configurar Impressão</h2>
+                    <h2 class="step-title">Passo 4: Emitir nota fiscal (se necessário)</h2>
                     <div class="step-description">
-                        <p>Após gerar o extrato no formato desejado, você será direcionado para o relatório.</p>
-                        
-                        <p>Em cima do relatório do extrato, haverá a opção da impressão. Você terá duas modalidades:</p>
-                        
-                        <div class="option-box option-impressao">
-                            <div class="option-header">
-                                <i class="fas fa-print"></i>
-                                <span>Impressão Normal (A4 / PDF)</span>
-                            </div>
-                            <p>Saída para impressora A4. Abre a janela de impressão do navegador para escolher a impressora ou <strong>Salvar como PDF</strong>. Geralmente usado para registrar na ficha do cliente.</p>
+                        <div class="warning-box">
+                            <h3><i class="fas fa-info-circle"></i> Emissão de Nota Fiscal</h3>
+                            <p>Caso precise emitir nota fiscal junto, é necessário ir na aba de <span class="highlight">"documentos fiscais"</span>.</p>
                         </div>
                         
-                        <div class="option-box option-termica">
-                            <div class="option-header">
-                                <i class="fas fa-ticket-simple"></i>
-                                <span>Impressão EFC (Térmica / Cupom)</span>
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-file-invoice"></i>
+                                <span>Configurar Nota Fiscal</span>
                             </div>
-                            <p>Utilizada caso o hotel use impressora térmica. Imprime o extrato em formato de cupom fiscal de tamanho reduzido.</p>
+                            <p>Dentro da aba de "documentos fiscais" você vai precisar escolher quem é o responsável pela nota que vai sair emitida. Só vai ter o nome das pessoas/empresa que estão na hospedagem.</p>
+                            
+                            <div class="icons-example">
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    </div>
+                                    <p>NF-e</p>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-receipt"></i>
+                                    </div>
+                                    <p>NFC-e</p>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <p>NFS-e</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p>Com o recebimento adicionado e após escolher o tipo de nota que precisa ser emitida e em nome de quem vai precisar ser emitida, você pode prosseguir para a baixa.</p>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">Passo 5: Como fazer a baixa</h2>
+                    <div class="step-description">
+                        <div class="process-steps">
+                            <li><strong>Selecione o consumo</strong> que precisa fazer a baixa clicando no "quadrado de marcar" ao lado esquerdo do consumo/serviço em questão.</li>
+                            <li><strong>Adicione a forma de pagamento</strong> que foi realizado. Vai mostrar as opções de: Dinheiro, Cartão, Depósito, Cortesia, Faturado, Outros.</li>
+                            <li><strong>Configure o recebimento:</strong>
+                                <ul class="info-list" style="margin-top: 10px;">
+                                    <li><i class="fas fa-user"></i> <strong>Hóspede responsável:</strong> Campo utilizado para escolher quem está fazendo o pagamento</li>
+                                    <li><i class="fas fa-money-bill-wave"></i> <strong>Valor recebido:</strong> Utilizado para lançar o valor que foi pago (O valor precisa fechar com o valor que está sendo baixado)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Clique em "+ adicionar recebimento"</strong> após adicionar o valor do recebimento.</li>
+                            <li><strong>Clique no botão azul "baixa"</strong> que a baixa será realizada e a nota vai ser emitida.</li>
                         </div>
                         
                         <div class="success-container">
                             <i class="fas fa-check-circle"></i>
-                            Processo Concluído! A impressão será enviada para a impressora selecionada.
+                            Baixa parcial realizada com sucesso! O consumo foi baixado e a nota fiscal emitida.
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Observação Importante</h3>
+                            <p><strong>Caso a baixa tenha sido feita de forma errada</strong>, você pode excluir o recebimento que foi lançado na aba de "recebimentos" na hospedagem. Excluindo o recebimento que está lançado, a baixa que foi realizada vai ser cancelada e o produto/serviço vai liberar para baixar novamente.</p>
                         </div>
                     </div>
                 </div>
@@ -664,7 +698,7 @@
         
         <footer>
             <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
-            <p>Este guia foi elaborado para otimizar o procedimento de emissão de extratos pós check-out.</p>
+            <p>Dúvidas? Entre em contato com o suporte técnico.</p>
         </footer>
     </div>
 
@@ -675,7 +709,7 @@
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             let currentStep = 1;
-            const totalSteps = 4;
+            const totalSteps = 5;
             
             // Inicializar navegação
             updateNavigation();
