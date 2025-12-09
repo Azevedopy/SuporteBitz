@@ -440,57 +440,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Botão Flutuante do Assistente IA -->
-    <div id="ai-assistant-container">
-        <button id="ai-assistant-btn" class="ai-floating-btn">
-            <span class="ai-icon">🤖</span>
-            <span class="ai-label">Assistente IA</span>
-        </button>
-        
-        <div id="ai-chat-window" class="ai-chat-hidden">
-            <div class="ai-chat-header">
-                <h3>🤖 Assistente de Treinamento</h3>
-                <button id="ai-close-btn" class="ai-close-btn">×</button>
-            </div>
-            
-            <!-- Barra de Progresso (Opcional) -->
-            <div class="ai-progress-container" id="ai-progress-container" style="display: none;">
-                <div class="ai-progress-bar">
-                    <div class="ai-progress-fill" id="ai-load-progress"></div>
-                </div>
-                <div class="ai-progress-text" id="ai-progress-text">
-                    Carregando documentos...
-                </div>
-            </div>
-            
-            <div id="ai-chat-messages" class="ai-chat-messages">
-                <div class="ai-message ai-bot-message">
-                    Olá! Sou seu assistente de treinamento. Posso ajudar com dúvidas sobre:
-                    <br>• 🏨 Bitz Hotel
-                    <br>• 🚪 Bitz Motel  
-                    <br>• ⭐ Boas Práticas
-                    <br><br>Pergunte qualquer coisa sobre os materiais!
-                </div>
-            </div>
-            <div class="ai-chat-input-area">
-                <input type="text" 
-                       id="ai-chat-input" 
-                       class="ai-chat-input" 
-                       placeholder="Digite sua pergunta sobre os treinamentos..."
-                       autocomplete="off">
-                <button id="ai-send-btn" class="ai-send-btn">➤</button>
-            </div>
-            <div class="ai-status" id="ai-status">
-                Inicializando...
-            </div>
-            <!-- Status do Modelo IA -->
-            <div class="ai-model-status" id="ai-model-status">
-                <span class="model-indicator local">🔍</span>
-                <span class="model-text">Modo Local</span>
-            </div>
-        </div>
-    </div>
+    
     <script src="JavaScript/script.js"></script>
 </body>
 </html>
