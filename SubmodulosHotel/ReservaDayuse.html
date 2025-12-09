@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas de Day Use - Sistema Bitz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #1a73e8);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f9f0;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f6ef;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f6ef;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f7ed;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f6ef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #e8f6ef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f9f0;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #1a73e8;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .field-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 14px;
+        }
+        
+        .field-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .field-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        
+        .field-table tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .highlight-green {
+            background-color: #e8f5e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .highlight-orange {
+            background-color: #fff3e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #ef6c00;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .occupation-indicators {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .indicator {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+        }
+        
+        .indicator-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        
+        .red-indicator {
+            background-color: #e74c3c;
+        }
+        
+        .yellow-indicator {
+            background-color: #f39c12;
+        }
+        
+        .green-indicator {
+            background-color: #1a73e8;
+        }
+        
+        .summary-box {
+            background-color: #e8f6ef;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .summary-title {
+            font-size: 20px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .field-table {
+                font-size: 12px;
+            }
+            
+            .field-table th, .field-table td {
+                padding: 8px 10px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModulosHotel/DayUses.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div>
+                    <h1>Reservas de Day Use</h1>
+                    <p class="subtitle">Guia completo para gerenciar acessos temporários às áreas de lazer do hotel</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>O módulo Day Use permite ao hotel vender acessos temporários às áreas de lazer, sem necessidade de hospedagem, criando uma nova fonte de receita e melhorando o aproveitamento da estrutura.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Acesso ao Módulo
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Configurar Tarifas
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Tela de Reservas
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Criar Reserva
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Visualizar Ocupação
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Impactos para o Hotel
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">Passo 1: Acessando o Módulo de Day Use</h2>
+                    <div class="step-description">
+                        <p>O módulo Day Use permite ao hotel vender acessos temporários às áreas de lazer, sem hospedagem. Para acessar:</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-map-signs"></i>
+                                <span>Caminho de Acesso</span>
+                            </div>
+                            <p>No menu lateral do sistema, siga o caminho:</p>
+                            <div class="link-box">
+                                <i class="fas fa-arrow-right"></i>
+                                <div>
+                                    <p><strong>Menu lateral → Day Use → Reserva Day Use</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="icons-example">
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <p>Day Use</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <p>Reserva Day Use</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">Passo 2: Configurando Tarifas de Day Use</h2>
+                    <div class="step-description">
+                        <p>Antes de realizar qualquer reserva, é fundamental verificar e configurar as tarifas disponíveis.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Acesso às Tarifas</span>
+                            </div>
+                            <p>Para configurar as tarifas, siga o caminho:</p>
+                            <div class="link-box">
+                                <i class="fas fa-arrow-right"></i>
+                                <div>
+                                    <p><strong>Day Use → Tarifas Day Use</strong></p>
+                                </div>
+                            </div>
+                            <p>Essas tarifas aparecerão na tela de reserva e determinam o que pode ser cobrado para cada tipo de acesso.</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Importante</h3>
+                            <p>As tarifas configuradas aqui aparecerão como opções na tela de criação de reservas. Certifique-se de configurar valores adequados para adultos, crianças e quaisquer tarifas especiais que o hotel ofereça.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">Passo 3: Acessando a Tela de Reservas</h2>
+                    <div class="step-description">
+                        <p>Ao acessar <span class="highlight">Day Use → Reserva Day Use</span>, você encontrará uma tela completa com várias funcionalidades:</p>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <h3 class="feature-title">Calendário de Ocupação</h3>
+                                <p>Mostra o mês completo com a ocupação dos dias através de cores e indicadores visuais.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-list"></i>
+                                </div>
+                                <h3 class="feature-title">Reservas do Dia</h3>
+                                <p>Lista todas as reservas cadastradas para a data selecionada com informações detalhadas.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="feature-title">Capacidade Disponível</h3>
+                                <p>Exibe quantas vagas restam para o dia, baseado no limite configurado.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-pie"></i>
+                                </div>
+                                <h3 class="feature-title">Gráfico de Ocupação</h3>
+                                <p>Gráfico circular mostrando a proporção entre hóspedes, visitantes e vagas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Calendário de Ocupação</span>
+                            </div>
+                            <p>Mostra o mês completo com a ocupação dos dias. Cores e indicadores ajudam a identificar:</p>
+                            
+                            <div class="occupation-indicators">
+                                <div class="indicator">
+                                    <div class="indicator-color red-indicator"></div>
+                                    <span>Acima de 90% de ocupação</span>
+                                </div>
+                                <div class="indicator">
+                                    <div class="indicator-color yellow-indicator"></div>
+                                    <span>De 50% a 90% de ocupação</span>
+                                </div>
+                                <div class="indicator">
+                                    <div class="indicator-color green-indicator"></div>
+                                    <span>Menos de 50% de ocupação</span>
+                                </div>
+                            </div>
+                            
+                            <p>Isso facilita o planejamento do hotel e evita superlotação.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-list-ol"></i>
+                                <span>Reservas do Dia</span>
+                            </div>
+                            <p>Lista todas as reservas já cadastradas para a data selecionada. Exibe:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-hashtag"></i> Código da reserva</li>
+                                <li><i class="fas fa-user"></i> Nome do titular</li>
+                                <li><i class="fas fa-user-friends"></i> Quantidade de pessoas</li>
+                                <li><i class="fas fa-info-circle"></i> Status da reserva</li>
+                                <li><i class="fas fa-cog"></i> Opções de visualizar/editar</li>
+                            </ul>
+                            <p>Ajuda a gerenciar fluxo e controlar visitantes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">Passo 4: Criando uma Reserva de Day Use</h2>
+                    <div class="step-description">
+                        <div class="process-steps">
+                            <li>Na tela principal de <span class="highlight">Reserva Day Use</span>, clique no botão <span class="highlight-green">"Incluir Reservas"</span>.</li>
+                            <li>Selecione a <strong>Data Inicial</strong> desejada para a reserva.</li>
+                            <li>Escolha as <strong>Tarifas desejadas</strong> (Adulto, Criança, tarifas específicas etc.).</li>
+                            <li>O sistema calculará o <strong>total automaticamente</strong> com base nas tarifas selecionadas.</li>
+                            <li>Clique no botão <span class="highlight-green">"Salvar"</span> para confirmar a reserva.</li>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-info-circle"></i> Observação</h3>
+                            <p>As opções de tarifas que aparecem são aquelas cadastradas previamente em <span class="highlight">Day Use → Tarifas Day Use</span>. Certifique-se de que todas as tarifas necessárias estejam configuradas antes de criar reservas.</p>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-check-circle"></i>
+                            Reserva criada com sucesso! O sistema atualizará automaticamente a capacidade disponível e o gráfico de ocupação.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">Passo 5: Visualizando a Ocupação</h2>
+                    <div class="step-description">
+                        <p>A tela de Day Use mostra informações cruciais sobre a ocupação do hotel:</p>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-clock"></i>
+                                </div>
+                                <h3 class="feature-title">Visitantes</h3>
+                                <p>Quantidade de pessoas utilizando o Day Use no momento.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <h3 class="feature-title">Hóspedes</h3>
+                                <p>Quantidade de hóspedes regularmente hospedados.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <h3 class="feature-title">Reservas Confirmadas</h3>
+                                <p>Quantidade de reservas de Day Use confirmadas para o dia.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <h3 class="feature-title">Disponibilidade</h3>
+                                <p>Vagas restantes para o dia, considerando a capacidade máxima.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Gráfico de Ocupação</span>
+                            </div>
+                            <p>Gráfico circular mostrando a proporção de:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-bed"></i> <strong>Hóspedes</strong> - Clientes hospedados no hotel</li>
+                                <li><i class="fas fa-sun"></i> <strong>Visitantes de Day Use</strong> - Clientes utilizando apenas as áreas de lazer</li>
+                                <li><i class="fas fa-user-plus"></i> <strong>Vagas disponíveis</strong> - Capacidade restante</li>
+                            </ul>
+                            <p>Permite visualizar rapidamente o impacto da demanda no hotel, ajudando a tomar decisões operacionais.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">Passo 6: Impactos do Day Use para o Hotel</h2>
+                    <div class="step-description">
+                        <p>A implementação do módulo Day Use traz diversos benefícios estratégicos para o hotel:</p>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                                <h3 class="feature-title">Controle de Capacidade</h3>
+                                <p>Evita superlotação e mantém a qualidade da experiência.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3 class="feature-title">Nova Fonte de Receita</h3>
+                                <p>Monetiza áreas de lazer que antes ficavam ociosas.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Organização e Segurança</h3>
+                                <p>Controla o acesso de visitantes e mantém a segurança.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-smile"></i>
+                                </div>
+                                <h3 class="feature-title">Melhor Experiência</h3>
+                                <p>Oferece serviços flexíveis para diferentes tipos de clientes.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h3 class="feature-title">Planejamento Operacional</h3>
+                                <p>Permite prever demanda e alocar recursos adequadamente.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                                <h3 class="feature-title">Redução de Filas</h3>
+                                <p>Reservas antecipadas diminuem congestionamentos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-box">
+                            <h3 class="summary-title">Resumo do Processo</h3>
+                            <div class="process-steps">
+                                <li>Configure as tarifas em <span class="highlight">Day Use → Tarifas Day Use</span></li>
+                                <li>Acesse a tela principal em <span class="highlight">Day Use → Reserva Day Use</span></li>
+                                <li>Clique em <span class="highlight-green">"Incluir Reserva"</span></li>
+                                <li>Escolha a data e as tarifas desejadas</li>
+                                <li>Salve a reserva</li>
+                            </div>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-trophy"></i>
+                            Com o Day Use implementado, seu hotel maximiza o aproveitamento da estrutura e aumenta a receita sem comprometer a experiência dos hóspedes!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
+            <p>Dúvidas? Entre em contato com o suporte técnico.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo - NO ÚLTIMO PASSO, ESCONDER O BOTÃO "PRÓXIMO"
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

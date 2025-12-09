@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parâmetros Financeiros - Sistema Bitz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 14px;
+        }
+        
+        .param-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #0d47a1;
+        }
+        
+        .param-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .param-table tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        .param-table .param-name {
+            font-weight: bold;
+            color: #1a73e8;
+            width: 35%;
+            background-color: #f0f7ff;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .highlight-green {
+            background-color: #e8f5e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .highlight-orange {
+            background-color: #fff3e0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #ef6c00;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .search-box {
+            background-color: #e8f0fe;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-icon {
+            color: #1a73e8;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .search-text {
+            font-size: 16px;
+        }
+        
+        .actions-panel {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .action-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border: 1px solid #1a73e8;
+        }
+        
+        .delete-btn {
+            background-color: #fee8e8;
+            color: #e53935;
+            border: 1px solid #e53935;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .good-practice-box {
+            background-color: #e8f5e8;
+            border-left: 5px solid #2e7d32;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .good-practice-title {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .good-practice-title i {
+            margin-right: 10px;
+        }
+        
+        .conclusion-box {
+            background-color: #e3f2fd;
+            border-left: 5px solid #1a73e8;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .conclusion-title {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .conclusion-title i {
+            margin-right: 10px;
+        }
+        
+        .location-pin {
+            color: #e53935;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .param-table {
+                font-size: 12px;
+            }
+            
+            .param-table th, .param-table td {
+                padding: 8px 10px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions-panel {
+                flex-direction: column;
+            }
+            
+            .param-table .param-name {
+                width: 40%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .param-table {
+                font-size: 11px;
+            }
+            
+            .param-table .param-name {
+                width: 45%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModulosHotel/Cadastros.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div>
+                    <h1>Base de Conhecimento - Parâmetros Financeiros</h1>
+                    <p class="subtitle">Guia completo para configurar e gerenciar os parâmetros financeiros do sistema</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Os Parâmetros Financeiros são configurações essenciais que controlam o comportamento do módulo financeiro do sistema Bitz. A configuração correta garante segurança, controle e conformidade nas operações financeiras do hotel.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Localização no Sistema
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Tela de Configurações
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Parâmetros Internos
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Boas Práticas
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Conclusão
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title"><i class="fas fa-map-marker-alt location-pin"></i> Localização no Sistema</h2>
+                    <div class="step-description">
+                        <p>Para acessar as configurações financeiras, siga os passos abaixo:</p>
+                        
+                        <div class="process-steps">
+                            <li>No <strong>menu lateral esquerdo</strong>, digite <span class="highlight">"parâmetros"</span> no campo de busca.</li>
+                            <li>Clique em <span class="highlight">"Parâmetros Financeiros"</span> nos resultados da busca.</li>
+                            <li>A tela exibirá a <strong>listagem de registros existentes</strong> (normalmente apenas um registro principal).</li>
+                        </div>
+                        
+                        <div class="search-box">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="search-text">
+                                <p><strong>Dica:</strong> Use a busca do menu lateral para encontrar rapidamente os "Parâmetros Financeiros" sem precisar navegar manualmente pelos menus.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Acesso Alternativo</span>
+                            </div>
+                            <p>Se preferir navegar manualmente, o caminho completo é:</p>
+                            <div class="link-box">
+                                <i class="fas fa-folder-open"></i>
+                                <div>
+                                    <p><strong>Cadastros → Cadastros Auxiliares (Financeiro) → Parâmetros Financeiros</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="icons-example">
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <p>Buscar</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <p>Parâmetros</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-list"></i>
+                                </div>
+                                <p>Listagem</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">⚙️ Tela de Configurações Financeiras</h2>
+                    <div class="step-description">
+                        <p>Na tela principal dos Parâmetros Financeiros, é exibida uma listagem com os parâmetros configurados:</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-list-alt"></i>
+                                <span>Listagem de Parâmetros</span>
+                            </div>
+                            <p>A tela mostra todos os parâmetros financeiros configurados no sistema. Normalmente existe apenas <strong>um registro principal</strong> que contém todas as configurações.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-tools"></i>
+                                <span>Ações Disponíveis</span>
+                            </div>
+                            <p>Na coluna "Ações" da listagem, você encontra os botões para gerenciar os parâmetros:</p>
+                            
+                            <div class="actions-panel">
+                                <div class="action-btn edit-btn">
+                                    <i class="fas fa-edit"></i>
+                                    <span style="margin-left: 8px;">Editar (🖉)</span>
+                                </div>
+                                <div class="action-btn delete-btn">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span style="margin-left: 8px;">Excluir (❌)</span>
+                                </div>
+                            </div>
+                            
+                            <p><strong>Nota:</strong> O botão de exclusão geralmente não é utilizado, pois normalmente existe apenas um registro de parâmetros financeiros que não deve ser excluído.</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Importante</h3>
+                            <p>Antes de editar qualquer parâmetro financeiro, certifique-se de ter as permissões necessárias e compreender o impacto das alterações nas operações financeiras do sistema.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">🧩 Parâmetros Internos - Edição</h2>
+                    <div class="step-description">
+                        <p>Ao clicar no botão de edição (🖉), será aberta a tela detalhada dos Parâmetros Financeiros. Abaixo estão os principais campos e suas funções:</p>
+                        
+                        <table class="param-table">
+                            <thead>
+                                <tr>
+                                    <th>Campo</th>
+                                    <th>Descrição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="param-name">Aceita desconto de 5% para pagamento à vista?</td>
+                                    <td>Permite aplicar automaticamente desconto de 5% em pagamentos à vista.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Validar Senha no Estorno de Lançamento?</td>
+                                    <td>Caso marcado como "Sim", o sistema solicitará senha para estornar lançamentos financeiros.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Permite alterar o valor de um boleto?</td>
+                                    <td>Define se o valor de boletos pode ser modificado manualmente.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Validar Saldo de Abertura de Caixa?</td>
+                                    <td>Obriga a conferência do saldo de abertura antes do início do caixa.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Sintética Padrão para Impostos</td>
+                                    <td>Define qual conta sintética será utilizada nos lançamentos de impostos.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Permitir Recebimentos de cartão em dias não úteis?</td>
+                                    <td>Habilita ou bloqueia o recebimento de cartões em finais de semana e feriados.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Validar Senha na Edição de Lançamento (Pagamentos)?</td>
+                                    <td>Solicita senha ao editar lançamentos de pagamento.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Validar senha para desconfirmar o caixa?</td>
+                                    <td>Controla se é necessário senha para desfazer uma confirmação de caixa.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Obrigar informar histórico em contas a pagar/receber?</td>
+                                    <td>Exige que o campo "histórico" seja preenchido nos lançamentos financeiros.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Validar o Caixa para Receitas e Despesas?</td>
+                                    <td>Garante que todo lançamento esteja vinculado a um caixa ativo.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Centro de Custo para...</td>
+                                    <td>Define qual centro de custo será utilizado em cada módulo (Hospedagem, Venda, Restaurante, etc).</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Analítica para...</td>
+                                    <td>Vincula as contas analíticas correspondentes para cada operação.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Centro de Custo Padrão</td>
+                                    <td>Define o centro de custo genérico quando não houver vinculação específica.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Utiliza Link para Notas na Comanda?</td>
+                                    <td>Habilita o vínculo entre notas fiscais e comandas dentro do sistema.</td>
+                                </tr>
+                                <tr>
+                                    <td class="param-name">Percentual Multa / Juros (por dia)</td>
+                                    <td>Define valores automáticos de multa e juros aplicados em cobranças atrasadas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-save"></i>
+                                <span>💾 Salvando Alterações</span>
+                            </div>
+                            <p>Após ajustar os campos desejados:</p>
+                            <div class="process-steps">
+                                <li><strong>Clique em "Salvar"</strong> para aplicar as modificações no sistema.</li>
+                                <li><strong>Caso queira descartar as alterações</strong>, clique em "Voltar" para retornar à listagem sem salvar.</li>
+                            </div>
+                            
+                            <div class="warning-box" style="margin-top: 20px;">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Importante</h3>
+                                <p>As alterações realizadas afetam diretamente os lançamentos financeiros, validações de caixa, e controles de acesso financeiro. Certifique-se de que as modificações estão corretas antes de salvar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">🧠 Boas Práticas</h2>
+                    <div class="step-description">
+                        <div class="good-practice-box">
+                            <div class="good-practice-title">
+                                <i class="fas fa-check-circle"></i>
+                                Recomendações para Configuração Segura
+                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-clipboard-check"></i> <strong>Sempre revisar os centros de custo e contas analíticas</strong> antes de salvar qualquer alteração nos parâmetros.</li>
+                                <li><i class="fas fa-exclamation-triangle"></i> <strong>Evitar alterar parâmetros sem compreender o impacto</strong> no fluxo financeiro do sistema.</li>
+                                <li><i class="fas fa-vial"></i> <strong>Após qualquer modificação, realizar um teste de lançamento</strong> para validar o comportamento do sistema com as novas configurações.</li>
+                                <li><i class="fas fa-user-shield"></i> <strong>Limitar o acesso à edição dos parâmetros financeiros</strong> apenas a usuários com conhecimento técnico e autorização administrativa.</li>
+                                <li><i class="fas fa-history"></i> <strong>Manter um registro das alterações realizadas</strong>, incluindo data, usuário e justificativa para cada mudança.</li>
+                                <li><i class="fas fa-file-contract"></i> <strong>Documentar as políticas financeiras</strong> que justificam as configurações dos parâmetros.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <h3 class="feature-title">Responsabilidade</h3>
+                                <p>Designar uma pessoa responsável pelas alterações nos parâmetros financeiros.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Documentação</h3>
+                                <p>Manter documentação atualizada das configurações financeiras.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Revisão Periódica</h3>
+                                <p>Revisar os parâmetros regularmente para garantir que atendem às necessidades atuais.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Backup</h3>
+                                <p>Realizar backup das configurações antes de alterações significativas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-lightbulb"></i> Testes de Validação</h3>
+                            <p>Após alterar qualquer parâmetro financeiro, é fundamental testar:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-money-check-alt"></i> <strong>Lançamentos financeiros</strong> - Verificar se estão sendo contabilizados corretamente</li>
+                                <li><i class="fas fa-cash-register"></i> <strong>Abertura e fechamento de caixa</strong> - Testar o fluxo completo do caixa</li>
+                                <li><i class="fas fa-lock"></i> <strong>Controles de senha</strong> - Validar se as senhas estão sendo solicitadas conforme configurado</li>
+                                <li><i class="fas fa-chart-bar"></i> <strong>Relatórios financeiros</strong> - Verificar se os relatórios refletem corretamente as alterações</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">📘 Conclusão</h2>
+                    <div class="step-description">
+                        <div class="conclusion-box">
+                            <div class="conclusion-title">
+                                <i class="fas fa-graduation-cap"></i>
+                                Importância dos Parâmetros Financeiros
+                            </div>
+                            <p>Os Parâmetros Financeiros desempenham um papel essencial na gestão correta e segura do módulo financeiro do sistema Bitz. Cada configuração influencia diretamente o comportamento de lançamentos, validações e controle de acesso aos dados financeiros.</p>
+                            
+                            <p style="margin-top: 15px;">Manter esses parâmetros devidamente ajustados garante:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-check-circle"></i> <strong>Maior confiabilidade</strong> nas informações registradas</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Prevenção de inconsistências</strong> em caixas e lançamentos</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Conformidade</strong> do fluxo contábil e operacional com as políticas internas do hotel ou empresa</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Segurança financeira</strong> através de controles de acesso adequados</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Eficiência operacional</strong> com validações e automações configuradas corretamente</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-user-shield"></i> Recomendação Final</h3>
+                            <p>Por ser uma funcionalidade crítica do sistema, é altamente recomendado que qualquer alteração nos Parâmetros Financeiros seja realizada por usuários com:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-user-graduate"></i> <strong>Conhecimento técnico</strong> adequado sobre o módulo financeiro</li>
+                                <li><i class="fas fa-id-card"></i> <strong>Autorização administrativa</strong> para modificar configurações do sistema</li>
+                                <li><i class="fas fa-book"></i> <strong>Compreensão das políticas financeiras</strong> da empresa</li>
+                                <li><i class="fas fa-history"></i> <strong>Responsabilidade para documentar</strong> as alterações realizadas</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-flag-checkered"></i>
+                            Configurações financeiras bem ajustadas são fundamentais para uma gestão financeira segura, eficiente e confiável no sistema Bitz!
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h3 class="feature-title">Configuração</h3>
+                                <p>Parâmetros bem configurados garantem o funcionamento correto do sistema.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Segurança</h3>
+                                <p>Controles de senha e validações protegem as operações financeiras.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3 class="feature-title">Controle</h3>
+                                <p>Monitoramento eficiente das operações financeiras do hotel.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                </div>
+                                <h3 class="feature-title">Conformidade</h3>
+                                <p>Alinhamento com normas contábeis e políticas internas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
+            <p>Dúvidas? Entre em contato com o suporte técnico.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 5;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo - NO ÚLTIMO PASSO, ESCONDER O BOTÃO "PRÓXIMO"
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustar Taxa de Serviço - Sistema Bitz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 14px;
+        }
+        
+        .param-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #0d47a1;
+        }
+        
+        .param-table td {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .param-table tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .highlight-green {
+            background-color: #e8f5e8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .form-field {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .save-button {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin: 20px auto 0;
+        }
+        
+        .save-button i {
+            margin-right: 10px;
+        }
+        
+        .calculation-example {
+            background-color: #f8fafc;
+            border-left: 5px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #1a73e8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-title i {
+            margin-right: 10px;
+        }
+        
+        .calculation-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        
+        .calculation-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .menu-visual {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .menu-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 5px;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            background-color: #f0f7ff;
+            border-left-color: #1a73e8;
+            transform: translateX(5px);
+        }
+        
+        .menu-item.active {
+            background-color: #e8f0fe;
+            border-left-color: #1a73e8;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .path-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .path-step {
+            padding: 10px 20px;
+            background-color: #e8f0fe;
+            border-radius: 5px;
+            margin: 0 5px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .path-arrow {
+            color: #1a73e8;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .path-indicator {
+                flex-direction: column;
+            }
+            
+            .path-step {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .path-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModulosHotel/Cadastros.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div>
+                    <h1>Como Ajustar a Taxa de Serviço no Sistema</h1>
+                    <p class="subtitle">Guia passo a passo para configurar a porcentagem da taxa de serviço sobre produtos e serviços</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p><strong>Objetivo:</strong> Aprender a mudar a porcentagem da taxa de serviço que é cobrada sobre produtos e serviços no sistema Bitz.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Comece na Tela Inicial
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Entre na Área Operacional
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Vá para as Configurações
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Ajuste os Valores
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Salve as Alterações
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">Passo 1: Comece na Tela Inicial</h2>
+                    <div class="step-description">
+                        <p>Na <strong>parte de cima da tela inicial</strong>, você verá um menu com várias opções. Este é o menu principal do sistema.</p>
+                        
+                        <div class="menu-visual">
+                            <div class="menu-item active">Cadastros</div>
+                            <div class="menu-item">Operacional</div>
+                            <div class="menu-item">Financeiro</div>
+                            <div class="menu-item">Relatórios</div>
+                            <div class="menu-item">Configurações</div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-mouse-pointer"></i>
+                                <span>Ação Necessária</span>
+                            </div>
+                            <p>Clique em <span class="highlight">"Cadastros"</span> no menu superior para iniciar o caminho até as configurações da taxa de serviço.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Tela Inicial</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                        </div>
+                        
+                        <div class="icons-example">
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <p>Tela Inicial</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <p>Cadastros</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <p>Navegação</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">Passo 2: Entre na Área Operacional</h2>
+                    <div class="step-description">
+                        <p>Ao clicar em "Cadastros", uma <strong>lista de opções vai aparecer</strong> no menu lateral ou em uma nova tela, dependendo da versão do sistema.</p>
+                        
+                        <div class="menu-visual">
+                            <div class="menu-item">Clientes</div>
+                            <div class="menu-item">Fornecedores</div>
+                            <div class="menu-item active">Operacional</div>
+                            <div class="menu-item">Financeiro</div>
+                            <div class="menu-item">Produtos</div>
+                            <div class="menu-item">Serviços</div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-map-signs"></i>
+                                <span>Próxima Etapa</span>
+                            </div>
+                            <p>Clique na opção que se chama <span class="highlight">"Operacional"</span>. Esta área contém configurações relacionadas às operações diárias do hotel.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Tela Inicial</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Operacional</div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-info-circle"></i> Importante</h3>
+                            <p>A área "Operacional" agrupa todas as configurações relacionadas às operações diárias do estabelecimento, incluindo recepção, restaurante, eventos e taxas de serviço.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">Passo 3: Vá para as Configurações</h2>
+                    <div class="step-description">
+                        <p>Você chegará em uma nova tela com várias opções relacionadas à área operacional.</p>
+                        
+                        <div class="menu-visual">
+                            <div class="menu-item">Tipos de Quarto</div>
+                            <div class="menu-item">Tarifas</div>
+                            <div class="menu-item active">Parâmetros Operacionais</div>
+                            <div class="menu-item">Configurações de Estoque</div>
+                            <div class="menu-item">Formas de Pagamento</div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-cog"></i>
+                                <span>Localize a Configuração Correta</span>
+                            </div>
+                            <p>Procure e clique em <span class="highlight">"Parâmetros Operacionais"</span>. Esta é a seção onde ficam os ajustes gerais do sistema relacionados às operações.</p>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-sliders-h"></i>
+                                Parâmetros Operacionais
+                            </div>
+                            <p>Esta tela contém diversas seções de configuração. Você precisará <strong>rolar a página</strong> até encontrar a parte chamada <span class="highlight">"Recepção"</span>.</p>
+                            <p>A seção "Recepção" é a área relacionada ao atendimento e onde se encontram as configurações de taxas de serviço.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Tela Inicial</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Operacional</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Parâmetros Operacionais</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">Passo 4: Ajuste os Valores da Taxa de Serviço</h2>
+                    <div class="step-description">
+                        <p>Dentro da seção <span class="highlight">"Recepção"</span>, procure por estes dois campos importantes:</p>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-receipt"></i>
+                                Configurações de Taxa de Serviço
+                            </div>
+                            
+                            <div class="form-field">
+                                <div class="form-label">Taxa de serviço sobre produtos (%)</div>
+                                <input type="number" class="form-input" value="10" placeholder="Digite a porcentagem">
+                                <p style="margin-top: 5px; font-size: 14px; color: #666;"><strong>Exemplo:</strong> Se digitar 10, será uma taxa de 10% sobre o valor dos produtos.</p>
+                            </div>
+                            
+                            <div class="form-field">
+                                <div class="form-label">(%) Taxa de serviço sobre serviços (%)</div>
+                                <input type="number" class="form-input" value="5" placeholder="Digite a porcentagem">
+                                <p style="margin-top: 5px; font-size: 14px; color: #666;"><strong>Exemplo:</strong> Se digitar 5, será uma taxa de 5% sobre o valor dos serviços.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="calculation-example">
+                            <div class="example-title">
+                                <i class="fas fa-calculator"></i>
+                                Exemplo Prático de Cálculo
+                            </div>
+                            <p>Suponha que você configurou:</p>
+                            <div class="calculation-row">
+                                <span>Taxa sobre produtos:</span>
+                                <span>10%</span>
+                            </div>
+                            <div class="calculation-row">
+                                <span>Taxa sobre serviços:</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="calculation-row">
+                                <span>Produto no valor de R$ 100,00:</span>
+                                <span>Taxa = R$ 10,00</span>
+                            </div>
+                            <div class="calculation-row">
+                                <span>Serviço no valor de R$ 200,00:</span>
+                                <span>Taxa = R$ 10,00</span>
+                            </div>
+                            <div class="calculation-row">
+                                <span>Total com taxas:</span>
+                                <span>R$ 320,00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <h3 class="feature-title">Produtos</h3>
+                                <p>Itens físicos como alimentos, bebidas, amenidades.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-concierge-bell"></i>
+                                </div>
+                                <h3 class="feature-title">Serviços</h3>
+                                <p>Serviços prestados como lavanderia, massagem, traslado.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <h3 class="feature-title">Taxas Diferentes</h3>
+                                <p>Configure percentuais distintos para produtos e serviços.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3 class="feature-title">Cálculo Automático</h3>
+                                <p>Sistema calcula automaticamente nas vendas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">Passo 5: Salve as Alterações</h2>
+                    <div class="step-description">
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Passo Muito Importante!</h3>
+                            <p>Depois de colocar os valores, <strong>não se esqueça de salvar</strong>. As alterações só terão efeito após o salvamento.</p>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-save"></i>
+                                Finalização da Configuração
+                            </div>
+                            <p>Procure um dos seguintes botões na tela:</p>
+                            
+                            <div style="display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap;">
+                                <button class="save-button" style="background-color: #1a73e8;">
+                                    <i class="fas fa-save"></i> Salvar
+                                </button>
+                                <button class="save-button" style="background-color: #10b981;">
+                                    <i class="fas fa-check-circle"></i> Gravar
+                                </button>
+                                <button class="save-button" style="background-color: #1a73e8;">
+                                    <i class="fas fa-check"></i> Aplicar
+                                </button>
+                            </div>
+                            
+                            <p>Normalmente, estes botões estão localizados:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-arrow-up"></i> <strong>Na parte de cima da tela</strong> - na barra de ações</li>
+                                <li><i class="fas fa-arrow-down"></i> <strong>Na parte de baixo da tela</strong> - após todos os campos</li>
+                                <li><i class="fas fa-bars"></i> <strong>No menu de ações</strong> - como uma das opções disponíveis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-check-circle"></i>
+                            Pronto! Você configurou a taxa de serviço com sucesso. A partir de agora, o sistema vai calcular automaticamente esses valores nas vendas.
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Atualização Imediata</h3>
+                                <p>As taxas são aplicadas imediatamente após o salvamento.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-receipt"></i>
+                                </div>
+                                <h3 class="feature-title">Notas Fiscais</h3>
+                                <p>As taxas aparecem discriminadas nas notas fiscais.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <h3 class="feature-title">Relatórios</h3>
+                                <p>Valores de taxas são contabilizados nos relatórios financeiros.</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <h3 class="feature-title">Histórico</h3>
+                                <p>O sistema mantém histórico das alterações nas taxas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Dica Final</span>
+                            </div>
+                            <p>Após configurar as taxas de serviço, recomendamos fazer um teste de venda para verificar se os cálculos estão sendo aplicados corretamente. Verifique também se os valores aparecem discriminados nas notas fiscais e relatórios financeiros.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Tela Inicial</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Operacional</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Parâmetros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step" style="background-color: #10b981; color: white;">Configurado!</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
+            <p>Dúvidas? Entre em contato com o suporte técnico.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 5;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo - NO ÚLTIMO PASSO, ESCONDER O BOTÃO "PRÓXIMO"
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Menu items interaction
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items in the same menu
+                    const menu = this.closest('.menu-visual');
+                    if (menu) {
+                        menu.querySelectorAll('.menu-item').forEach(menuItem => {
+                            menuItem.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked item
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
