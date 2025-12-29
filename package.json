@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "fastapi": "^0.0.8",
+    "langchain": "^1.1.5",
+    "numpy": "^0.0.1",
+    "openai": "^6.10.0",
+    "pickle": "^0.2.0",
+    "pydantic": "^0.0.1-security",
+    "uvicorn": "^0.0.1-security"
+  }
+}

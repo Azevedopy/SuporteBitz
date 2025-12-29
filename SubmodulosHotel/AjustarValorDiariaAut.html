@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajustar Diárias Automáticase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .form-field {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .time-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .time-input {
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 80px;
+            text-align: center;
+        }
+        
+        .time-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .save-button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin: 20px auto 0;
+            transition: all 0.3s ease;
+        }
+        
+        .save-button:hover {
+            background-color: #0d47a1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .save-button i {
+            margin-right: 10px;
+        }
+        
+        .path-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .path-step {
+            padding: 10px 20px;
+            background-color: #e8f0fe;
+            border-radius: 5px;
+            margin: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .path-arrow {
+            color: #1a73e8;
+            font-size: 20px;
+            margin: 0 5px;
+        }
+        
+        .menu-visual {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .menu-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 5px;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            background-color: #f0f7ff;
+            border-left-color: #1a73e8;
+            transform: translateX(5px);
+        }
+        
+        .menu-item.active {
+            background-color: #e8f0fe;
+            border-left-color: #1a73e8;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .clock-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .clock {
+            width: 150px;
+            height: 150px;
+            border: 5px solid #1a73e8;
+            border-radius: 50%;
+            position: relative;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .clock-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            background-color: #1a73e8;
+            border-radius: 3px;
+        }
+        
+        .hour-hand {
+            width: 4px;
+            height: 40px;
+            margin-left: -2px;
+        }
+        
+        .minute-hand {
+            width: 2px;
+            height: 60px;
+            margin-left: -1px;
+            background-color: #0d47a1;
+        }
+        
+        .clock-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: #1a73e8;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .clock-time {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 20px);
+            font-weight: bold;
+            color: #1a73e8;
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .path-indicator {
+                flex-direction: column;
+            }
+            
+            .path-step {
+                margin: 5px 0;
+                width: 100%;
+            }
+            
+            .path-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .clock {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModulosHotel/Cadastros.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <div>
+                    <h1>Como Ajustar as Diárias Automáticas no Sistema</h1>
+                    <p class="subtitle">Configure o horário para lançamento automático de diárias nos quartos ocupados</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Configure o sistema para lançar automaticamente as diárias de hospedagem nos quartos ocupados no horário desejado, garantindo controle financeiro preciso e automatizado.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Acessar Cadastros
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Área Operacional
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Parâmetros Operacionais
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Configurar Horário
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Salvar Configuração
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">Passo 1: Acessar o Menu Cadastros</h2>
+                    <div class="step-description">
+                        <p>No menu principal do sistema, clique em <span class="highlight">"Cadastros"</span> para iniciar o processo de configuração.</p>
+                        
+                        <div class="menu-visual">
+                            <div class="menu-item active">Cadastros</div>
+                            <div class="menu-item">Operacional</div>
+                            <div class="menu-item">Financeiro</div>
+                            <div class="menu-item">Relatórios</div>
+                            <div class="menu-item">Configurações</div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-map-signs"></i>
+                                <span>Início do Caminho</span>
+                            </div>
+                            <p>O menu "Cadastros" é o ponto de partida para acessar todas as configurações do sistema, incluindo os parâmetros operacionais.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Menu Principal</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                        </div>
+                        
+                        <div class="icons-example">
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                                <p>Menu Principal</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <p>Cadastros</p>
+                            </div>
+                            <div class="icon-item">
+                                <div class="icon-circle">
+                                    <i class="fas fa-cog"></i>
+                                </div>
+                                <p>Configurações</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">Passo 2: Acessar a Área Operacional</h2>
+                    <div class="step-description">
+                        <p>Dentro do menu "Cadastros", clique em <span class="highlight">"Operacional"</span> para acessar as configurações relacionadas às operações diárias do hotel.</p>
+                        
+                        <div class="menu-visual">
+                            <div class="menu-item">Clientes</div>
+                            <div class="menu-item">Fornecedores</div>
+                            <div class="menu-item active">Operacional</div>
+                            <div class="menu-item">Produtos</div>
+                            <div class="menu-item">Serviços</div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-hotel"></i>
+                                <span>Configurações do Hotel</span>
+                            </div>
+                            <p>A área "Operacional" contém todas as configurações específicas para o funcionamento diário do hotel, incluindo parâmetros de hospedagem, tarifas e diárias.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Menu Principal</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Operacional</div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-info-circle"></i> Área Operacional</h3>
+                            <p>Esta área é dedicada às configurações que afetam diretamente as operações diárias do hotel, como check-in, check-out, diárias, tarifas e controle de quartos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">Passo 3: Acessar Parâmetros Operacionais</h2>
+                    <div class="step-description">
+                        <p>Na tela da área operacional, clique em <span class="highlight">"Parâmetros Operacionais"</span> para acessar as configurações detalhadas do sistema.</p>
+                        
+                        <div class="menu-visual">
+                            <div class="menu-item">Tipos de Quarto</div>
+                            <div class="menu-item">Tarifas</div>
+                            <div class="menu-item active">Parâmetros Operacionais</div>
+                            <div class="menu-item">Configurações de Estoque</div>
+                            <div class="menu-item">Taxas de Serviço</div>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-sliders-h"></i>
+                                Parâmetros Operacionais
+                            </div>
+                            <p>Esta tela contém diversas seções de configuração. Você precisará <strong>procurar a parte chamada "Valores"</strong>.</p>
+                            <p>A seção "Valores" agrupa configurações relacionadas a valores monetários, horários e percentuais utilizados nas operações do hotel.</p>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Menu Principal</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Operacional</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Parâmetros Operacionais</div>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <h3 class="feature-title">Valores</h3>
+                                <p>Configurações monetárias e financeiras</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="feature-title">Horários</h3>
+                                <p>Configurações de tempo e agendamentos</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <h3 class="feature-title">Percentuais</h3>
+                                <p>Taxas, descontos e comissões</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <h3 class="feature-title">Hospedagem</h3>
+                                <p>Configurações específicas de quartos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">Passo 4: Configurar o Horário das Diárias Automáticas</h2>
+                    <div class="step-description">
+                        <p>Na seção "Valores", encontre o campo específico para configurar o horário das diárias automáticas:</p>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-clock"></i>
+                                Configuração de Horário
+                            </div>
+                            
+                            <div class="form-field">
+                                <div class="form-label">Hora para gerar diárias automáticas (12h - 23h)</div>
+                                <div class="time-selector">
+                                    <input type="number" class="time-input" value="14" min="12" max="23" placeholder="HH">
+                                    <span style="font-weight: bold;">horas</span>
+                                </div>
+                                <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                                    <strong>Importante:</strong> Escolha um horário entre <span class="highlight">12h e 23h</span> para que o sistema lance as diárias automáticas nos quartos que estiverem ocupados naquele dia.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="clock-visual">
+                            <div class="clock">
+                                <div class="clock-hand hour-hand" style="transform: rotate(90deg);"></div>
+                                <div class="clock-hand minute-hand" style="transform: rotate(180deg);"></div>
+                                <div class="clock-center"></div>
+                                <div class="clock-time">14:00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-lightbulb"></i> Escolha do Horário Ideal</h3>
+                            <p>Recomendações para escolher o melhor horário:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-business-time"></i> <strong>Horário comercial:</strong> Entre 14h e 18h para acompanhamento da equipe</li>
+                                <li><i class="fas fa-user-check"></i> <strong>Após check-out:</strong> Após o horário padrão de check-out (geralmente 12h)</li>
+                                <li><i class="fas fa-chart-line"></i> <strong>Baixa movimentação:</strong> Períodos com menor movimentação no sistema</li>
+                                <li><i class="fas fa-server"></i> <strong>Carga do sistema:</strong> Evitar horários de pico de uso</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Como Funciona</span>
+                            </div>
+                            <p>No horário configurado, o sistema automaticamente:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-bed"></i> Identifica todos os quartos ocupados</li>
+                                <li><i class="fas fa-calendar-day"></i> Verifica se já foi lançada diária para o dia</li>
+                                <li><i class="fas fa-money-bill-wave"></i> Lança a diária conforme tarifa configurada</li>
+                                <li><i class="fas fa-history"></i> Registra o lançamento no histórico do quarto</li>
+                                <li><i class="fas fa-bell"></i> Pode gerar notificações se configurado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">Passo 5: Salvar a Configuração</h2>
+                    <div class="step-description">
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-save"></i>
+                                Finalizar Configuração
+                            </div>
+                            
+                            <p>Após configurar o horário desejado, localize o botão de salvar:</p>
+                            
+                            <div style="text-align: center; margin: 25px 0;">
+                                <button class="save-button">
+                                    <i class="fas fa-save"></i> Salvar Configurações
+                                </button>
+                            </div>
+                            
+                            <p>O botão de salvar normalmente está localizado no <span class="highlight">canto inferior direito</span> da tela e tem a cor <span style="color: #1a73e8; font-weight: bold;">azul</span>.</p>
+                            
+                            <div style="background-color: #e8f0fe; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                                <p><strong>💡 Dica:</strong> Sempre verifique se as alterações foram salvas corretamente. Alguns sistemas exibem uma mensagem de confirmação após o salvamento bem-sucedido.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-check-circle"></i>
+                            Pronto! Agora o sistema vai lançar as diárias automáticas todo dia no horário que você escolheu.
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3 class="feature-title">Automatização</h3>
+                                <p>Diárias lançadas automaticamente sem intervenção manual</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Segurança</h3>
+                                <p>Evita esquecimento no lançamento de diárias</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3 class="feature-title">Precisão</h3>
+                                <p>Controle financeiro preciso e em tempo real</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-clock"></i>
+                                </div>
+                                <h3 class="feature-title">Eficiência</h3>
+                                <p>Reduz trabalho manual da equipe de recepção</p>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Verificação Importante</h3>
+                            <p>Após configurar, recomenda-se verificar nos primeiros dias:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-check-circle"></i> <strong>Confirmar lançamento:</strong> Verificar se as diárias foram lançadas corretamente</li>
+                                <li><i class="fas fa-clock"></i> <strong>Verificar horário:</strong> Confirmar que o lançamento ocorreu no horário configurado</li>
+                                <li><i class="fas fa-bed"></i> <strong>Quartos corretos:</strong> Verificar se apenas quartos ocupados receberam diárias</li>
+                                <li><i class="fas fa-money-bill-wave"></i> <strong>Valores corretos:</strong> Confirmar valores das tarifas aplicados</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="path-indicator">
+                            <div class="path-step">Menu Principal</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Cadastros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Operacional</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">Parâmetros</div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step" style="background-color: #10b981; color: white;">Configurado!</div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Benefícios da Configuração</span>
+                            </div>
+                            <p>Com as diárias automáticas configuradas, você garante:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-check"></i> <strong>Controle financeiro preciso</strong> diariamente</li>
+                                <li><i class="fas fa-check"></i> <strong>Redução de erros humanos</strong> no lançamento</li>
+                                <li><i class="fas fa-check"></i> <strong>Otimização do tempo</strong> da equipe de recepção</li>
+                                <li><i class="fas fa-check"></i> <strong>Relatórios financeiros atualizados</strong> em tempo real</li>
+                                <li><i class="fas fa-check"></i> <strong>Maior confiabilidade</strong> nas informações do sistema</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tutorial criado para o sistema Bitz Softwares | Atualizado em 2023</p>
+            <p>Dúvidas? Entre em contato com o suporte técnico.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 5;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo - NO ÚLTIMO PASSO, ESCONDER O BOTÃO "PRÓXIMO"
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Menu items interaction
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items in the same menu
+                    const menu = this.closest('.menu-visual');
+                    if (menu) {
+                        menu.querySelectorAll('.menu-item').forEach(menuItem => {
+                            menuItem.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked item
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // Time input validation
+            const timeInput = document.querySelector('.time-input');
+            if (timeInput) {
+                timeInput.addEventListener('change', function() {
+                    let value = parseInt(this.value);
+                    if (value < 12) this.value = 12;
+                    if (value > 23) this.value = 23;
+                    
+                    // Update clock visualization
+                    const clockHand = document.querySelector('.hour-hand');
+                    if (clockHand) {
+                        // Convert hour to degrees (12h = 0°, 24h = 360°)
+                        const degrees = ((value - 12) * 30) + 90; // 30 degrees per hour, offset by 90 degrees
+                        clockHand.style.transform = `rotate(${degrees}deg)`;
+                        
+                        // Update clock time display
+                        const clockTime = document.querySelector('.clock-time');
+                        if (clockTime) {
+                            clockTime.textContent = `${value.toString().padStart(2, '0')}:00`;
+                        }
+                    }
+                });
+            }
+            
+            // Save button interaction
+            const saveButton = document.querySelector('.save-button');
+            if (saveButton) {
+                saveButton.addEventListener('click', function() {
+                    // Show success message
+                    const successContainer = document.querySelector('.success-container');
+                    if (successContainer) {
+                        successContainer.style.display = 'block';
+                        
+                        // Scroll to success message
+                        setTimeout(() => {
+                            successContainer.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    }
+                    
+                    // Change button text temporarily
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check"></i> Configuração Salva!';
+                    this.style.backgroundColor = '#10b981';
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.backgroundColor = '#1a73e8';
+                    }, 3000);
+                });
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuração de Balança</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .error-container {
+            background-color: #fee2e2;
+            color: #ef4444;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .form-field {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .param-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .param-item {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .param-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a73e8;
+            margin: 10px 0;
+        }
+        
+        .port-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .port-icon {
+            font-size: 40px;
+            color: #1a73e8;
+            margin: 0 20px;
+        }
+        
+        .port-label {
+            background-color: #e8f0fe;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .folder-structure {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .folder-item {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .folder-item:before {
+            content: "📁";
+            position: absolute;
+            left: 0;
+        }
+        
+        .file-item {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .file-item:before {
+            content: "📄";
+            position: absolute;
+            left: 0;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .config-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .config-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .config-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .config-table tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .test-visual {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .test-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 200px;
+        }
+        
+        .test-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1a73e8;
+            margin: 15px 0;
+        }
+        
+        .scale-visual {
+            width: 200px;
+            height: 100px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px auto;
+            position: relative;
+            border: 3px solid #1a73e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .scale-display {
+            width: 80%;
+            height: 50px;
+            background-color: #e8f0fe;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .comparison-box {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .comparison-item {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            width: 45%;
+            min-width: 250px;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        .comparison-item.success {
+            border-top: 5px solid #10b981;
+        }
+        
+        .comparison-item.error {
+            border-top: 5px solid #ef4444;
+        }
+        
+        .comparison-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .comparison-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .comparison-success {
+            color: #10b981;
+        }
+        
+        .comparison-error {
+            color: #ef4444;
+        }
+        
+        .troubleshooting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .troubleshooting-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .troubleshooting-card h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .troubleshooting-card h4 i {
+            margin-right: 10px;
+        }
+        
+        .parameter-box {
+            background-color: #e8f0fe;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .parameter-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #c2d7f0;
+        }
+        
+        .parameter-row:last-child {
+            border-bottom: none;
+        }
+        
+        .parameter-name {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .parameter-value {
+            font-family: 'Courier New', monospace;
+            background-color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            border: 1px solid #c2d7f0;
+        }
+        
+        .connection-types {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .connection-type {
+            text-align: center;
+            padding: 20px;
+            width: 180px;
+        }
+        
+        .connection-icon {
+            font-size: 40px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .connection-badge {
+            display: inline-block;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .com-port-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #1a73e8;
+        }
+        
+        .com-port-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #1a73e8;
+            margin: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .param-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-box {
+                flex-direction: column;
+            }
+            
+            .comparison-item {
+                width: 100%;
+            }
+            
+            .troubleshooting-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .port-visual {
+                flex-direction: column;
+            }
+            
+            .port-icon {
+                margin: 10px 0;
+                transform: rotate(90deg);
+            }
+            
+            .connection-types {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .com-port-visual {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModuloBoasPraticas/ConfiguraçõesGerais.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-weight"></i>
+                </div>
+                <div>
+                    <h1>Configuração de Balança</h1>
+                    <p class="subtitle">Integre sua balança eletrônica com o sistema Bitz Softwares</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Este guia detalhado explica o processo completo de configuração da balança, desde a conexão física até a integração com o sistema. Siga cada passo na ordem indicada para garantir funcionamento correto.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Introdução
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Conexão Física
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Configuração Técnica
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Teste de Comunicação
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Instalação de Arquivos
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Finalização
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. INTRODUÇÃO</h2>
+                    <div class="step-description">
+                        <p>A configuração correta da balança é essencial para garantir a precisão nas leituras de peso e a integração perfeita com o sistema Bitz Softwares.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Importância da Configuração</span>
+                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-check-circle"></i> <strong>Precisão nas vendas:</strong> Evita divergências entre peso real e valor cobrado</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Automatização:</strong> Elimina a necessidade de digitar pesos manualmente</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Agilidade:</strong> Acelera o processo de venda no PDV</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Confiabilidade:</strong> Reduz erros humanos nas transações</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Processo Sequencial</h3>
+                            <p>Este é um processo com dependências entre etapas. <strong>Não pule etapas</strong> e siga a ordem exata para evitar problemas:</p>
+                            <ol class="process-steps">
+                                <li>Conexão física da balança</li>
+                                <li>Instalação de drivers (se necessário)</li>
+                                <li>Configuração dos parâmetros técnicos</li>
+                                <li>Teste de comunicação</li>
+                                <li>Instalação dos arquivos do sistema</li>
+                                <li>Validação final</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h3 class="feature-title">Técnico</h3>
+                                <p>Foco em detalhes técnicos precisos</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h3 class="feature-title">Prático</h3>
+                                <p>Passo a passo aplicável</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h3 class="feature-title">Confiável</h3>
+                                <p>Processo testado e validado</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="feature-title">Eficiente</h3>
+                                <p>Configuração em menos de 30 minutos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. CONEXÃO FÍSICA - PASSO A PASSO DETALHADO</h2>
+                    <div class="step-description">
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-plug"></i>
+                                <span>a) Conexão por Cabo</span>
+                            </div>
+                            
+                            <div class="connection-types">
+                                <div class="connection-type">
+                                    <div class="connection-icon">
+                                        <i class="fas fa-usb"></i>
+                                    </div>
+                                    <h3>USB</h3>
+                                    <p>Mais comum e moderno</p>
+                                    <div class="connection-badge">Recomendado</div>
+                                    <p style="margin-top: 10px; font-size: 14px;">Reconhecimento automático pelo Windows</p>
+                                </div>
+                                
+                                <div class="connection-type">
+                                    <div class="connection-icon">
+                                        <i class="fas fa-port"></i>
+                                    </div>
+                                    <h3>Serial (RS-232)</h3>
+                                    <p>Mais antigo</p>
+                                    <div class="connection-badge">Legado</div>
+                                    <p style="margin-top: 10px; font-size: 14px;">Requer configuração manual</p>
+                                </div>
+                            </div>
+                            
+                            <div class="port-visual">
+                                <div class="port-label">Balança</div>
+                                <div class="port-icon"><i class="fas fa-long-arrow-alt-right"></i></div>
+                                <div class="port-label">Computador</div>
+                            </div>
+                            
+                            <p><strong>Demonstração de conexão:</strong> Certifique-se que o cabo esteja firmemente conectado em ambas as extremidades e que a balança esteja ligada na tomada.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>b) Adaptador USB/Serial</span>
+                            </div>
+                            <p>Para balanças antigas com conector serial em computadores sem porta serial:</p>
+                            <ul class="process-steps">
+                                <li><strong>Instalação do driver:</strong> Execute o instalador do adaptador</li>
+                                <li><strong>Fontes do driver:</strong> CD incluído, site do fabricante ou Windows Update</li>
+                                <li><strong>Processo:</strong> Conecte o adaptador → Instale o driver → Reinicie se solicitado</li>
+                                <li><strong>Verificação:</strong> Confirme no Gerenciador de Dispositivos</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-search"></i>
+                                <span>c) Identificação da Porta COM</span>
+                            </div>
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-cogs"></i>
+                                    Gerenciador de Dispositivos do Windows
+                                </div>
+                                
+                                <ul class="process-steps">
+                                    <li>Pressione <span class="highlight">Windows + X</span> e selecione "Gerenciador de Dispositivos"</li>
+                                    <li>Expanda a seção <span class="highlight">"Portas (COM e LPT)"</span></li>
+                                    <li>Localize a balança (ex: "USB Serial Port (COM3)")</li>
+                                    <li>Anote o número exato da porta (COM3, COM4, etc.)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="com-port-visual">
+                                <i class="fas fa-microchip" style="font-size: 40px; color: #1a73e8;"></i>
+                                <div class="com-port-value">COM3</div>
+                                <i class="fas fa-clipboard-check" style="font-size: 40px; color: #1a73e8;"></i>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h3><i class="fas fa-exclamation-circle"></i> Importante</h3>
+                                <p><strong>Anote o número exato da porta COM!</strong> Você precisará deste número nas configurações do sistema. Se houver múltiplas portas COM, desconecte e reconecte a balança para identificar qual porta é ativada.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. CONFIGURAÇÃO DA BALANÇA - PARÂMETROS TÉCNICOS</h2>
+                    <div class="step-description">
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-broadcast-tower"></i>
+                                <span>a) Parâmetros de Comunicação</span>
+                            </div>
+                            
+                            <div class="parameter-box">
+                                <div class="parameter-row">
+                                    <span class="parameter-name">Baud Rate</span>
+                                    <span class="parameter-value">4800</span>
+                                </div>
+                                <div class="parameter-row">
+                                    <span class="parameter-name">Bits de Dados</span>
+                                    <span class="parameter-value">8 bits</span>
+                                </div>
+                                <div class="parameter-row">
+                                    <span class="parameter-name">Paridade</span>
+                                    <span class="parameter-value">None</span>
+                                </div>
+                                <div class="parameter-row">
+                                    <span class="parameter-name">Stop Bits</span>
+                                    <span class="parameter-value">1 ou 2 bits</span>
+                                </div>
+                            </div>
+                            
+                            <p>Estes parâmetros controlam a comunicação entre a balança e o computador. <strong>Todos devem corresponder</strong> nas configurações da balança e do sistema.</p>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-tachometer-alt"></i>
+                                    </div>
+                                    <h3 class="feature-title">Baud Rate 4800</h3>
+                                    <p>Velocidade ideal para balanças</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                    <h3 class="feature-title">8 Bits</h3>
+                                    <p>Padrão de comunicação</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h3 class="feature-title">Paridade None</h3>
+                                    <p>Sem verificação de paridade</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-flag"></i>
+                                    </div>
+                                    <h3 class="feature-title">Stop Bits</h3>
+                                    <p>1 ou 2 bits de parada</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-balance-scale"></i>
+                                <span>b) Configurações de Pesagem</span>
+                            </div>
+                            
+                            <div class="param-grid">
+                                <div class="param-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-sliders-h"></i>
+                                    </div>
+                                    <h4>Casas Decimais</h4>
+                                    <div class="param-value">2 ou 3</div>
+                                    <p>Define a precisão das leituras</p>
+                                </div>
+                                
+                                <div class="param-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-weight-hanging"></i>
+                                    </div>
+                                    <h4>Unidade de Medida</h4>
+                                    <div class="param-value">kg, g, lb</div>
+                                    <p>Consistência com sistema</p>
+                                </div>
+                            </div>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-balance-scale-left"></i>
+                                    Impacto das Casas Decimais
+                                </div>
+                                <p><strong>2 casas decimais:</strong> Suficiente para a maioria das aplicações de varejo (ex: 1.25 kg)</p>
+                                <p><strong>3 casas decimais:</strong> Maior precisão, mas pode afetar velocidade de comunicação (ex: 1.255 kg)</p>
+                                <p><strong>Recomendação:</strong> Use 2 casas decimais para varejo geral</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-save"></i>
+                                <span>c) Aplicação das Configurações</span>
+                            </div>
+                            
+                            <ul class="process-steps">
+                                <li><strong>Salvar configurações:</strong> Na balança, pressione o botão "SET" ou equivalente</li>
+                                <li><strong>Reiniciar:</strong> Desligue e ligue a balança para aplicar mudanças</li>
+                                <li><strong>Verificação:</strong> A balança deve mostrar "0.00" no visor quando vazia</li>
+                                <li><strong>Teste básico:</strong> Coloque um peso conhecido para verificar precisão</li>
+                            </ul>
+                            
+                            <div class="scale-visual">
+                                <div class="scale-display">
+                                    0.00 kg
+                                </div>
+                            </div>
+                            
+                            <div class="success-container">
+                                <i class="fas fa-check-circle"></i>
+                                Configurações aplicadas com sucesso! A balança está pronta para teste.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. TESTE DE COMUNICAÇÃO - VALIDAÇÃO</h2>
+                    <div class="step-description">
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-vial"></i>
+                                <span>a) Teste no Sistema</span>
+                            </div>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-check-circle"></i>
+                                    Procedimento de Teste
+                                </div>
+                                
+                                <ul class="process-steps">
+                                    <li>Acesse: <span class="highlight">Cadastros > Operacional > Balanças</span></li>
+                                    <li>Selecione a opção <span class="highlight">"Testar Comunicação"</span></li>
+                                    <li>Selecione a porta COM identificada anteriormente</li>
+                                    <li>Clique em <span class="highlight">"Iniciar Teste"</span></li>
+                                    <li>Coloque um peso conhecido na balança</li>
+                                    <li>Observe se o valor aparece no sistema</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="icons-example">
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <p>Localizar</p>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-mouse-pointer"></i>
+                                    </div>
+                                    <p>Selecionar</p>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <p>Iniciar</p>
+                                </div>
+                                <div class="icon-item">
+                                    <div class="icon-circle">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                    <p>Observar</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="test-visual">
+                            <div class="test-item">
+                                <div class="icon-circle" style="width: 80px; height: 80px; font-size: 32px;">
+                                    <i class="fas fa-weight"></i>
+                                </div>
+                                <h3>Balança</h3>
+                                <div class="test-value" id="scale-test-value">1.25 kg</div>
+                                <p>Peso real na balança</p>
+                            </div>
+                            
+                            <div class="port-icon">
+                                <i class="fas fa-sync-alt fa-spin"></i>
+                            </div>
+                            
+                            <div class="test-item">
+                                <div class="icon-circle" style="width: 80px; height: 80px; font-size: 32px;">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                                <h3>Sistema</h3>
+                                <div class="test-value" id="system-test-value">1.25 kg</div>
+                                <p>Peso mostrado no software</p>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-box">
+                            <div class="comparison-item success">
+                                <div class="comparison-title">✅ Sucesso</div>
+                                <div class="comparison-value comparison-success">1.25 = 1.25</div>
+                                <p>Valores coincidem perfeitamente entre balança e sistema. Comunicação estável e configurada corretamente.</p>
+                            </div>
+                            
+                            <div class="comparison-item error">
+                                <div class="comparison-title">❌ Falha</div>
+                                <div class="comparison-value comparison-error">1.25 ≠ 0.00</div>
+                                <p>Divergência nos valores. Necessário troubleshooting.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-tools"></i>
+                                <span>c) Troubleshooting de Divergências</span>
+                            </div>
+                            
+                            <div class="troubleshooting-grid">
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-search"></i> Verificar Porta COM</h4>
+                                    <p>Confirme se a porta COM no sistema corresponde à porta identificada no Gerenciador de Dispositivos.</p>
+                                    <button class="nav-btn" style="margin-top: 10px; padding: 8px 15px; font-size: 14px;" onclick="checkCOMPort()">
+                                        <i class="fas fa-search"></i> Verificar Porta
+                                    </button>
+                                </div>
+                                
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-cog"></i> Revisar Parâmetros</h4>
+                                    <p>Verifique se Baud Rate, Bits de Dados, Paridade e Stop Bits estão idênticos na balança e no sistema.</p>
+                                </div>
+                                
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-plug"></i> Checar Conexões</h4>
+                                    <p>Desconecte e reconecte os cabos. Teste com outro cabo se possível.</p>
+                                </div>
+                                
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-redo"></i> Reinicialização</h4>
+                                    <p>Reinicie sequencialmente: Balança → Computador → Software. Teste após cada passo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. INSTALAÇÃO DE ARQUIVOS - ESTRUTURA E CONTEÚDO</h2>
+                    <div class="step-description">
+                        
+                        <div class="link-box">
+                            <i class="fas fa-download"></i>
+                            <div>
+                                <p><strong>Download dos Arquivos:</strong></p>
+                                <p><a href="https://drive.google.com/drive/folders/1xYzABC123Def456Ghi789Jkl" target="_blank">📁 Pasta de Arquivos da Balança</a></p>
+                                <p><strong>Arquivos necessários:</strong> balanca.exe, config.ini, DLLs de comunicação</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-folder-tree"></i>
+                                <span>b) Estrutura de Pastas</span>
+                            </div>
+                            
+                            <div class="folder-structure">
+                                <div class="folder-item">C:\BITZ Softwares\</div>
+                                <div class="folder-item" style="padding-left: 40px;">APP\</div>
+                                <div class="file-item" style="padding-left: 60px;">balanca.exe</div>
+                                <div class="file-item" style="padding-left: 60px;">comms.dll</div>
+                                <div class="file-item" style="padding-left: 60px;">scale.dll</div>
+                                <div class="file-item" style="padding-left: 60px;">utils.dll</div>
+                                <div class="folder-item" style="padding-left: 40px;">Ini\</div>
+                                <div class="file-item" style="padding-left: 60px;">config.ini</div>
+                                <div class="file-item" style="padding-left: 60px;">empresas.txt</div>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Permissões de Pasta</h3>
+                                <p>Certifique-se de que a pasta <span class="highlight">C:\BITZ Softwares</span> tenha permissões de leitura e escrita para todos os usuários. Clique com o botão direito → Propriedades → Segurança → Editar permissões.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-desktop"></i>
+                                <span>c) Configuração da Pasta APP</span>
+                            </div>
+                            
+                            <ul class="process-steps">
+                                <li>Copie <span class="highlight">balanca.exe</span> para C:\BITZ Softwares\APP\</li>
+                                <li>Adicione todas as DLLs necessárias na mesma pasta</li>
+                                <li>Verifique permissões de execução (botão direito > Propriedades > Segurança)</li>
+                                <li>Teste executando o arquivo .exe (deve abrir sem erros)</li>
+                            </ul>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-file-export"></i>
+                                    </div>
+                                    <h3 class="feature-title">balanca.exe</h3>
+                                    <p>Executável principal</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-puzzle-piece"></i>
+                                    </div>
+                                    <h3 class="feature-title">DLLs</h3>
+                                    <p>Bibliotecas necessárias</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <h3 class="feature-title">Permissões</h3>
+                                    <p>Acesso completo</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <h3 class="feature-title">Teste</h3>
+                                    <p>Execução sem erros</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-file-code"></i>
+                                <span>d) Configuração da Pasta Ini</span>
+                            </div>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-file-invoice"></i>
+                                    Exemplo de config.ini
+                                </div>
+                                <pre style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace; color: #1a73e8;">
+[CONFIGURACAO]
+EmpresaID=1601
+PortaCOM=COM3
+BaudRate=4800
+DataBits=8
+Parity=None
+StopBits=1
+CasasDecimais=2
+Unidade=kg
+Timeout=5000
+CaminhoImpressora=\\localhost\Salao
+Tentativas=3
+Intervalo=1000</pre>
+                            </div>
+                            
+                            <div class="table-container">
+                                <table class="config-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Parâmetro</th>
+                                            <th>Descrição</th>
+                                            <th>Exemplo</th>
+                                            <th>Importância</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>EmpresaID</strong></td>
+                                            <td>ID da empresa no sistema Web</td>
+                                            <td>1601</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>PortaCOM</strong></td>
+                                            <td>Porta identificada no Gerenciador</td>
+                                            <td>COM3</td>
+                                            <td>Crítica</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>BaudRate</strong></td>
+                                            <td>Velocidade de comunicação</td>
+                                            <td>4800</td>
+                                            <td>Alta</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>CaminhoImpressora</strong></td>
+                                            <td>Caminho da impressora compartilhada</td>
+                                            <td>\\localhost\Salao</td>
+                                            <td>Média</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Timeout</strong></td>
+                                            <td>Tempo de espera (milissegundos)</td>
+                                            <td>5000</td>
+                                            <td>Média</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">6. FINALIZAÇÃO E VALIDAÇÃO - PROCEDIMENTOS FINAIS</h2>
+                    <div class="step-description">
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-power-off"></i>
+                                <span>a) Reinicialização do Sistema</span>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Quando Reiniciar</h3>
+                                <p>É necessária reinicialização completa após:</p>
+                                <ul class="info-list">
+                                    <li><i class="fas fa-check"></i> Instalação de novos drivers</li>
+                                    <li><i class="fas fa-check"></i> Alteração de porta COM</li>
+                                    <li><i class="fas fa-check"></i> Modificação de arquivos .ini críticos</li>
+                                    <li><i class="fas fa-check"></i> Primeira configuração da balança</li>
+                                </ul>
+                            </div>
+                            
+                            <p><strong>Procedimento adequado:</strong></p>
+                            <div class="port-visual">
+                                <div class="port-label">Salvar Trabalho</div>
+                                <div class="port-icon"><i class="fas fa-arrow-right"></i></div>
+                                <div class="port-label">Fechar Sistema</div>
+                                <div class="port-icon"><i class="fas fa-arrow-right"></i></div>
+                                <div class="port-label">Reiniciar Windows</div>
+                                <div class="port-icon"><i class="fas fa-arrow-right"></i></div>
+                                <div class="port-label">Abrir Sistema</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-play-circle"></i>
+                                <span>b) Execução do Aplicativo</span>
+                            </div>
+                            
+                            <div class="menu-visual">
+                                <div class="menu-item active">C:\BITZ Softwares\APP\balanca.exe</div>
+                            </div>
+                            
+                            <div class="path-indicator">
+                                <div class="path-step">Executar</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step">Aguardar Inicialização</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step">Verificar Status</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step" style="background-color: #10b981; color: white;">Sucesso</div>
+                            </div>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-bug"></i>
+                                    Verificação de Erros Comuns
+                                </div>
+                                <ul class="info-list">
+                                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i> <strong>Erro de DLL:</strong> Faltando bibliotecas na pasta APP</li>
+                                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i> <strong>Erro de acesso:</strong> Permissões insuficientes na pasta</li>
+                                    <li><i class="fas fa-times-circle" style="color: #ef4444;"></i> <strong>Erro de configuração:</strong> Arquivo config.ini incorreto</li>
+                                    <li><i class="fas fa-check-circle" style="color: #10b981;"></i> <strong>Sucesso:</strong> Aplicativo abre sem mensagens</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-check-double"></i>
+                                <span>c) Teste Final de Funcionamento</span>
+                            </div>
+                            
+                            <div class="test-visual">
+                                <div class="test-item">
+                                    <div class="scale-visual">
+                                        <div class="scale-display" id="live-weight">
+                                            0.00 kg
+                                        </div>
+                                    </div>
+                                    <button class="nav-btn" style="margin-top: 15px; background-color: #1a73e8; color: white;" onclick="simulateWeightTest()">
+                                        <i class="fas fa-weight"></i> Simular Teste de Peso
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="param-grid">
+                                <div class="param-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-weight-hanging"></i>
+                                    </div>
+                                    <h4>Leitura de Peso</h4>
+                                    <div class="param-value" id="test-final-weight">0.00</div>
+                                    <p>Precisão na leitura</p>
+                                </div>
+                                
+                                <div class="param-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </div>
+                                    <h4>Comunicação</h4>
+                                    <div class="param-value" id="final-comm-status">Estável</div>
+                                    <p>Estabilidade da conexão</p>
+                                </div>
+                                
+                                <div class="param-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-link"></i>
+                                    </div>
+                                    <h4>Integração</h4>
+                                    <div class="param-value" id="final-integration-status">OK</div>
+                                    <p>Conexão com sistema</p>
+                                </div>
+                                
+                                <div class="param-item">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <h4>Desempenho</h4>
+                                    <div class="param-value" id="performance-status">Rápido</div>
+                                    <p>Velocidade de resposta</p>
+                                </div>
+                            </div>
+                            
+                            <div class="success-container" id="final-success" style="display: none;">
+                                <i class="fas fa-check-circle"></i>
+                                Configuração Completa! Sua balança está integrada e funcionando perfeitamente com o sistema Bitz Softwares.
+                            </div>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <h3 class="feature-title">Rápido</h3>
+                                    <p>Leituras em tempo real</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bullseye"></i>
+                                    </div>
+                                    <h3 class="feature-title">Preciso</h3>
+                                    <p>Exatidão nas medições</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <h3 class="feature-title">Confiável</h3>
+                                    <p>Comunicação estável</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </div>
+                                    <h3 class="feature-title">Integrado</h3>
+                                    <p>Totalmente conectado ao sistema</p>
+                                </div>
+                            </div>
+                            
+                            <div class="path-indicator">
+                                <div class="path-step">Conexão</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step">Configuração</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step">Teste</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step" style="background-color: #1a73e8; color: white;">Integração</div>
+                                <div class="path-arrow">→</div>
+                                <div class="path-step" style="background-color: #10b981; color: white;">Pronto!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Guia de Configuração de Balança - Bitz Softwares | Atualizado em 2023</p>
+            <p>Para suporte técnico especializado em balanças, entre em contato com nossa equipe.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Simulação de teste de comunicação
+            window.checkCOMPort = function() {
+                const ports = ['COM1', 'COM2', 'COM3', 'COM4', 'COM5'];
+                const randomPort = ports[Math.floor(Math.random() * ports.length)];
+                
+                // Criar notificação
+                const notification = document.createElement('div');
+                notification.className = 'success-container';
+                notification.style.marginTop = '10px';
+                notification.innerHTML = `<i class="fas fa-search"></i> Porta COM identificada: <strong>${randomPort}</strong>`;
+                
+                // Adicionar ao troubleshooting
+                const troubleshooting = document.querySelector('.troubleshooting-grid');
+                if (troubleshooting) {
+                    troubleshooting.parentNode.insertBefore(notification, troubleshooting.nextSibling);
+                    
+                    // Remover após 5 segundos
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 5000);
+                }
+            };
+            
+            // Simulação de peso para o teste final
+            window.simulateWeightTest = function() {
+                const weights = [0.00, 0.50, 1.00, 1.25, 2.50, 5.00, 0.75, 3.33];
+                const randomWeight = weights[Math.floor(Math.random() * weights.length)];
+                
+                // Atualizar display visual
+                const liveWeight = document.getElementById('live-weight');
+                const testWeight = document.getElementById('test-final-weight');
+                const commStatus = document.getElementById('final-comm-status');
+                const integrationStatus = document.getElementById('final-integration-status');
+                const performanceStatus = document.getElementById('performance-status');
+                const finalSuccess = document.getElementById('final-success');
+                
+                // Animar mudança
+                liveWeight.style.transform = 'scale(1.1)';
+                liveWeight.style.backgroundColor = '#c2d7f0';
+                
+                setTimeout(() => {
+                    liveWeight.textContent = randomWeight.toFixed(2) + ' kg';
+                    testWeight.textContent = randomWeight.toFixed(2);
+                    liveWeight.style.transform = 'scale(1)';
+                    
+                    // Simular status (90% estável)
+                    if (Math.random() > 0.1) {
+                        commStatus.textContent = 'Estável';
+                        commStatus.style.color = '#1a73e8';
+                        integrationStatus.textContent = 'OK';
+                        integrationStatus.style.color = '#1a73e8';
+                        performanceStatus.textContent = 'Rápido';
+                        performanceStatus.style.color = '#1a73e8';
+                        
+                        // Mostrar mensagem de sucesso
+                        finalSuccess.style.display = 'block';
+                        finalSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        commStatus.textContent = 'Instável';
+                        commStatus.style.color = '#ef4444';
+                        
+                        // Mostrar mensagem de erro
+                        const errorMsg = document.createElement('div');
+                        errorMsg.className = 'error-container';
+                        errorMsg.style.marginTop = '15px';
+                        errorMsg.innerHTML = '<i class="fas fa-exclamation-circle"></i> Comunicação instável detectada. Verifique as conexões.';
+                        
+                        const stepBox = document.querySelector('#step-6 .step-box:last-child');
+                        if (stepBox) {
+                            stepBox.appendChild(errorMsg);
+                            
+                            setTimeout(() => {
+                                errorMsg.remove();
+                            }, 5000);
+                        }
+                    }
+                    
+                    // Resetar cor após 2 segundos
+                    setTimeout(() => {
+                        liveWeight.style.backgroundColor = '#e8f0fe';
+                    }, 2000);
+                }, 300);
+            };
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Simular teste de comunicação no passo 4
+            const testStep = document.getElementById('step-4');
+            if (testStep) {
+                const testButton = document.createElement('button');
+                testButton.innerHTML = '<i class="fas fa-vial"></i> Executar Teste de Comunicação';
+                testButton.className = 'nav-btn';
+                testButton.style.margin = '20px auto';
+                testButton.style.display = 'block';
+                testButton.style.backgroundColor = '#1a73e8';
+                testButton.style.color = 'white';
+                
+                const testBox = testStep.querySelector('.step-box:first-child');
+                if (testBox) {
+                    testBox.appendChild(testButton);
+                    
+                    testButton.addEventListener('click', function() {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testando comunicação...';
+                        this.disabled = true;
+                        
+                        // Simular teste de comunicação
+                        setTimeout(() => {
+                            const isSuccess = Math.random() > 0.3; // 70% chance de sucesso
+                            
+                            if (isSuccess) {
+                                this.innerHTML = '<i class="fas fa-check"></i> Comunicação bem-sucedida!';
+                                this.style.backgroundColor = '#10b981';
+                                
+                                // Mostrar mensagem de sucesso
+                                const successMsg = document.createElement('div');
+                                successMsg.className = 'success-container';
+                                successMsg.style.marginTop = '10px';
+                                successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Comunicação estabelecida com sucesso! Valores correspondem.';
+                                testBox.appendChild(successMsg);
+                                
+                                // Atualizar visual do teste
+                                const scaleValue = document.getElementById('scale-test-value');
+                                const systemValue = document.getElementById('system-test-value');
+                                if (scaleValue && systemValue) {
+                                    scaleValue.textContent = '1.25 kg';
+                                    systemValue.textContent = '1.25 kg';
+                                }
+                            } else {
+                                this.innerHTML = '<i class="fas fa-times"></i> Falha na comunicação';
+                                this.style.backgroundColor = '#ef4444';
+                                
+                                // Mostrar mensagem de erro
+                                const errorMsg = document.createElement('div');
+                                errorMsg.className = 'error-container';
+                                errorMsg.style.marginTop = '10px';
+                                errorMsg.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Falha na Comunicação. Verifique a porta COM e os parâmetros.';
+                                testBox.appendChild(errorMsg);
+                            }
+                            
+                            // Restaurar botão após 5 segundos
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.style.backgroundColor = '#1a73e8';
+                                this.disabled = false;
+                            }, 3000);
+                        }, 2000);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

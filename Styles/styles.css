@@ -330,3 +330,421 @@ h1 {
     margin-bottom: 20px;
     text-align: center;
 }
+ /* Botão flutuante principal */
+    .botao-assistente-ia {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        z-index: 9999;
+        border: none;
+        outline: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4); }
+        50% { box-shadow: 0 8px 35px rgba(79, 70, 229, 0.6); }
+        100% { box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4); }
+    }
+    
+    .botao-assistente-ia:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 12px 35px rgba(79, 70, 229, 0.6);
+    }
+    
+    .botao-assistente-ia.ativo {
+        background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+        transform: scale(0.95);
+    }
+    
+    /* Modal do assistente */
+    .modal-assistente-ia {
+        position: fixed;
+        bottom: 120px;
+        right: 30px;
+        width: 450px;
+        max-width: 90vw;
+        height: 600px;
+        max-height: 80vh;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        z-index: 9998;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        animation: slideUp 0.3s ease;
+        border: 1px solid #e5e7eb;
+    }
+    
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+    
+    /* Cabeçalho do modal */
+    .cabecalho-assistente {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        padding: 20px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .titulo-assistente {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .status-assistente {
+        font-size: 12px;
+        opacity: 0.9;
+        font-weight: normal;
+    }
+    
+    .botao-fechar-assistente {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+    }
+    
+    .botao-fechar-assistente:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Área de conversa */
+    .conversa-assistente {
+        flex: 1;
+        overflow-y: auto;
+        padding: 25px;
+        background: #f9fafb;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* Estilos das mensagens */
+    .mensagem {
+        max-width: 85%;
+        padding: 16px 20px;
+        border-radius: 20px;
+        line-height: 1.5;
+        word-wrap: break-word;
+        position: relative;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .mensagem.usuario {
+        align-self: flex-end;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        border-bottom-right-radius: 8px;
+    }
+    
+    .mensagem.assistente {
+        align-self: flex-start;
+        background: white;
+        color: #1f2937;
+        border: 1px solid #e5e7eb;
+        border-bottom-left-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .mensagem.sistema {
+        align-self: center;
+        background: #f3f4f6;
+        color: #6b7280;
+        font-size: 13px;
+        padding: 10px 16px;
+        border-radius: 12px;
+        font-style: italic;
+        text-align: center;
+        max-width: 70%;
+    }
+    
+    /* Indicador de digitando */
+    .digitando {
+        align-self: flex-start;
+        background: white;
+        border: 1px solid #e5e7eb;
+        padding: 12px 20px;
+        border-radius: 20px;
+        border-bottom-left-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6b7280;
+        font-size: 14px;
+    }
+    
+    .pontos-digitando {
+        display: flex;
+        gap: 4px;
+    }
+    
+    .pontos-digitando span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #9ca3af;
+        animation: bounce 1.4s infinite ease-in-out both;
+    }
+    
+    .pontos-digitando span:nth-child(1) { animation-delay: -0.32s; }
+    .pontos-digitando span:nth-child(2) { animation-delay: -0.16s; }
+    
+    @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1); }
+    }
+    
+    /* Referências a documentos */
+    .referencias-documentos {
+        margin-top: 15px;
+        padding: 15px;
+        background: #eff6ff;
+        border-radius: 12px;
+        border-left: 4px solid #4f46e5;
+        font-size: 13px;
+    }
+    
+    .referencias-documentos strong {
+        color: #1e40af;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .lista-referencias {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .lista-referencias li {
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #dbeafe;
+    }
+    
+    .lista-referencias li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    
+    .link-documento {
+        color: #4f46e5;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+    }
+    
+    .link-documento:hover {
+        color: #7c3aed;
+        text-decoration: underline;
+    }
+    
+    .badge-modulo {
+        background: #e0e7ff;
+        color: #4f46e5;
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-left: 8px;
+    }
+    
+    /* Sugestões rápidas */
+    .sugestoes-rapidas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .botao-sugestao {
+        background: #e0e7ff;
+        border: 1px solid #c7d2fe;
+        color: #4f46e5;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+    }
+    
+    .botao-sugestao:hover {
+        background: #c7d2fe;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+    }
+    
+    /* Área de input */
+    .area-input-assistente {
+        padding: 20px 25px;
+        border-top: 1px solid #e5e7eb;
+        background: white;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .input-pergunta {
+        flex: 1;
+        padding: 14px 20px;
+        border: 2px solid #e5e7eb;
+        border-radius: 25px;
+        outline: none;
+        font-size: 14px;
+        transition: all 0.3s;
+        background: #f9fafb;
+    }
+    
+    .input-pergunta:focus {
+        border-color: #4f46e5;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    
+    .input-pergunta::placeholder {
+        color: #9ca3af;
+    }
+    
+    .botao-enviar-pergunta {
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        color: white;
+        border: none;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        flex-shrink: 0;
+    }
+    
+    .botao-enviar-pergunta:hover:not(:disabled) {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+    }
+    
+    .botao-enviar-pergunta:disabled {
+        background: #d1d5db;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .icone-enviar {
+        font-size: 20px;
+        line-height: 1;
+    }
+    
+    /* Indicador de confiança */
+    .indicador-confianca {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 10px;
+    }
+    
+    .barra-confianca {
+        flex: 1;
+        height: 6px;
+        background: #e5e7eb;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    
+    .preenchimento-confianca {
+        height: 100%;
+        background: linear-gradient(90deg, #10b981, #34d399);
+        border-radius: 3px;
+        transition: width 0.5s ease;
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .botao-assistente-ia {
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+        
+        .modal-assistente-ia {
+            width: 90vw;
+            right: 5vw;
+            bottom: 100px;
+            height: 70vh;
+        }
+        
+        .mensagem {
+            max-width: 90%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .cabecalho-assistente {
+            padding: 15px 20px;
+        }
+        
+        .conversa-assistente {
+            padding: 20px;
+        }
+        
+        .area-input-assistente {
+            padding: 15px 20px;
+        }
+        
+        .input-pergunta {
+            padding: 12px 16px;
+        }
+    }

@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração com Sistema io - Revenue Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+</head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .integration-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .system-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #1a73e8;
+        }
+        
+        .system-logo {
+            font-size: 40px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .system-name {
+            font-weight: bold;
+            font-size: 18px;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+        
+        .integration-arrow {
+            font-size: 30px;
+            color: #1a73e8;
+            margin: 0 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .data-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 15px;
+        }
+        
+        .flow-arrow {
+            font-size: 20px;
+            color: #1a73e8;
+            margin: 5px 0;
+        }
+        
+        .flow-label {
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 5px 0;
+            white-space: nowrap;
+        }
+        
+        .token-visual {
+            background-color: #f8fafc;
+            border: 1px dashed #1a73e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            word-break: break-all;
+        }
+        
+        .token-value {
+            color: #1a73e8;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .config-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .config-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .config-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .config-table tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .toggle-switch {
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+        
+        .toggle-switch.active {
+            background-color: #1a73e8;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-switch.active::after {
+            left: 32px;
+        }
+        
+        .prerequisite-card {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+        
+        .prerequisite-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .prerequisite-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #1a73e8;
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .revenue-impact {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .impact-item {
+            text-align: center;
+            padding: 20px;
+            width: 200px;
+        }
+        
+        .impact-icon {
+            font-size: 36px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .impact-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a73e8;
+            margin: 10px 0;
+        }
+        
+        .impact-positive {
+            color: #10b981;
+        }
+        
+        .tariff-control {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .tariff-name {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .tariff-status {
+            display: flex;
+            align-items: center;
+        }
+        
+        .data-sync-visual {
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .sync-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #c2d7f0;
+        }
+        
+        .sync-item:last-child {
+            border-bottom: none;
+        }
+        
+        .sync-icon {
+            color: #1a73e8;
+            margin-right: 15px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .critical-warning {
+            background-color: #fee2e2;
+            border-left: 5px solid #ef4444;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .critical-warning h3 {
+            color: #dc2626;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .critical-warning h3 i {
+            margin-right: 10px;
+        }
+        
+        .source-of-truth {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .source-icon {
+            font-size: 40px;
+            color: #1a73e8;
+            margin-right: 20px;
+        }
+        
+        .source-label {
+            font-weight: bold;
+            font-size: 18px;
+            color: #1a73e8;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .integration-visual {
+                flex-direction: column;
+            }
+            
+            .integration-arrow {
+                margin: 20px 0;
+                transform: rotate(90deg);
+            }
+            
+            .data-flow {
+                flex-direction: row;
+                margin: 15px 0;
+            }
+            
+            .flow-arrow {
+                margin: 0 10px;
+                transform: rotate(90deg);
+            }
+            
+            .revenue-impact {
+                flex-direction: column;
+            }
+            
+            .impact-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .tariff-control {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .tariff-status {
+                margin-top: 10px;
+            }
+            
+            .source-of-truth {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .source-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModuloBoasPraticas/ConfiguraçõesGerais.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div>
+                    <h1>Integração com Sistema io (Revenue Management)</h1>
+                    <p class="subtitle">Precificação dinâmica automática para maximização de receita e ocupação</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Automatize a gestão de preços das tarifas do hotel integrando o PMS Bitz à plataforma de Revenue Management Sistema io. Maximize receita e ocupação através de precificação dinâmica baseada em dados de mercado.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Objetivo e Visão Geral
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Fluxo de Integração
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Pré-requisitos
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Configuração de Tarifas
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Funcionamento e Observações
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Recomendações
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. Objetivo e Visão Geral</h2>
+                    <div class="step-description">
+                        <p>A integração com Sistema io automatiza a gestão de preços (precificação) das tarifas do hotel, proporcionando uma solução inteligente de Revenue Management.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-bullseye"></i>
+                                <span>Objetivo Principal</span>
+                            </div>
+                            <p><strong>Automatizar a gestão de preços das tarifas do hotel</strong>, integrando o PMS Bitz a uma plataforma de Revenue Management (RM). O objetivo final é:</p>
+                            
+                            <div class="revenue-impact">
+                                <div class="impact-item">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <h3>Maximizar Receita</h3>
+                                    <div class="impact-value impact-positive">+15-25%</div>
+                                    <p>Aumento potencial na receita</p>
+                                </div>
+                                
+                                <div class="impact-item">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <h3>Otimizar Ocupação</h3>
+                                    <div class="impact-value impact-positive">+5-15%</div>
+                                    <p>Melhora na taxa de ocupação</p>
+                                </div>
+                                
+                                <div class="impact-item">
+                                    <div class="impact-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <h3>Decisões Inteligentes</h3>
+                                    <div class="impact-value">100%</div>
+                                    <p>Baseadas em dados e algoritmos</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-cogs"></i>
+                                <span>Como Funciona</span>
+                            </div>
+                            <p>A integração estabelece um <span class="highlight">fluxo de comunicação bidirecional</span> entre o Bitz e o Sistema io:</p>
+                            
+                            <div class="integration-visual">
+                                <div class="system-card">
+                                    <div class="system-logo">
+                                        <i class="fas fa-hotel"></i>
+                                    </div>
+                                    <div class="system-name">BITZ PMS</div>
+                                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Sistema Principal</p>
+                                </div>
+                                
+                                <div class="integration-arrow">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                
+                                <div class="system-card">
+                                    <div class="system-logo">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="system-name">SISTEMA IO</div>
+                                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Revenue Management</p>
+                                </div>
+                            </div>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </div>
+                                    <h3 class="feature-title">Envio de Dados</h3>
+                                    <p>Bitz → Sistema io com informações atualizadas</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <h3 class="feature-title">Processamento</h3>
+                                    <p>Análise por algoritmos inteligentes</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-download"></i>
+                                    </div>
+                                    <h3 class="feature-title">Atualização</h3>
+                                    <p>Sistema io → Bitz com novos preços</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </div>
+                                    <h3 class="feature-title">Contínuo</h3>
+                                    <p>Operação automática 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. Fluxo de Integração</h2>
+                    <div class="step-description">
+                        <p>Entenda o fluxo completo de comunicação entre os sistemas e as rotinas envolvidas.</p>
+                        
+                        <div class="integration-visual">
+                            <div class="system-card">
+                                <div class="system-logo">
+                                    <i class="fas fa-hotel"></i>
+                                </div>
+                                <div class="system-name">BITZ PMS</div>
+                                <div class="flow-label" style="margin-top: 15px;">Fonte de Dados</div>
+                            </div>
+                            
+                            <div class="data-flow">
+                                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                                <div class="flow-label">Envio Automático</div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-left"></i></div>
+                                <div class="flow-label">Atualização de Preços</div>
+                            </div>
+                            
+                            <div class="system-card">
+                                <div class="system-logo">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="system-name">SISTEMA IO</div>
+                                <div class="flow-label" style="margin-top: 15px;">Processamento</div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-upload"></i>
+                                <span>Envio de Dados (Bitz → Sistema io)</span>
+                            </div>
+                            <p>O Bitz atua como a fonte de dados, enviando de forma contínua e automática:</p>
+                            
+                            <div class="data-sync-visual">
+                                <div class="sync-item">
+                                    <div class="sync-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Estrutura de tarifas</strong> e seus valores base
+                                    </div>
+                                </div>
+                                
+                                <div class="sync-item">
+                                    <div class="sync-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Tipologia de UHs</strong> e inventário total de cada uma
+                                    </div>
+                                </div>
+                                
+                                <div class="sync-item">
+                                    <div class="sync-icon">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Status da ocupação</strong> por período e tipologia
+                                    </div>
+                                </div>
+                                
+                                <div class="sync-item">
+                                    <div class="sync-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Lista de reservas confirmadas</strong> com seus respectivos períodos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-brain"></i>
+                                <span>Processamento e Análise (Sistema io)</span>
+                            </div>
+                            <p>A plataforma Sistema io recebe os dados do Bitz e utiliza algoritmos avançados:</p>
+                            
+                            <div class="process-steps">
+                                <li><strong>Análise de mercado:</strong> Monitoramento da concorrência em tempo real</li>
+                                <li><strong>Análise de demanda:</strong> Identificação de padrões e tendências</li>
+                                <li><strong>Estratégia de preços:</strong> Construção otimizada baseada em múltiplos fatores</li>
+                                <li><strong>Recomendação inteligente:</strong> Definição de novos valores para as diárias</li>
+                                <li><strong>Otimização contínua:</strong> Ajustes automáticos conforme mudanças no mercado</li>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-download"></i>
+                                <span>Atualização de Tarifas (Sistema io → Bitz)</span>
+                            </div>
+                            <p>Após a análise, o Sistema io envia os novos valores de volta para o Bitz:</p>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-tags"></i>
+                                    Especificações da Atualização
+                                </div>
+                                
+                                <div class="info-list">
+                                    <li><i class="fas fa-calendar-alt"></i> <strong>Período de validade:</strong> Datas específicas de aplicação</li>
+                                    <li><i class="fas fa-bed"></i> <strong>Tipologia de UH:</strong> A qual categoria de quarto se aplica</li>
+                                    <li><i class="fas fa-users"></i> <strong>Quantidade de pessoas:</strong> Para 1, 2, 3+ hóspedes</li>
+                                    <li><i class="fas fa-bolt"></i> <strong>Automatização completa:</strong> Sem intervenção manual necessária</li>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-tasks"></i>
+                                <span>Rotinas Contempladas</span>
+                            </div>
+                            
+                            <div class="table-container">
+                                <table class="config-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Rotina</th>
+                                            <th>Impacto</th>
+                                            <th>Tipo</th>
+                                            <th>Observação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Cadastro de Tarifas</strong></td>
+                                            <td><span class="highlight">Direto</span></td>
+                                            <td>Modificada</td>
+                                            <td>Campo adicional para controle RM</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reservas</td>
+                                            <td>Indireto</td>
+                                            <td>Fonte de dados</td>
+                                            <td>Fornece informações para análise</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gestão de Ocupação</td>
+                                            <td>Indireto</td>
+                                            <td>Fonte de dados</td>
+                                            <td>Fornece status atual dos quartos</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Check-in/Check-out</td>
+                                            <td>Indireto</td>
+                                            <td>Fonte de dados</td>
+                                            <td>Atualiza ocupação em tempo real</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. Pré-requisitos</h2>
+                    <div class="step-description">
+                        <p>Antes de iniciar a configuração, certifique-se de atender a todos os requisitos necessários.</p>
+                        
+                        <div class="prerequisite-card">
+                            <div class="prerequisite-header">
+                                <div class="prerequisite-number">1</div>
+                                <h3 style="color: #1a73e8;">Contrato com Sistema io</h3>
+                            </div>
+                            <p>É <strong>obrigatório</strong> possuir um contrato ativo com a empresa Sistema io.</p>
+                            <div class="warning-box" style="margin: 10px 0; padding: 10px;">
+                                <p><strong>Verifique com antecedência:</strong> A integração só funcionará com um contrato válido e ativo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="prerequisite-card">
+                            <div class="prerequisite-header">
+                                <div class="prerequisite-number">2</div>
+                                <h3 style="color: #1a73e8;">Liberação e Token</h3>
+                            </div>
+                            <p>Solicite à equipe de Suporte/Consultoria do Bitz:</p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-key"></i> <strong>Liberação da integração</strong> para sua empresa</li>
+                                <li><i class="fas fa-fingerprint"></i> <strong>Token de autenticação</strong> específico</li>
+                            </ul>
+                            
+                            <div class="token-visual">
+                                <div style="font-size: 12px; color: #666; margin-bottom: 5px;">TOKEN DE AUTENTICAÇÃO</div>
+                                <div class="token-value">b1tz_1nt_5y5t3m10_4u7h_t0k3n_2023_xyz123abc456</div>
+                                <div style="font-size: 11px; color: #999; margin-top: 10px;">Exclusivo por cliente • Segurança máxima</div>
+                            </div>
+                        </div>
+                        
+                        <div class="prerequisite-card">
+                            <div class="prerequisite-header">
+                                <div class="prerequisite-number">3</div>
+                                <h3 style="color: #1a73e8;">Parametrização de Tarifas</h3>
+                            </div>
+                            <p>Configure no Bitz quais tarifas serão controladas pela integração.</p>
+                            <p>Este processo é feito tarifa por tarifa, dando <strong>controle total</strong> sobre quais preços serão gerenciados automaticamente.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Segurança e Autenticação</span>
+                            </div>
+                            <p><strong>Autenticação:</strong> Toda a comunicação entre os sistemas é segura e realizada através de um token exclusivo por cliente.</p>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-user-lock"></i>
+                                    </div>
+                                    <h3 class="feature-title">Exclusivo</h3>
+                                    <p>Token único por cliente</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <h3 class="feature-title">Seguro</h3>
+                                    <p>Comunicação criptografada</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h3 class="feature-title">Autorizado</h3>
+                                    <p>Apenas Sistema io autorizado</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-history"></i>
+                                    </div>
+                                    <h3 class="feature-title">Auditável</h3>
+                                    <p>Logs de todas as operações</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. Configuração de Tarifas</h2>
+                    <div class="step-description">
+                        <p>Configure individualmente cada tarifa para definir se será gerenciada pelo Revenue Management.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-edit"></i>
+                                <span>Rotina: Cadastro de Tarifas</span>
+                            </div>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-money-check-alt"></i>
+                                    Novo Campo Implementado
+                                </div>
+                                
+                                <div class="tariff-control">
+                                    <div class="tariff-name">Tarifa Standard - Casal</div>
+                                    <div class="tariff-status">
+                                        <span style="margin-right: 10px; font-weight: bold;">Atualiza via RM?</span>
+                                        <div class="toggle-switch active" id="toggle-rm-1"></div>
+                                        <span style="color: #1a73e8; font-weight: bold;">SIM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="tariff-control">
+                                    <div class="tariff-name">Tarifa Promocional - Solteiro</div>
+                                    <div class="tariff-status">
+                                        <span style="margin-right: 10px; font-weight: bold;">Atualiza via RM?</span>
+                                        <div class="toggle-switch" id="toggle-rm-2"></div>
+                                        <span style="color: #666;">NÃO</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="tariff-control">
+                                    <div class="tariff-name">Tarifa Corporativa</div>
+                                    <div class="tariff-status">
+                                        <span style="margin-right: 10px; font-weight: bold;">Atualiza via RM?</span>
+                                        <div class="toggle-switch active" id="toggle-rm-3"></div>
+                                        <span style="color: #1a73e8; font-weight: bold;">SIM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="process-steps">
+                                <li>Acesse: <span class="highlight">Cadastros > Operacional > Tarifas</span></li>
+                                <li>Selecione a tarifa que deseja configurar</li>
+                                <li>Localize o novo campo <span class="highlight">"Atualiza via RM?"</span></li>
+                                <li>Selecione a opção desejada:
+                                    <ul style="margin-left: 20px; margin-top: 10px;">
+                                        <li><strong>SIM:</strong> Tarifa controlada automaticamente pelo Sistema io</li>
+                                        <li><strong>NÃO:</strong> Tarifa gerenciada manualmente no Bitz</li>
+                                    </ul>
+                                </li>
+                                <li>Salve as alterações</li>
+                                <li>Repita para cada tarifa conforme necessário</li>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-toggle-on"></i>
+                                <span>Comportamento por Opção</span>
+                            </div>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon" style="color: #1a73e8;">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <h3 class="feature-title">Opção: SIM</h3>
+                                    <p><strong>Controle Automático:</strong> Sistema io gerencia os preços</p>
+                                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Atualizações automáticas baseadas em algoritmos de RM</p>
+                                    <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                        <i class="fas fa-info-circle"></i> Atualização manual ainda disponível
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon" style="color: #666;">
+                                        <i class="fas fa-user-edit"></i>
+                                    </div>
+                                    <h3 class="feature-title">Opção: NÃO</h3>
+                                    <p><strong>Controle Manual:</strong> Usuário gerencia os preços</p>
+                                    <p style="font-size: 12px; color: #666; margin-top: 10px;">Preços definidos e ajustados manualmente no Bitz</p>
+                                    <div style="background-color: #f8fafc; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                        <i class="fas fa-info-circle"></i> Comportamento tradicional do sistema
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Controle Seletivo</h3>
+                            <p>O cliente tem <strong>total controle</strong> para definir, tarifa por tarifa, quais serão dinâmicas (gerenciadas pelo RM) e quais permanecerão com preços fixos (gerenciadas manualmente no Bitz).</p>
+                            <p>Esta flexibilidade permite estratégias híbridas, combinando precificação dinâmica com tarifas especiais fixas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. Funcionamento e Observações</h2>
+                    <div class="step-description">
+                        <p>Compreenda os detalhes do funcionamento contínuo da integração após a configuração.</p>
+                        
+                        <div class="source-of-truth">
+                            <div class="source-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div>
+                                <div class="source-label">FONTE DA VERDADE</div>
+                                <p>Para tarifas com "Atualiza via RM?" = SIM, a plataforma Sistema io passa a ser a fonte oficial para precificação.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>Fluxo Contínuo</span>
+                            </div>
+                            <p>Uma vez configurada, a integração opera de forma contínua, sem necessidade de intervenção manual:</p>
+                            
+                            <div class="integration-visual">
+                                <div class="system-card">
+                                    <div class="system-logo">
+                                        <i class="fas fa-hotel"></i>
+                                    </div>
+                                    <div class="system-name">DADOS ATUALIZADOS</div>
+                                    <div style="font-size: 24px; color: #1a73e8; margin-top: 10px;">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="integration-arrow">
+                                    <i class="fas fa-sync-alt fa-spin"></i>
+                                </div>
+                                
+                                <div class="system-card">
+                                    <div class="system-logo">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="system-name">PREÇOS OTIMIZADOS</div>
+                                    <div style="font-size: 24px; color: #1a73e8; margin-top: 10px;">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-list">
+                                <li><i class="fas fa-clock"></i> <strong>24/7:</strong> Operação contínua, dia e noite</li>
+                                <li><i class="fas fa-bolt"></i> <strong>Automático:</strong> Sem necessidade de intervenção</li>
+                                <li><i class="fas fa-history"></i> <strong>Frequente:</strong> Múltiplas sincronizações diárias</li>
+                                <li><i class="fas fa-shield-alt"></i> <strong>Confiável:</strong> Monitoramento constante da conexão</li>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-database"></i>
+                                <span>Hierarquia de Controle</span>
+                            </div>
+                            
+                            <div class="process-steps">
+                                <li><strong>Tarifa configurada como SIM:</strong>
+                                    <ul style="margin-left: 20px; margin-top: 10px;">
+                                        <li><i class="fas fa-robot" style="color: #1a73e8;"></i> Sistema io é a <strong>fonte primária</strong> de preços</li>
+                                        <li><i class="fas fa-pen" style="color: #666;"></i> Alterações manuais no Bitz são possíveis, mas serão <strong>sobrescritas</strong> na próxima sincronização</li>
+                                        <li><i class="fas fa-exclamation-triangle" style="color: #ff9800;"></i> Ajustes devem ser feitos <strong>exclusivamente no Sistema io</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong>Tarifa configurada como NÃO:</strong>
+                                    <ul style="margin-left: 20px; margin-top: 10px;">
+                                        <li><i class="fas fa-user-edit" style="color: #666;"></i> Bitz é a <strong>fonte exclusiva</strong> de preços</li>
+                                        <li><i class="fas fa-lock" style="color: #1a73e8;"></i> Sistema io não altera estes valores</li>
+                                        <li><i class="fas fa-check" style="color: #10b981;"></i> Controle manual completo pelo usuário</li>
+                                    </ul>
+                                </li>
+                            </div>
+                        </div>
+                        
+                        <div class="critical-warning">
+                            <h3><i class="fas fa-exclamation-circle"></i> Atenção Crítica</h3>
+                            <p><strong>Fonte da Verdade:</strong> Para as tarifas com a opção "Atualiza via RM?" marcada como "SIM", a plataforma Sistema io passa a ser a "fonte da verdade" para a precificação.</p>
+                            <p><strong>Consequência:</strong> Qualquer necessidade de ajuste de preço para estas tarifas deverá ser feita na plataforma do Sistema io. Alterações feitas diretamente no sistema Bitz serão sobrescritas pelos valores do Sistema io na próxima sincronização.</p>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-check-circle"></i>
+                            A integração opera automaticamente 24/7, garantindo que seus preços estejam sempre otimizados com base nas condições do mercado e ocupação.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">6. Recomendações Importantes</h2>
+                    <div class="step-description">
+                        <p>Siga estas recomendações para garantir o melhor funcionamento da integração e evitar problemas.</p>
+                        
+                        <div class="critical-warning">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Recomendação Principal</h3>
+                            <p><strong>Após a integração e ativação, todas as atualizações de tarifas devem ser realizadas exclusivamente através do Sistema IO.</strong></p>
+                            <p>Alterações feitas diretamente no sistema Bitz para tarifas configuradas como "SIM" serão sobrescritas pelos valores do Sistema IO, resultando em perda de dados e inconsistências.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Melhores Práticas</span>
+                            </div>
+                            
+                            <div class="process-steps">
+                                <li><strong>Defina uma estratégia clara:</strong> Determine quais tarifas serão dinâmicas e quais permanecerão fixas</li>
+                                <li><strong>Comunique a equipe:</strong> Certifique-se que todos os usuários saibam onde ajustar preços</li>
+                                <li><strong>Monitore inicialmente:</strong> Acompanhe os ajustes automáticos nas primeiras semanas</li>
+                                <li><strong>Configure limites:</strong> Estabeleça preços mínimos e máximos no Sistema io quando necessário</li>
+                                <li><strong>Mantenha dados atualizados:</strong> Certifique-se que inventário e tarifas estejam corretos no Bitz</li>
+                                <li><strong>Planeje exceções:</strong> Para eventos especiais, ajuste diretamente no Sistema io com antecedência</li>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-user-check"></i>
+                                <span>Responsabilidades da Equipe</span>
+                            </div>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-hotel"></i>
+                                    </div>
+                                    <h3 class="feature-title">Recepção</h3>
+                                    <p>Utilizar preços atualizados automaticamente</p>
+                                    <p style="font-size: 12px; color: #666; margin-top: 5px;">Não alterar tarifas RM no Bitz</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <h3 class="feature-title">Revenue Manager</h3>
+                                    <p>Monitorar e ajustar no Sistema io</p>
+                                    <p style="font-size: 12px; color: #666; margin-top: 5px;">Fonte oficial para tarifas RM</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-cogs"></i>
+                                    </div>
+                                    <h3 class="feature-title">TI/Suporte</h3>
+                                    <p>Monitorar conexão e sincronização</p>
+                                    <p style="font-size: 12px; color: #666; margin-top: 5px;">Verificar logs em caso de problemas</p>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <h3 class="feature-title">Gerência</h3>
+                                    <p>Acompanhar resultados e KPIs</p>
+                                    <p style="font-size: 12px; color: #666; margin-top: 5px;">Analisar impacto na receita</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-road"></i>
+                                <span>Próximos Passos após Configuração</span>
+                            </div>
+                            
+                            <div class="process-steps">
+                                <li><strong>Teste inicial:</strong> Configure algumas tarifas como "SIM" e acompanhe as mudanças</li>
+                                <li><strong>Validação:</strong> Verifique se os preços estão sendo atualizados corretamente</li>
+                                <li><strong>Expansão gradual:</strong> Aumente gradualmente o número de tarifas controladas pelo RM</li>
+                                <li><strong>Monitoramento contínuo:</strong> Acompanhe KPIs de receita e ocupação</li>
+                                <li><strong>Otimização:</strong> Ajuste estratégias no Sistema io com base nos resultados</li>
+                                <li><strong>Capacitação:</strong> Treine a equipe nas novas rotinas e responsabilidades</li>
+                            </div>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-rocket"></i>
+                            Com a integração Sistema io ativa, seu hotel terá precificação dinâmica automática, maximizando receita e ocupação com inteligência artificial e análise de dados em tempo real.
+                        </div>
+                        
+                        <div class="integration-visual" style="margin-top: 30px;">
+                            <div class="system-card">
+                                <div class="system-logo">
+                                    <i class="fas fa-hotel"></i>
+                                </div>
+                                <div class="system-name">DADOS PRECISOS</div>
+                            </div>
+                            
+                            <div class="integration-arrow">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            
+                            <div class="system-card">
+                                <div class="system-logo">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="system-name">INTELIGÊNCIA ARTIFICIAL</div>
+                            </div>
+                            
+                            <div class="integration-arrow">
+                                <i class="fas fa-equals"></i>
+                            </div>
+                            
+                            <div class="system-card">
+                                <div class="system-logo">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="system-name">RECEITA MAXIMIZADA</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Integração Sistema io (Revenue Management) - Bitz Softwares | Atualizado em 2023</p>
+            <p>Precificação dinâmica automática para maximização de receita e ocupação hoteleira.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Configurar toggle switches interativos
+            const toggleSwitches = document.querySelectorAll('.toggle-switch');
+            toggleSwitches.forEach(switchEl => {
+                switchEl.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    // Atualizar texto associado
+                    const parent = this.closest('.tariff-status');
+                    if (parent) {
+                        const textSpan = parent.querySelector('span:last-child');
+                        if (textSpan) {
+                            if (this.classList.contains('active')) {
+                                textSpan.textContent = 'SIM';
+                                textSpan.style.color = '#1a73e8';
+                                textSpan.style.fontWeight = 'bold';
+                            } else {
+                                textSpan.textContent = 'NÃO';
+                                textSpan.style.color = '#666';
+                                textSpan.style.fontWeight = 'normal';
+                            }
+                        }
+                    }
+                    
+                    // Mostrar mensagem de alerta para SIM
+                    if (this.classList.contains('active')) {
+                        const warning = document.createElement('div');
+                        warning.className = 'warning-box';
+                        warning.style.margin = '10px 0';
+                        warning.style.padding = '10px';
+                        warning.style.fontSize = '12px';
+                        warning.innerHTML = '<i class="fas fa-exclamation-triangle"></i> <strong>Atenção:</strong> Alterações nesta tarifa devem ser feitas exclusivamente no Sistema io para evitar sobrescrita.';
+                        
+                        // Adicionar após o elemento pai
+                        const parentControl = this.closest('.tariff-control');
+                        if (parentControl) {
+                            // Remover alertas anteriores
+                            const existingWarnings = parentControl.querySelectorAll('.warning-box');
+                            existingWarnings.forEach(w => w.remove());
+                            
+                            parentControl.parentNode.insertBefore(warning, parentControl.nextSibling);
+                            
+                            // Remover após 8 segundos
+                            setTimeout(() => {
+                                if (warning.parentNode) {
+                                    warning.remove();
+                                }
+                            }, 8000);
+                        }
+                    }
+                });
+            });
+            
+            // Simular sincronização no passo 5
+            const syncStep = document.getElementById('step-5');
+            if (syncStep) {
+                const syncButton = document.createElement('button');
+                syncButton.innerHTML = '<i class="fas fa-sync-alt"></i> Simular Sincronização de Dados';
+                syncButton.className = 'nav-btn';
+                syncButton.style.margin = '20px auto';
+                syncButton.style.display = 'block';
+                syncButton.style.backgroundColor = '#1a73e8';
+                syncButton.style.color = 'white';
+                
+                const syncBox = syncStep.querySelector('.step-box:first-child');
+                if (syncBox) {
+                    syncBox.appendChild(syncButton);
+                    
+                    syncButton.addEventListener('click', function() {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sincronizando...';
+                        this.disabled = true;
+                        
+                        // Animar as setas
+                        const upArrow = document.querySelector('.fa-arrow-up');
+                        const downArrow = document.querySelector('.fa-arrow-down');
+                        const syncIcon = document.querySelector('.fa-sync-alt.fa-spin');
+                        
+                        if (upArrow && downArrow && syncIcon) {
+                            upArrow.style.color = '#10b981';
+                            downArrow.style.color = '#10b981';
+                            syncIcon.style.color = '#10b981';
+                            
+                            // Animar pulso
+                            upArrow.style.animation = 'pulse 0.5s 3';
+                            downArrow.style.animation = 'pulse 0.5s 3';
+                        }
+                        
+                        // Simular sincronização
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-check"></i> Sincronização concluída!';
+                            this.style.backgroundColor = '#10b981';
+                            
+                            // Mostrar mensagem de sucesso
+                            const successMsg = document.createElement('div');
+                            successMsg.className = 'success-container';
+                            successMsg.style.marginTop = '10px';
+                            successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Dados enviados ao Sistema io e preços atualizados recebidos. Integração funcionando perfeitamente!';
+                            syncBox.appendChild(successMsg);
+                            
+                            // Resetar cores das setas
+                            if (upArrow && downArrow && syncIcon) {
+                                setTimeout(() => {
+                                    upArrow.style.color = '#1a73e8';
+                                    downArrow.style.color = '#1a73e8';
+                                    syncIcon.style.color = '#1a73e8';
+                                    upArrow.style.animation = '';
+                                    downArrow.style.animation = '';
+                                }, 1000);
+                            }
+                            
+                            // Restaurar botão após 4 segundos
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.style.backgroundColor = '#1a73e8';
+                                this.disabled = false;
+                                
+                                // Remover mensagem após 5 segundos
+                                setTimeout(() => {
+                                    if (successMsg.parentNode) {
+                                        successMsg.remove();
+                                    }
+                                }, 5000);
+                            }, 4000);
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Inicializar toggles como ativos/inativos alternados
+            document.getElementById('toggle-rm-1').classList.add('active');
+            document.getElementById('toggle-rm-2').classList.remove('active');
+            document.getElementById('toggle-rm-3').classList.add('active');
+        });
+    </script>
+</body>
+</html>
