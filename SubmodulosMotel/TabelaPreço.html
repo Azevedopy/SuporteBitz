@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabelas de Preço - Sistema Imperium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .table-visual {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .table-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .table-row.header {
+            background-color: #e8f0fe;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .table-cell {
+            padding: 8px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .button-small {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 0 2px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .button-small:hover {
+            background-color: #0d47a1;
+        }
+        
+        .quote-simulator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .quote-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a73e8;
+        }
+        
+        .quote-title {
+            color: #1a73e8;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .time-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .time-box {
+            flex: 1;
+        }
+        
+        .calculate-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+        }
+        
+        .calculate-btn:hover {
+            background-color: #0d47a1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-box {
+            background-color: #e8f0fe;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #c2d7f0;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .table-type {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .room-config {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #1a73e8;
+        }
+        
+        .room-name {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .room-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 120px;
+        }
+        
+        .deprecated-box {
+            background-color: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .deprecated-box h3 {
+            color: #d97706;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .deprecated-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .example-box {
+            background-color: #f0f9ff;
+            border-left: 5px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .example-title {
+            color: #0369a1;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .example-title i {
+            margin-right: 10px;
+        }
+        
+        .holiday-config {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .holiday-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 280px;
+            text-align: center;
+            margin: 10px;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .holiday-icon {
+            font-size: 40px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            width: 100px;
+        }
+        
+        .progress-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border: 2px solid #e8f0fe;
+        }
+        
+        .progress-step.active .progress-circle {
+            background-color: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+        
+        .progress-step.completed .progress-circle {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        
+        .progress-line {
+            position: absolute;
+            top: 15px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background-color: #e8f0fe;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .room-config {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .room-field {
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .table-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .holiday-config {
+                flex-direction: column;
+            }
+            
+            .holiday-card {
+                width: 100%;
+            }
+            
+            .time-input {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .progress-indicator {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModulosMotel/TabelaPreço.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                <div>
+                    <h1>Tabelas de Preço - Sistema Imperium</h1>
+                    <p class="subtitle">Guia completo para configuração e ajuste de tabelas de preço</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Para ajustar tabelas de preço, é necessário identificar com o cliente qual o tipo de tabela está configurado na base. Utilize a função "Cotação de Hospedagem" para diagnosticar e configurar corretamente.</p>
+            </div>
+        </header>
+        
+        <!-- Indicador de progresso -->
+        <div class="progress-indicator">
+            <div class="progress-line"></div>
+            <div class="progress-step active" data-step="1">
+                <div class="progress-circle">1</div>
+                <span style="font-size: 12px; text-align: center;">Diagnóstico</span>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="progress-circle">2</div>
+                <span style="font-size: 12px; text-align: center;">Valores</span>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="progress-circle">3</div>
+                <span style="font-size: 12px; text-align: center;">Tempo Especial</span>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="progress-circle">4</div>
+                <span style="font-size: 12px; text-align: center;">Períodos</span>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="progress-circle">5</div>
+                <span style="font-size: 12px; text-align: center;">Tabelas</span>
+            </div>
+            <div class="progress-step" data-step="6">
+                <div class="progress-circle">6</div>
+                <span style="font-size: 12px; text-align: center;">Especiais</span>
+            </div>
+        </div>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Diagnóstico Inicial
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Valores em Quartos
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Tempo Especial e Adicionais
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Valores por Período
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Tabelas de Preço
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Tabelas Especiais
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. Diagnóstico Inicial - Cotação de Hospedagem</h2>
+                    <div class="step-description">
+                        <p>Identifique o tipo de tabela configurada utilizando a função "Cotação de Hospedagem" localizada na barra superior do sistema Imperium.</p>
+                        
+                        <div class="quote-simulator">
+                            <div class="quote-header">
+                                <div class="quote-title">
+                                    <i class="fas fa-calculator"></i> Cotação de Hospedagem
+                                </div>
+                                <div style="font-size: 14px; color: #666;">Simulador de Cálculo</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Quarto da Hospedagem</div>
+                                <select class="form-select" id="quote-room">
+                                    <option value="">Selecione um quarto</option>
+                                    <option value="101">Quarto 101 - Luxo</option>
+                                    <option value="102">Quarto 102 - Standard</option>
+                                    <option value="103">Quarto 103 - Premium</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Horários da Hospedagem</div>
+                                <div class="time-input">
+                                    <div class="time-box">
+                                        <div class="form-label" style="font-size: 12px;">Entrada</div>
+                                        <input type="time" class="input-field" id="checkin-time" value="14:00">
+                                    </div>
+                                    <div style="font-weight: bold; color: #1a73e8;">→</div>
+                                    <div class="time-box">
+                                        <div class="form-label" style="font-size: 12px;">Saída</div>
+                                        <input type="time" class="input-field" id="checkout-time" value="18:00">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Quantidade de Casais</div>
+                                <select class="form-select" id="couples-count">
+                                    <option value="1">1 Casal</option>
+                                    <option value="2" selected>2 Casais</option>
+                                    <option value="3">3 Casais</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Tipo da Hospedagem</div>
+                                <select class="form-select" id="stay-type">
+                                    <option value="locacao">Locação</option>
+                                    <option value="pernoite">Pernoite</option>
+                                    <option value="diaria">Diária</option>
+                                </select>
+                            </div>
+                            
+                            <button class="calculate-btn" id="calculate-quote">
+                                <i class="fas fa-calculator"></i> Calcular
+                            </button>
+                            
+                            <div class="result-box" id="quote-result" style="display: none;">
+                                <div class="result-row">
+                                    <span class="result-label">Valor do Quarto:</span>
+                                    <span class="result-value" id="room-value">R$ 120,00</span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Hora Adicional:</span>
+                                    <span class="result-value" id="additional-hour">R$ 40,00</span>
+                                </div>
+                                <div class="result-row">
+                                    <span class="result-label">Total:</span>
+                                    <span class="result-value" id="total-value">R$ 160,00</span>
+                                </div>
+                                <div class="result-row" style="background-color: #e8f0fe; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                                    <span class="result-label">Tabela Vigente:</span>
+                                    <span class="result-value" id="table-type" style="color: #1a73e8;">Locação - Quarto</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-search"></i>
+                                <span>Processo de Diagnóstico</span>
+                            </div>
+                            <p>Siga estes passos para identificar a tabela configurada:</p>
+                            <ol class="process-steps">
+                                <li>Clique no botão "Cotação de Hospedagem" na barra superior</li>
+                                <li>Selecione o quarto desejado na lista</li>
+                                <li>Altere horários de entrada/saída conforme necessário</li>
+                                <li>Ajuste quantidade de casais se for o caso</li>
+                                <li>Escolha o tipo de hospedagem (Locação, Pernoite ou Diária)</li>
+                                <li>Clique em "Calcular" para ver valores e tabela vigente</li>
+                            </ol>
+                            <div class="warning-box">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Importante</h3>
+                                <p>O campo <span class="highlight">"Tabela Vigente"</span> mostrará qual a forma que o quarto está calculando os valores. Esta informação é crucial para saber onde fazer os ajustes.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <h3 class="feature-title">Quarto</h3>
+                                <p>Seleção do quarto para cotação</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="feature-title">Horários</h3>
+                                <p>Entrada, saída e duração</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h3 class="feature-title">Casais</h3>
+                                <p>Quantidade de pessoas</p>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3 class="feature-title">Cálculo</h3>
+                                <p>Valores e tabela vigente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. Valores em Quartos - Configuração Básica</h2>
+                    <div class="step-description">
+                        <p>Após identificar o tipo de tabela, ajuste os valores diretamente no cadastro do quarto.</p>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-edit"></i>
+                                Cadastro de Quarto - Valores Básicos
+                            </div>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Qtd Horas Loc(Horas):</span>
+                                    <input type="number" class="input-field" value="1" style="width: 80px;">
+                                </div>
+                                <div class="room-field">
+                                    <span class="field-label">Valor Locação:</span>
+                                    <input type="text" class="input-field" value="R$ 120,00" style="width: 120px;">
+                                </div>
+                            </div>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Qntd Horas Pern(Horas):</span>
+                                    <input type="number" class="input-field" value="12" style="width: 80px;">
+                                </div>
+                                <div class="room-field">
+                                    <span class="field-label">Valor Pernoite:</span>
+                                    <input type="text" class="input-field" value="R$ 200,00" style="width: 120px;">
+                                </div>
+                            </div>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Qntd Horas Diária(Horas):</span>
+                                    <input type="number" class="input-field" value="24" style="width: 80px;">
+                                </div>
+                                <div class="room-field">
+                                    <span class="field-label">Valor Diária:</span>
+                                    <input type="text" class="input-field" value="R$ 300,00" style="width: 120px;">
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button class="button-small save-room-btn" style="padding: 10px 20px;">
+                                    <i class="fas fa-save"></i> Salvar Alterações
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-home"></i>
+                                <span>Acesso ao Cadastro de Quartos</span>
+                            </div>
+                            <p>Para acessar a tela de cadastro de quartos:</p>
+                            <ol class="process-steps">
+                                <li>Clique no botão de quartos no menu superior</li>
+                                <li>OU use a lupa de busca no menu superior</li>
+                                <li>OU use o atalho <span class="highlight">CTRL + F</span> e busque por "quartos"</li>
+                                <li>Clique 2x sobre o quarto desejado para abrir o cadastro</li>
+                                <li>Localize os campos de valores conforme tabela vigente</li>
+                                <li>Faça as alterações necessárias</li>
+                                <li>Clique no disquete da barra superior para salvar</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon" style="color: #1a73e8;">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3 class="feature-title">Locação - Quarto</h3>
+                                <p><strong>Campo:</strong> Valor Locação</p>
+                                <p><strong>Horas:</strong> Qtd Horas Loc(Horas)</p>
+                                <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                    Para tabela "Locação - Quarto"
+                                </div>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon" style="color: #1a73e8;">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <h3 class="feature-title">Pernoite - Quarto</h3>
+                                <p><strong>Campo:</strong> Valor Pernoite</p>
+                                <p><strong>Horas:</strong> Qntd Horas Pern(Horas)</p>
+                                <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                    Para tabela "Pernoite - Quarto"
+                                </div>
+                            </div>
+                            
+                            <div class="feature-card">
+                                <div class="feature-icon" style="color: #1a73e8;">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <h3 class="feature-title">Diária - Quarto</h3>
+                                <p><strong>Campo:</strong> Valor Diária</p>
+                                <p><strong>Horas:</strong> Qntd Horas Diária(Horas)</p>
+                                <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                    Para tabela "Diária - Quarto"
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-save"></i> Não esqueça de salvar!</h3>
+                            <p>Após fazer qualquer alteração nos valores, lembre-se de clicar no disquete da barra superior para salvar as alterações. Alterações não salvas serão perdidas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. Tempo Especial e Configuração de Adicionais</h2>
+                    <div class="step-description">
+                        <p>Configure tempos especiais e regras para horas adicionais no cadastro do quarto.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-star"></i>
+                                <span>Tempo Especial</span>
+                            </div>
+                            <p>O campo "Tempo Especial" define minutos para tempo promocional. Só terá validade para quartos que não estão com tabelas de valores definidos.</p>
+                            
+                            <div class="example-box">
+                                <div class="example-title">
+                                    <i class="fas fa-lightbulb"></i> Exemplo Prático
+                                </div>
+                                <p><strong>Configuração:</strong></p>
+                                <ul class="info-list">
+                                    <li><i class="fas fa-clock"></i> Locação configurada para 1 hora</li>
+                                    <li><i class="fas fa-star"></i> Especial de 30 minutos</li>
+                                </ul>
+                                <p><strong>Funcionamento:</strong> Caso o cliente fique por 20 minutos, irá cobrar o valor do tempo especial e não o valor de 1 hora cheia.</p>
+                            </div>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Tempo Especial (Min):</span>
+                                    <input type="number" class="input-field" value="30" style="width: 80px;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Configuração de Adicionais</span>
+                            </div>
+                            <p>O sistema utiliza a quantidade de horas definida no cadastro do quarto. Quando passar das horas configuradas, inicia a contagem do campo "Tolerância (Min)".</p>
+                            
+                            <div class="example-box">
+                                <div class="example-title">
+                                    <i class="fas fa-calculator"></i> Exemplo: Tolerância
+                                </div>
+                                <p><strong>Configuração:</strong></p>
+                                <ul class="info-list">
+                                    <li><i class="fas fa-clock"></i> Locação configurada para 1 hora</li>
+                                    <li><i class="fas fa-hourglass-half"></i> Tempo de tolerância 15 minutos</li>
+                                </ul>
+                                <p><strong>Cenário 1:</strong> Cliente ficou 1:12 hrs → Cobra somente 1 hora</p>
+                                <p><strong>Cenário 2:</strong> Cliente ficou 1:16 hrs → Cobra hora adicional</p>
+                            </div>
+                            
+                            <div class="example-box">
+                                <div class="example-title">
+                                    <i class="fas fa-calculator"></i> Exemplo: Tempo Adicional
+                                </div>
+                                <p><strong>Configuração:</strong></p>
+                                <ul class="info-list">
+                                    <li><i class="fas fa-clock"></i> Locação 1 hora</li>
+                                    <li><i class="fas fa-hourglass-half"></i> Tolerância 15 minutos</li>
+                                    <li><i class="fas fa-plus"></i> Tempo Adicional 30 minutos</li>
+                                </ul>
+                                <p><strong>Funcionamento:</strong></p>
+                                <p>Caso o cliente fique 1:16 minutos → cobra adicional para +30 minutos</p>
+                                <p>Com essa inclusão, sistema considera: locação + adicional + tolerância</p>
+                                <p><strong>Resultado:</strong> Cobra segunda hora adicional a partir de 1:46 mins</p>
+                            </div>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Tolerância (Min):</span>
+                                    <input type="number" class="input-field" value="15" style="width: 80px;">
+                                </div>
+                            </div>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Tempo Adicional (Min):</span>
+                                    <input type="number" class="input-field" value="30" style="width: 80px;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="deprecated-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Valores por Hora (OBSOLETO)</h3>
+                            <p><strong>Funcionamento:</strong> Somente para negociações na aba informações adicionais do quarto, com opções de negociação habilitadas nas configurações gerais.</p>
+                            <p><strong>Status:</strong> Esta opção será descontinuada, assim como adicionais por casal.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. Valores por Período e Adicionais</h2>
+                    <div class="step-description">
+                        <p>Configure valores diferentes para horários específicos utilizando a opção "Valores por Período".</p>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-clock"></i>
+                                Valores por Período - Cadastro
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Descrição (Nome da tabela)</div>
+                                <input type="text" class="input-field" value="Tabela Horário Comercial" placeholder="Digite o nome da tabela">
+                            </div>
+                            
+                            <div class="table-visual">
+                                <div class="table-header">Configuração de Períodos</div>
+                                
+                                <div class="table-row header">
+                                    <div class="table-cell">Sequência</div>
+                                    <div class="table-cell">Tempo da Negociação</div>
+                                    <div class="table-cell">Valor do Período</div>
+                                    <div class="table-cell">Ações</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">1</div>
+                                    <div class="table-cell">
+                                        <input type="text" class="input-field" value="1:00" placeholder="HH:MM">
+                                    </div>
+                                    <div class="table-cell">
+                                        <input type="text" class="input-field" value="R$ 80,00" placeholder="Valor">
+                                    </div>
+                                    <div class="table-cell">
+                                        <button class="button-small add-period-btn"><i class="fas fa-plus"></i></button>
+                                        <button class="button-small remove-period-btn" style="background-color: #ef4444;"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">2</div>
+                                    <div class="table-cell">
+                                        <input type="text" class="input-field" value="0:30" placeholder="HH:MM">
+                                    </div>
+                                    <div class="table-cell">
+                                        <input type="text" class="input-field" value="R$ 40,00" placeholder="Valor">
+                                    </div>
+                                    <div class="table-cell">
+                                        <button class="button-small add-period-btn"><i class="fas fa-plus"></i></button>
+                                        <button class="button-small remove-period-btn" style="background-color: #ef4444;"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">3</div>
+                                    <div class="table-cell">
+                                        <input type="text" class="input-field" value="0:30" placeholder="HH:MM">
+                                    </div>
+                                    <div class="table-cell">
+                                        <input type="text" class="input-field" value="R$ 40,00" placeholder="Valor">
+                                    </div>
+                                    <div class="table-cell">
+                                        <button class="button-small add-period-btn"><i class="fas fa-plus"></i></button>
+                                        <button class="button-small remove-period-btn" style="background-color: #ef4444;"><i class="fas fa-minus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button class="calculate-btn save-periods-btn">
+                                    <i class="fas fa-save"></i> Salvar Tabela
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Como Funciona</span>
+                            </div>
+                            <p>Os Valores por Período podem ser utilizados de duas formas:</p>
+                            <ol class="process-steps">
+                                <li><strong>Em tabelas de preços:</strong> Para valores diferentes em horários específicos</li>
+                                <li><strong>Diretamente no quarto:</strong> Campo "Valores Período" no cadastro do quarto</li>
+                            </ol>
+                            <div class="warning-box">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Requisito</h3>
+                                <p>O Tipo Acerto Financeiro precisa estar com a opção "Período" para ser efetiva a configuração informada no campo Valores Período.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-cog"></i>
+                                <span>Acesso e Configuração</span>
+                            </div>
+                            <ol class="process-steps">
+                                <li>Acesse pela lupa ou <span class="highlight">CTRL + F</span> → "Valores por Período"</li>
+                                <li>Clique em "Incluir" para nova tabela</li>
+                                <li>Preencha os campos:
+                                    <ul style="margin-left: 20px; margin-top: 10px;">
+                                        <li><strong>Descrição:</strong> Nome da tabela</li>
+                                        <li><strong>+ (Símbolo positivo):</strong> Incluir linha</li>
+                                        <li><strong>- (Símbolo negativo):</strong> Remover linha</li>
+                                        <li><strong>Sequência:</strong> Ordem de cobrança</li>
+                                        <li><strong>Tempo da Negociação:</strong> Tempo do período</li>
+                                        <li><strong>Valor do Período:</strong> Valor cobrado</li>
+                                    </ul>
+                                </li>
+                                <li>Clique em "Salvar" na barra superior</li>
+                                <li>Horas adicionais: cobradas do campo "Vlr Hora Adic." do quarto</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-edit"></i>
+                                <span>Edição de Tabela Existente</span>
+                            </div>
+                            <p>Para editar uma tabela já cadastrada:</p>
+                            <ol class="process-steps">
+                                <li>Acesse a tela "Valores por Período"</li>
+                                <li>Clique 2x sobre o nome da tabela desejada</li>
+                                <li>Faça as alterações necessárias</li>
+                                <li>Clique fora da tabela ou pressione TAB para efetivar</li>
+                                <li>Clique em "Salvar" para confirmar</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-plus-circle"></i>
+                                Adicionais por Período
+                            </div>
+                            <p>Os "Adicionais por período" também podem ser utilizados em cadastro de tabelas valores e/ou cadastro dos quartos, para definir valores e períodos diferentes do inserido no cadastro do quarto.</p>
+                            
+                            <div class="table-visual">
+                                <div class="table-header">Campos Disponíveis</div>
+                                
+                                <div class="table-row header">
+                                    <div class="table-cell">Campo</div>
+                                    <div class="table-cell">Descrição</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Descrição</div>
+                                    <div class="table-cell">Nome da tabela</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Período</div>
+                                    <div class="table-cell">Quantas horas para o valor</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tipo de Calculo</div>
+                                    <div class="table-cell">Valor (R$) ou Percentual (%)</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Base de Cálculo</div>
+                                    <div class="table-cell">Para percentual: Quarto, Pernoite, Locação ou Diária</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Valor</div>
+                                    <div class="table-cell">Valor ou percentual a ser cobrado</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-lightbulb"></i> Recomendação</h3>
+                            <p>O mais utilizado é a opção "Valor" na coluna Tipo de cálculo, informando o valor individualmente para cada hora adicional. A opção "Percentual" calcula com base no valor da cotação.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. Tabelas de Preço - Configuração Completa</h2>
+                    <div class="step-description">
+                        <p>Configure tabelas de preço complexas com múltiplas opções de personalização.</p>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-table"></i>
+                                Tabela de Preço (Locação)
+                            </div>
+                            
+                            <div class="table-visual">
+                                <div class="table-header">Colunas da Tabela</div>
+                                
+                                <div class="table-row header">
+                                    <div class="table-cell">Coluna</div>
+                                    <div class="table-cell">Descrição</div>
+                                    <div class="table-cell">Exemplo</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Dia da Semana</div>
+                                    <div class="table-cell">Obrigatório definir seg à dom</div>
+                                    <div class="table-cell">Segunda a Domingo</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Hora Inicial/Final</div>
+                                    <div class="table-cell">Horário de início e fim</div>
+                                    <div class="table-cell">00:00:01 a 23:59:59</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Valida Fim do Período</div>
+                                    <div class="table-cell">Validar horário de fim</div>
+                                    <div class="table-cell">Sim/Não</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tipo Configuração</div>
+                                    <div class="table-cell">Padrão: "4-Tabela Valores"</div>
+                                    <div class="table-cell">4-Tabela Valores</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Horas Locação</div>
+                                    <div class="table-cell">Quantidade de horas</div>
+                                    <div class="table-cell">1, 2, 3...</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tabela de valores</div>
+                                    <div class="table-cell">Valores por período</div>
+                                    <div class="table-cell">Tabela Comercial</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tabela de Adicionais</div>
+                                    <div class="table-cell">Adicionais por período</div>
+                                    <div class="table-cell">Adicional Padrão</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Valor 1ª hora, 2ª hora...</div>
+                                    <div class="table-cell">Valores individuais por hora</div>
+                                    <div class="table-cell">R$ 80, R$ 40, R$ 40...</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-link"></i>
+                                <span>Vinculação da Tabela</span>
+                            </div>
+                            <p>Depois de criar a tabela, você precisará vinculá-la no cadastro de cada quarto:</p>
+                            <ol class="process-steps">
+                                <li>Acesse o cadastro do quarto (clique 2x sobre o quarto)</li>
+                                <li>Localize a seção de configuração de tabelas</li>
+                                <li>Selecione a tabela criada no campo apropriado</li>
+                                <li>Salve as alterações no quarto</li>
+                                <li>Repita para cada quarto que utilizará esta tabela</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-moon"></i>
+                                Configuração do Pernoite/Diária
+                            </div>
+                            
+                            <div class="table-visual">
+                                <div class="table-header">Opções da Tabela</div>
+                                
+                                <div class="table-row header">
+                                    <div class="table-cell">Campo</div>
+                                    <div class="table-cell">Descrição</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Descrição</div>
+                                    <div class="table-cell">Nome da tabela</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tipo de Tabela</div>
+                                    <div class="table-cell">Pernoite ou Diária</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Quartos</div>
+                                    <div class="table-cell">Checkbox dos quartos</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Início do Pernoite</div>
+                                    <div class="table-cell">Horário para iniciar pernoites</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Entrada Perm. Até</div>
+                                    <div class="table-cell">Limite de entrada para pernoite</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Fim do Pernoite</div>
+                                    <div class="table-cell">Horário de encerramento</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Valida Fim do Pernoite</div>
+                                    <div class="table-cell">Validar horário de término</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Calculo do Pernoite</div>
+                                    <div class="table-cell">Valor para o período</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tab. Adicionais Ant./Pós</div>
+                                    <div class="table-cell">Tabelas de adicionais</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exchange-alt"></i> Alteração para Diária</h3>
+                            <p>Caso a configuração seja voltada para diária, basta alterar a opção "Tipo de Tabela" dentro da tabela para "Diária". Desta forma, selecionando o quarto no campo Quartos, você estará salvando a tabela como diária.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">6. Tabelas Especiais e Feriados</h2>
+                    <div class="step-description">
+                        <p>Configure tabelas específicas para períodos especiais e feriados.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-calendar-star"></i>
+                                <span>Pernoite por Entrada</span>
+                            </div>
+                            <p>A opção "Conf. Pernoite por Entrada" serve para configurar apenas o pernoite, definindo valores diferentes conforme horário de entrada.</p>
+                            
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-cog"></i>
+                                    Configuração da Tabela
+                                </div>
+                                
+                                <div class="table-visual">
+                                    <div class="table-header">Opções Disponíveis</div>
+                                    
+                                    <div class="table-row">
+                                        <div class="table-cell"><strong>Descrição</strong></div>
+                                        <div class="table-cell">Nome da tabela</div>
+                                    </div>
+                                    
+                                    <div class="table-row">
+                                        <div class="table-cell"><strong>Quartos</strong></div>
+                                        <div class="table-cell">Checkbox do quarto</div>
+                                    </div>
+                                    
+                                    <div class="table-row">
+                                        <div class="table-cell"><strong>Início</strong></div>
+                                        <div class="table-cell">Horário para iniciar pernoites</div>
+                                    </div>
+                                    
+                                    <div class="table-row">
+                                        <div class="table-cell"><strong>Fim</strong></div>
+                                        <div class="table-cell">Horário para encerrar pernoites</div>
+                                    </div>
+                                    
+                                    <div class="table-row">
+                                        <div class="table-cell"><strong>Quant Horas</strong></div>
+                                        <div class="table-cell">Duração do pernoite</div>
+                                    </div>
+                                    
+                                    <div class="table-row">
+                                        <div class="table-cell"><strong>Hora Saída</strong></div>
+                                        <div class="table-cell">Horário de encerramento</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h3><i class="fas fa-info-circle"></i> Utilização</h3>
+                                <p>Esta tabela é utilizada para motéis que utilizam valores diferentes para o mesmo dia em relação a pernoites, com base no horário de entrada do cliente.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="holiday-config">
+                            <div class="holiday-card">
+                                <div class="holiday-icon">
+                                    <i class="fas fa-calendar-day"></i>
+                                </div>
+                                <h3>Feriados Cadastrados</h3>
+                                <p>Podem ter horário de início/fim e validar dia anterior</p>
+                                <div class="table-type">Nacional</div>
+                                <div class="table-type">Municipal</div>
+                            </div>
+                            
+                            <div class="holiday-card">
+                                <div class="holiday-icon">
+                                    <i class="fas fa-table"></i>
+                                </div>
+                                <h3>Tabelas para Feriados</h3>
+                                <p>Cadastradas da mesma forma que tabelas normais</p>
+                                <div class="table-type">Locação</div>
+                                <div class="table-type">Pernoite</div>
+                            </div>
+                            
+                            <div class="holiday-card">
+                                <div class="holiday-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <h3>Limitação</h3>
+                                <p>Apenas a opção diária não será válida para rodar junto com os feriados</p>
+                                <div style="background-color: #fef3c7; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                    Diária não funciona em feriados
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="example-box">
+                            <div class="example-title">
+                                <i class="fas fa-calendar-alt"></i> Exemplo: Feriado de Natal
+                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-calendar"></i> <strong>Data:</strong> 25/12 - Natal</li>
+                                <li><i class="fas fa-flag"></i> <strong>Tipo:</strong> N (Nacional)</li>
+                                <li><i class="fas fa-check"></i> <strong>Feriado dia Anterior:</strong> Sim</li>
+                                <li><i class="fas fa-clock"></i> <strong>Horário início anterior:</strong> 18:00</li>
+                                <li><i class="fas fa-clock"></i> <strong>Horário fim anterior:</strong> 23:59</li>
+                                <li><i class="fas fa-clock"></i> <strong>Horário início feriado:</strong> 00:00</li>
+                                <li><i class="fas fa-clock"></i> <strong>Horário fim feriado:</strong> 23:59</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-link"></i>
+                                <span>Vinculação nos Quartos</span>
+                            </div>
+                            <p>As tabelas para feriados são inseridas no campo "Tabelas de Feriados" no cadastro do quarto. Irão validar a partir da data e hora informada no cadastro dos feriados.</p>
+                            
+                            <div class="room-config">
+                                <div class="room-name">Quarto 101 - Luxo</div>
+                                <div class="room-field">
+                                    <span class="field-label">Tabelas de Feriados:</span>
+                                    <select class="form-select" style="width: 200px;">
+                                        <option value="">Selecione tabela...</option>
+                                        <option value="feriado1">Tabela Feriados Natal</option>
+                                        <option value="feriado2">Tabela Feriados Ano Novo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="deprecated-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Opções a Serem Obsoletas</h3>
+                            <p>Seguiremos um novo padrão para facilitar as alterações dos valores, inativando opções existentes por não serem utilizadas.</p>
+                            <p><strong>Clientes que ainda as utilizarem, será necessário o reajuste referente as opções disponíveis:</strong></p>
+                            <ul class="info-list">
+                                <li><i class="fas fa-clock"></i> <strong>Valores por Hora</strong> e adicionais por hora e casais</li>
+                                <li><i class="fas fa-bed"></i> <strong>Tab Horas Pernoite Automático</strong></li>
+                            </ul>
+                            <div style="background-color: #fef3c7; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                                <i class="fas fa-info-circle"></i> Estas opções serão descontinuadas em versões futuras
+                            </div>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-check-circle"></i>
+                            Configuração completa! Agora seu sistema Imperium está com todas as tabelas de preço configuradas e funcionando corretamente.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Tabelas de Preço - Sistema Imperium | Documentação Técnica | Atualizado em 2023</p>
+            <p>Configuração completa de tabelas de preço para hospedagem por hora, pernoite e diária.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Adicionar eventos aos indicadores de progresso
+            progressSteps.forEach(step => {
+                step.addEventListener('click', function() {
+                    const stepNum = parseInt(this.getAttribute('data-step'));
+                    if (stepNum <= currentStep) {
+                        goToStep(stepNum);
+                    }
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar indicadores de progresso
+                updateProgressSteps();
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar indicadores de progresso
+            function updateProgressSteps() {
+                progressSteps.forEach((step, index) => {
+                    const stepNum = index + 1;
+                    
+                    step.classList.remove('active', 'completed');
+                    
+                    if (stepNum === currentStep) {
+                        step.classList.add('active');
+                    } else if (stepNum < currentStep) {
+                        step.classList.add('completed');
+                    }
+                });
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Simulador de cotação no passo 1
+            const calculateBtn = document.getElementById('calculate-quote');
+            const quoteResult = document.getElementById('quote-result');
+            
+            if (calculateBtn && quoteResult) {
+                calculateBtn.addEventListener('click', function() {
+                    const roomSelect = document.getElementById('quote-room');
+                    const stayType = document.getElementById('stay-type').value;
+                    
+                    if (!roomSelect.value) {
+                        alert('Por favor, selecione um quarto primeiro.');
+                        return;
+                    }
+                    
+                    // Mostrar animação de cálculo
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculando...';
+                    this.disabled = true;
+                    
+                    // Simular cálculo
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                        
+                        // Determinar tipo de tabela com base na seleção
+                        let tableType = '';
+                        let roomValue = '';
+                        let additionalHour = '';
+                        let totalValue = '';
+                        
+                        switch(stayType) {
+                            case 'locacao':
+                                tableType = 'Locação - Quarto';
+                                roomValue = 'R$ 120,00';
+                                additionalHour = 'R$ 40,00';
+                                totalValue = 'R$ 160,00';
+                                break;
+                            case 'pernoite':
+                                tableType = 'Pernoite - Quarto';
+                                roomValue = 'R$ 200,00';
+                                additionalHour = 'R$ 50,00';
+                                totalValue = 'R$ 250,00';
+                                break;
+                            case 'diaria':
+                                tableType = 'Diária - Quarto';
+                                roomValue = 'R$ 300,00';
+                                additionalHour = 'R$ 60,00';
+                                totalValue = 'R$ 360,00';
+                                break;
+                        }
+                        
+                        // Atualizar resultados
+                        document.getElementById('room-value').textContent = roomValue;
+                        document.getElementById('additional-hour').textContent = additionalHour;
+                        document.getElementById('total-value').textContent = totalValue;
+                        document.getElementById('table-type').textContent = tableType;
+                        
+                        // Mostrar resultados
+                        quoteResult.style.display = 'block';
+                        quoteResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Destacar o campo "Tabela Vigente"
+                        const tableTypeElement = document.getElementById('table-type');
+                        tableTypeElement.style.animation = 'pulse 2s 3';
+                        
+                        setTimeout(() => {
+                            tableTypeElement.style.animation = '';
+                        }, 6000);
+                    }, 1500);
+                });
+            }
+            
+            // Simular adição de linha na tabela de valores por período
+            const addPeriodBtns = document.querySelectorAll('.add-period-btn');
+            const removePeriodBtns = document.querySelectorAll('.remove-period-btn');
+            
+            addPeriodBtns.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tableVisual = this.closest('.table-visual');
+                    
+                    if (tableVisual) {
+                        const rows = tableVisual.querySelectorAll('.table-row:not(.header)');
+                        const newRowNum = rows.length + 1;
+                        
+                        // Criar nova linha
+                        const newRow = document.createElement('div');
+                        newRow.className = 'table-row';
+                        newRow.innerHTML = `
+                            <div class="table-cell">${newRowNum}</div>
+                            <div class="table-cell">
+                                <input type="text" class="input-field" value="0:30" placeholder="HH:MM">
+                            </div>
+                            <div class="table-cell">
+                                <input type="text" class="input-field" value="R$ 40,00" placeholder="Valor">
+                            </div>
+                            <div class="table-cell">
+                                <button class="button-small add-period-btn"><i class="fas fa-plus"></i></button>
+                                <button class="button-small remove-period-btn" style="background-color: #ef4444;"><i class="fas fa-minus"></i></button>
+                            </div>
+                        `;
+                        
+                        tableVisual.appendChild(newRow);
+                        
+                        // Atualizar eventos dos novos botões
+                        addEventToNewButtons(newRow);
+                        
+                        // Atualizar números de sequência
+                        updateSequenceNumbers(tableVisual);
+                    }
+                });
+            });
+            
+            removePeriodBtns.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tableRow = this.closest('.table-row');
+                    const tableVisual = this.closest('.table-visual');
+                    
+                    if (tableRow && tableVisual) {
+                        const rows = tableVisual.querySelectorAll('.table-row:not(.header)');
+                        
+                        // Não remover se for a única linha
+                        if (rows.length > 1) {
+                            tableRow.remove();
+                            updateSequenceNumbers(tableVisual);
+                        } else {
+                            alert('Não é possível remover a última linha da tabela.');
+                        }
+                    }
+                });
+            });
+            
+            // Função para atualizar números de sequência
+            function updateSequenceNumbers(tableVisual) {
+                const rows = tableVisual.querySelectorAll('.table-row:not(.header)');
+                
+                rows.forEach((row, index) => {
+                    const seqCell = row.querySelector('.table-cell:first-child');
+                    if (seqCell) {
+                        seqCell.textContent = index + 1;
+                    }
+                });
+            }
+            
+            // Função para adicionar eventos aos novos botões
+            function addEventToNewButtons(newRow) {
+                const addBtn = newRow.querySelector('.add-period-btn');
+                const removeBtn = newRow.querySelector('.remove-period-btn');
+                
+                if (addBtn) {
+                    addBtn.addEventListener('click', function() {
+                        const tableVisual = this.closest('.table-visual');
+                        const rows = tableVisual.querySelectorAll('.table-row:not(.header)');
+                        const newRowNum = rows.length + 1;
+                        
+                        const newRowClone = document.createElement('div');
+                        newRowClone.className = 'table-row';
+                        newRowClone.innerHTML = `
+                            <div class="table-cell">${newRowNum}</div>
+                            <div class="table-cell">
+                                <input type="text" class="input-field" value="0:30" placeholder="HH:MM">
+                            </div>
+                            <div class="table-cell">
+                                <input type="text" class="input-field" value="R$ 40,00" placeholder="Valor">
+                            </div>
+                            <div class="table-cell">
+                                <button class="button-small add-period-btn"><i class="fas fa-plus"></i></button>
+                                <button class="button-small remove-period-btn" style="background-color: #ef4444;"><i class="fas fa-minus"></i></button>
+                            </div>
+                        `;
+                        
+                        tableVisual.appendChild(newRowClone);
+                        addEventToNewButtons(newRowClone);
+                        updateSequenceNumbers(tableVisual);
+                    });
+                }
+                
+                if (removeBtn) {
+                    removeBtn.addEventListener('click', function() {
+                        const tableRow = this.closest('.table-row');
+                        const tableVisual = this.closest('.table-visual');
+                        
+                        if (tableRow && tableVisual) {
+                            const rows = tableVisual.querySelectorAll('.table-row:not(.header)');
+                            
+                            if (rows.length > 1) {
+                                tableRow.remove();
+                                updateSequenceNumbers(tableVisual);
+                            } else {
+                                alert('Não é possível remover a última linha da tabela.');
+                            }
+                        }
+                    });
+                }
+            }
+            
+            // Simular salvamento de dados
+            const saveButtons = document.querySelectorAll('.save-room-btn, .save-periods-btn');
+            
+            saveButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                        
+                        // Mostrar mensagem de sucesso
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'success-container';
+                        successMsg.style.marginTop = '15px';
+                        successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Alterações salvas com sucesso!';
+                        
+                        this.parentElement.appendChild(successMsg);
+                        
+                        setTimeout(() => {
+                            successMsg.remove();
+                        }, 3000);
+                    }, 1500);
+                });
+            });
+            
+            // Permitir navegação por teclado
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (event.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Inicializar sequências na tabela de períodos
+            const tableVisuals = document.querySelectorAll('.table-visual');
+            tableVisuals.forEach(table => {
+                updateSequenceNumbers(table);
+            });
+        });
+    </script>
+</body>
+</html>

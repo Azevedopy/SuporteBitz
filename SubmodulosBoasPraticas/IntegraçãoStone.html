@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração com Stone - Bitz Softwares</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .link-box {
+            background-color: #e8f0fe;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .link-box i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .link-box a {
+            color: #1a73e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .link-box a:hover {
+            text-decoration: underline;
+        }
+        
+        .icons-example {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-item {
+            text-align: center;
+            padding: 15px;
+            width: 120px;
+        }
+        
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #1a73e8;
+            font-size: 24px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .info-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            width: 20px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .step-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .step-box:hover {
+            background-color: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .step-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .payment-types {
+            display: flex;
+            justify-content: space-around;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .payment-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            margin: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            border-color: #1a73e8;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-icon {
+            font-size: 40px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .payment-badge {
+            display: inline-block;
+            background-color: #1a73e8;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .not-supported {
+            background-color: #ef4444;
+        }
+        
+        .supported {
+            background-color: #10b981;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .config-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .config-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .config-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .config-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .config-table tr:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .badge-success {
+            background-color: #d1fae5;
+            color: #10b981;
+        }
+        
+        .badge-warning {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+        
+        .badge-error {
+            background-color: #fee2e2;
+            color: #ef4444;
+        }
+        
+        .integration-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-step {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            margin: 10px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .flow-step:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a73e8;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .flow-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+        
+        .form-box {
+            background-color: #f8fafc;
+            border: 2px dashed #1a73e8;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .form-title {
+            color: #1a73e8;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            background-color: #f0f7ff;
+            border-radius: 10px;
+            margin: 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #1a73e8;
+        }
+        
+        .contact-box {
+            background-color: #e8f0fe;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-right: 20px;
+        }
+        
+        .terminal-config {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .terminal-type {
+            text-align: center;
+            padding: 20px;
+            width: 250px;
+        }
+        
+        .terminal-icon {
+            font-size: 50px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .critical-box {
+            background-color: #fee2e2;
+            border-left: 5px solid #ef4444;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .critical-box h3 {
+            color: #dc2626;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .critical-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .troubleshooting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .troubleshooting-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .troubleshooting-card h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .troubleshooting-card h4 i {
+            margin-right: 10px;
+        }
+        
+        .alternative-box {
+            background-color: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .alternative-box h3 {
+            color: #0369a1;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .alternative-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .version-warning {
+            background-color: #fffbeb;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-types {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .integration-flow {
+                flex-direction: column;
+            }
+            
+            .flow-step:not(:last-child):after {
+                right: 50%;
+                top: auto;
+                bottom: -25px;
+                transform: translateX(50%) rotate(90deg);
+            }
+            
+            .terminal-config {
+                flex-direction: column;
+            }
+            
+            .troubleshooting-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModuloBoasPraticas/ConfiguraçõesGerais.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <div>
+                    <h1>Integração com Stone</h1>
+                    <p class="subtitle">Sistema de pagamentos com cartão e PIX para hotéis</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Integre seu hotel com a Stone para aceitar pagamentos com cartão de crédito/débito e PIX em todas as rotinas do sistema Bitz, desde reservas até pagamentos no quarto.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Visão Geral
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Parceria Stone
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Liberação Bitz
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Implantação
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Configuração
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Troubleshooting
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. Visão Geral da Integração</h2>
+                    <div class="step-description">
+                        <p>A integração com Stone permite ao hotel aceitar pagamentos com cartão e PIX em várias rotinas do sistema Bitz, proporcionando uma experiência completa de pagamento aos hóspedes.</p>
+                        
+                        <div class="version-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            FUNCIONA APENAS PARA V2 DA RESERVA
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Rotinas Atendidas</span>
+                            </div>
+                            
+                            <div class="payment-types">
+                                <div class="payment-card">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <h3>Motor de Reservas</h3>
+                                    <p>Pagamentos online via cartão e PIX</p>
+                                    <div class="payment-badge supported">Atendido</div>
+                                </div>
+                                
+                                <div class="payment-card">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <h3>Pagamentos no Quarto</h3>
+                                    <p>Cartão via POS e PIX</p>
+                                    <div class="payment-badge supported">Atendido</div>
+                                </div>
+                                
+                                <div class="payment-card">
+                                    <div class="payment-icon">
+                                        <i class="fas fa-store"></i>
+                                    </div>
+                                    <h3>Vendas no Hotel</h3>
+                                    <p>Pagamentos com PIX</p>
+                                    <div class="payment-badge supported">Atendido</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Rotinas NÃO Atendidas</span>
+                            </div>
+                            
+                            <div class="table-container">
+                                <table class="config-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Rotina</th>
+                                            <th>Status</th>
+                                            <th>Observação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Restaurante</strong></td>
+                                            <td><span class="badge badge-error">Não Atendida</span></td>
+                                            <td>Integração não disponível</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>DayUse com máquina POS</strong></td>
+                                            <td><span class="badge badge-error">Não Atendida</span></td>
+                                            <td>Apenas PIX disponível</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Conciliação de cartão</strong></td>
+                                            <td><span class="badge badge-warning">Manual</span></td>
+                                            <td>Processo permanece manual</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Tipos de Pagamento Suportados</span>
+                            </div>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-qrcode"></i>
+                                    </div>
+                                    <h3 class="feature-title">PIX</h3>
+                                    <p>Disponível para todas as rotinas</p>
+                                    <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                        <i class="fas fa-check"></i> Quarto, DayUse, Venda
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <h3 class="feature-title">Cartão (POS)</h3>
+                                    <p>Máquina física no hotel</p>
+                                    <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                        <i class="fas fa-check"></i> Quarto, EasyCheck, Web CheckIn
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <h3 class="feature-title">Cartão (Online)</h3>
+                                    <p>Pagamentos via internet</p>
+                                    <div style="background-color: #e8f0fe; padding: 8px; border-radius: 5px; margin-top: 10px; font-size: 12px;">
+                                        <i class="fas fa-check"></i> Motor de reservas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. Parceria com Stone</h2>
+                    <div class="step-description">
+                        <p>Existem diferentes formas de estabelecer a parceria com a Stone, dependendo do tipo de transação que o hotel deseja realizar.</p>
+                        
+                        <div class="form-box">
+                            <div class="form-title">Indicação de Cliente para Stone</div>
+                            <p>Para indicar um cliente à Stone, preencha o formulário oficial:</p>
+                            <div class="link-box">
+                                <i class="fas fa-link"></i>
+                                <a href="https://app.pipefy.com/public/form/JvcC9XwE" target="_blank">https://app.pipefy.com/public/form/JvcC9XwE</a>
+                            </div>
+                            <div class="qr-code">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                            <p style="font-size: 14px; color: #666;">OU o cliente pode realizar cadastro direto conforme abaixo:</p>
+                        </div>
+                        
+                        <div class="terminal-config">
+                            <div class="terminal-type">
+                                <div class="terminal-icon">
+                                    <i class="fas fa-calculator"></i>
+                                </div>
+                                <h3>Máquina Física</h3>
+                                <p><strong>Integração Connect</strong></p>
+                                <p>Transações com POS físico no hotel</p>
+                                <div class="link-box" style="margin: 15px 0;">
+                                    <i class="fas fa-user-plus"></i>
+                                    <a href="https://partnerhub.stone.com.br/#/lp-client/bitz" target="_blank">Cadastro Cliente Stone</a>
+                                </div>
+                                <div class="warning-box" style="margin: 10px 0; padding: 10px;">
+                                    <p><strong>Importante:</strong> Selecionar terminal <span class="highlight">"Aluguel"</span> no cadastro</p>
+                                </div>
+                            </div>
+                            
+                            <div class="terminal-type">
+                                <div class="terminal-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h3>Transações Online</h3>
+                                <p><strong>Integração Gateway</strong></p>
+                                <p>Pagamentos online (motor, links)</p>
+                                <div class="link-box" style="margin: 15px 0;">
+                                    <i class="fas fa-user-plus"></i>
+                                    <a href="https://www.pagar.me/" target="_blank">Cadastro Pagar.me</a>
+                                </div>
+                                <div class="warning-box" style="margin: 10px 0; padding: 10px;">
+                                    <p><strong>Importante:</strong> Selecionar terminal <span class="highlight">"E-commerce"</span> no cadastro</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-handshake"></i>
+                                <span>Responsabilidades do Cliente</span>
+                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-check"></i> <strong>Negociação de taxas:</strong> Diretamente com a Stone</li>
+                                <li><i class="fas fa-check"></i> <strong>Cadastro completo:</strong> Seguir os links específicos</li>
+                                <li><i class="fas fa-check"></i> <strong>Seleção correta:</strong> Terminal "Aluguel" ou "E-commerce"</li>
+                                <li><i class="fas fa-check"></i> <strong>Documentação:</strong> CNPJ e dados empresariais</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="alternative-box">
+                            <h3><i class="fas fa-exchange-alt"></i> Alternativa: Channex</h3>
+                            <p><strong>Quando o cliente não quiser adquirir Stone por causa das taxas:</strong></p>
+                            <p>É possível trocar o motor da Bitz pelo motor da Channex. Usando a Channex e seu motor de reservas é possível realizar pré-pagamentos sem ter nenhuma integração bancária, ou seja, sem taxas bancárias.</p>
+                            <p><strong>Funcionamento:</strong> O hotel recebe os dados do cartão do hóspede como pré-pagamento e ao chegar no hotel o hóspede passará o cartão na máquina do hotel para confirmar o pagamento.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. Liberação da Integração na Bitz</h2>
+                    <div class="step-description">
+                        <p>Após o cadastro na Stone, é necessário solicitar a liberação da integração no sistema Bitz.</p>
+                        
+                        <div class="contact-box">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: #1a73e8; margin-bottom: 10px;">Contato Comercial Bitz</h3>
+                                <p>O cliente deve contatar nosso comercial solicitando o <span class="highlight">upsell da integração com a Stone</span> diretamente com:</p>
+                                <div style="background-color: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                                        <i class="fas fa-user" style="color: #1a73e8; margin-right: 10px;"></i>
+                                        <strong>Luiza</strong>
+                                    </div>
+                                    <div style="display: flex; align-items: center;">
+                                        <i class="fas fa-phone" style="color: #1a73e8; margin-right: 10px;"></i>
+                                        <strong>(46) 99107-2468</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="integration-flow">
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <h4>Cliente Cadastrado</h4>
+                                <p>Stone ou Pagar.me</p>
+                            </div>
+                            
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h4>Contato Comercial</h4>
+                                <p>Solicitação de upsell</p>
+                            </div>
+                            
+                            <div class="flow-step">
+                                <div class="flow-icon">
+                                    <i class="fas fa-unlock"></i>
+                                </div>
+                                <h4>Liberação</h4>
+                                <p>Equipe Bitz ativa integração</p>
+                            </div>
+                        </div>
+                        
+                        <div class="critical-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Informações Críticas ao Cliente</h3>
+                            <p><strong>Cliente precisa cadastrar a chave PIX dentro do app da Stone para poder liberar o módulo de PIX.</strong></p>
+                            <p>Sem a chave PIX configurada no app da Stone, o módulo de pagamentos via PIX não funcionará no sistema Bitz.</p>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Processo de Liberação</span>
+                            </div>
+                            <ol class="process-steps">
+                                <li>Cliente realiza cadastro na Stone/Pagar.me</li>
+                                <li>Cliente contata comercial Bitz (Luiza)</li>
+                                <li>Solicitação formal de upsell</li>
+                                <li>Equipe Bitz valida cadastro</li>
+                                <li>Liberação técnica da integração</li>
+                                <li>Configuração no sistema Bitz</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. Processo de Implantação</h2>
+                    <div class="step-description">
+                        <p>O processo de implantação varia conforme o cliente já seja ou não cliente da Stone.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-building"></i>
+                                <span>Cenário 1: Cliente Já é Cliente Stone</span>
+                            </div>
+                            
+                            <div class="terminal-config">
+                                <div class="terminal-type">
+                                    <div class="terminal-icon">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                    <h3>Connect (Máquina Física)</h3>
+                                    <p><strong>Modelo de captura:</strong> Aluguel</p>
+                                    <p><strong>Ativação:</strong> Partnerhub</p>
+                                    <div class="badge badge-success">Responsável: Deyse</div>
+                                </div>
+                                
+                                <div class="terminal-type">
+                                    <div class="terminal-icon">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <h3>Gateway (Online)</h3>
+                                    <p><strong>Modelo de captura:</strong> E-commerce</p>
+                                    <p><strong>Ativação:</strong> Pagar.me</p>
+                                    <div class="badge badge-success">Responsável: Alan</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-ticket-alt"></i>
+                                Processo para Cliente Existente
+                            </div>
+                            
+                            <ol class="process-steps">
+                                <li><strong>Criar ticket</strong> com macro "Ativação Stone"</li>
+                                <li><strong>Responsável:</strong> Deyse (Connect) ou Alan (Gateway)</li>
+                                <li><strong>Informações necessárias:</strong> StoneCode e CNPJ</li>
+                                <li><strong>Plataforma:</strong> Ativar API no Partnerhub ou Pagar.me</li>
+                                <li><strong>Campo:</strong> 'Ativação de lojista'</li>
+                                <li><strong>Passar dados</strong> para produto (Giovani) para liberação no painel</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-download"></i>
+                                <span>Download do Aplicativo</span>
+                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-clock"></i> Aplicação será baixada em até <strong>3 horas</strong> após liberação</li>
+                                <li><i class="fas fa-power-off"></i> Terminal deve estar <strong>ligado</strong> para download</li>
+                                <li><i class="fas fa-wifi"></i> POS conectado ao <strong>Wi-fi ou 3G</strong></li>
+                                <li><i class="fas fa-sync-alt"></i> Verificar atualizações em: <span class="highlight">Menu → Ajustes → Verificar atualizações</span></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Cenário 2: Cliente Novo na Stone</span>
+                            </div>
+                            <p>O cliente deve ser indicado pela Bitz, através do formulário de indicação:</p>
+                            
+                            <div class="form-box">
+                                <div class="form-title">Formulário de Indicação</div>
+                                <p>A Stone entrará em contato para negociar taxas</p>
+                                <div class="link-box">
+                                    <i class="fas fa-link"></i>
+                                    <a href="https://app.pipefy.com/public/form/JvcC9XwE" target="_blank">Formulário de Indicação Stone</a>
+                                </div>
+                            </div>
+                            
+                            <div class="process-steps">
+                                <li>Cliente preenche formulário de indicação</li>
+                                <li>Stone entra em contato para negociar taxas</li>
+                                <li>Cadastro fica no dashboard do Partnerhub</li>
+                                <li>Status no kanban: <span class="highlight">coluna "credenciado"</span></li>
+                                <li>Após chaves disponíveis, solicitar liberação a Giovani</li>
+                            </div>
+                        </div>
+                        
+                        <div class="critical-box">
+                            <h3><i class="fas fa-exclamation-circle"></i> Observações Importantes</h3>
+                            <ul class="info-list">
+                                <li><i class="fas fa-mobile-alt"></i> <strong>Link de pagamento e PIX:</strong> Obrigatório cadastro de CPF e telefone (exigência Stone)</li>
+                                <li><i class="fas fa-percentage"></i> <strong>Taxas diferentes por operadora:</strong> Cadastrar operadoras separadamente</li>
+                                <li><i class="fas fa-redo"></i> <strong>Erro na ativação:</strong> Solicitar reinício da máquina (desligar 10 segundos)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. Configuração no Sistema Bitz</h2>
+                    <div class="step-description">
+                        <p>Após a liberação técnica, configure o sistema Bitz para utilizar a integração com Stone.</p>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-toggle-on"></i>
+                                <span>Passo 1: Habilitar Gateway Stone</span>
+                            </div>
+                            <p>Na configuração de módulos adicionais, habilitar o gateway da Stone:</p>
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-cog"></i>
+                                    Módulos Adicionais
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; padding: 15px; background-color: white; border-radius: 5px; margin: 10px 0;">
+                                    <div>
+                                        <strong>Gateway Stone</strong>
+                                        <div style="font-size: 12px; color: #666;">Integração com Stone para pagamentos</div>
+                                    </div>
+                                    <div class="toggle-switch active" style="display: inline-block;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Passo 2: Configurar Forma de Pagamento PIX</span>
+                            </div>
+                            <p>Criar uma forma de pagamento padrão para o PIX da Stone:</p>
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-edit"></i>
+                                    Cadastro de Formas de Pagamento
+                                </div>
+                                <div style="background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                        <i class="fas fa-qrcode" style="color: #1a73e8; margin-right: 10px;"></i>
+                                        <strong>PIX Stone</strong>
+                                    </div>
+                                    <div style="font-size: 12px; color: #666;">
+                                        <strong>Tipo:</strong> Outros<br>
+                                        <strong>Status:</strong> Ativo<br>
+                                        <strong>Observação:</strong> Internamente continua sendo um acerto em "Outros"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Passo 3: Configurar Motor de Reservas</span>
+                            </div>
+                            <p>Nos parâmetros do motor deve ser informada a forma de pagamento padrão para a Stone:</p>
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-sliders-h"></i>
+                                    Parâmetros do Motor de Reservas
+                                </div>
+                                <div style="background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong>Forma de Pagamento Padrão Stone:</strong>
+                                        <div style="background-color: #f8fafc; padding: 8px; border-radius: 4px; margin-top: 5px;">
+                                            PIX Stone
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-terminal"></i>
+                                <span>Passo 4: Configurar Terminal de Pagamento</span>
+                            </div>
+                            <p>Para recebimentos na comanda do hotel, configure um terminal de pagamento:</p>
+                            <div class="config-screen">
+                                <div class="screen-header">
+                                    <i class="fas fa-cash-register"></i>
+                                    Cadastro de Terminal de Pagamento
+                                </div>
+                                <div style="background-color: white; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong>Tipo:</strong> Stone
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <strong>Pode ser o mesmo para PIX:</strong> Sim
+                                    </div>
+                                    <div>
+                                        <strong>Configuração Operadoras:</strong>
+                                        <div style="background-color: #f8fafc; padding: 8px; border-radius: 4px; margin-top: 5px;">
+                                            Marcar opção "STONE" nas operadoras cadastradas
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-tv"></i>
+                                <span>Funcionamento no Quarto</span>
+                            </div>
+                            <p>Ao informar a operadora que usa Stone no quarto:</p>
+                            <div class="process-steps">
+                                <li>Habilitará o campo do terminal</li>
+                                <li>Ao adicionar, mostrará a tela de pagamento da Stone</li>
+                                <li>Processamento automático do pagamento</li>
+                            </div>
+                            
+                            <div class="critical-box">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Atenção: Configuração da Máquina</h3>
+                                <ul class="info-list">
+                                    <li><i class="fas fa-check-circle"></i> <strong>Máquina Smart:</strong> Função de pedidos ativada (Ajustes)</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>Status:</strong> Máquina deve estar "aguardando pedido"</li>
+                                    <li><i class="fas fa-check-circle"></i> <strong>Conexão:</strong> Internet estável (Wi-fi preferencialmente)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">6. Troubleshooting e Problemas Comuns</h2>
+                    <div class="step-description">
+                        <p>Soluções para problemas comuns que podem ocorrer durante a implantação e uso da integração.</p>
+                        
+                        <div class="critical-box">
+                            <h3><i class="fas fa-bug"></i> Problema: Falha ao Configurar Aplicativo com API POSConnect</h3>
+                            <p><strong>Sintoma:</strong> Erro ao configurar o aplicativo com a API POSConnect.</p>
+                        </div>
+                        
+                        <div class="troubleshooting-grid">
+                            <div class="troubleshooting-card">
+                                <h4><i class="fas fa-sync-alt"></i> Solução 1: Atualizar Maquininha</h4>
+                                <p>Acessar <span class="highlight">"Configurações/Ajuste" → "Atualizar"</span></p>
+                                <p>Garantir conexão estável à internet, preferencialmente Wi-Fi.</p>
+                            </div>
+                            
+                            <div class="troubleshooting-card">
+                                <h4><i class="fas fa-link"></i> Solução 2: Verificar Vínculo</h4>
+                                <p>Certificar que o serial do POS está vinculado ao Stone Code de teste.</p>
+                                <p>Caso não esteja, preencher formulário de vínculo.</p>
+                            </div>
+                            
+                            <div class="troubleshooting-card">
+                                <h4><i class="fas fa-exclamation-circle"></i> Erro Específico</h4>
+                                <p><strong>"COULD_NOT_ACTIVATE_WITH_ACCEPTOR_CONFIGURATION_UPDATE_DATA_NULL"</strong></p>
+                                <p>Indica que o serial não foi vinculado corretamente.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-redo"></i>
+                                <span>Procedimento de Reinicialização</span>
+                            </div>
+                            <p>Quando ocorrer erro na ativação com máquina física:</p>
+                            <ol class="process-steps">
+                                <li><strong>Solicitar reinício da máquina</strong></li>
+                                <li><strong>Desligar completamente</strong> por 10 segundos</li>
+                                <li><strong>Ligar novamente</strong> e aguardar inicialização</li>
+                                <li><strong>Verificar conexão</strong> com internet</li>
+                                <li><strong>Tentar ativação</strong> novamente</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-wifi"></i>
+                                <span>Problemas de Conexão</span>
+                            </div>
+                            <ul class="info-list">
+                                <li><i class="fas fa-signal"></i> <strong>Verificar internet:</strong> Wi-fi ou 3G estável</li>
+                                <li><i class="fas fa-power-off"></i> <strong>Reiniciar POS:</strong> Desligar e ligar após 30 segundos</li>
+                                <li><i class="fas fa-sync-alt"></i> <strong>Atualizar sistema:</strong> Menu → Ajustes → Verificar atualizações</li>
+                                <li><i class="fas fa-network-wired"></i> <strong>Testar conexão:</strong> Navegar na internet pelo POS</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step-box">
+                            <div class="step-header">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Problemas com Pagamentos</span>
+                            </div>
+                            <div class="troubleshooting-grid">
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-times-circle"></i> Pagamento Não Processado</h4>
+                                    <p>Verificar se a máquina está em modo "aguardando pedido"</p>
+                                    <p>Conferir se função de pedidos está ativada</p>
+                                </div>
+                                
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-qrcode"></i> PIX Não Gerado</h4>
+                                    <p>Verificar se chave PIX está cadastrada no app Stone</p>
+                                    <p>Confirmar cadastro de CPF e telefone no sistema</p>
+                                </div>
+                                
+                                <div class="troubleshooting-card">
+                                    <h4><i class="fas fa-ban"></i> Operadora Não Reconhecida</h4>
+                                    <p>Conferir se operadora está marcada como "STONE"</p>
+                                    <p>Verificar cadastro completo da operadora</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-headset"></i>
+                            Se o problema persistir, compartilhe detalhes do erro com nossa equipe de suporte para que possamos ajudar melhor!
+                        </div>
+                        
+                        <div class="contact-box" style="margin-top: 30px;">
+                            <div class="contact-icon">
+                                <i class="fas fa-life-ring"></i>
+                            </div>
+                            <div>
+                                <h3 style="color: #1a73e8; margin-bottom: 10px;">Suporte Técnico</h3>
+                                <p>Para problemas técnicos com a integração Stone, entre em contato com nossa equipe através dos canais oficiais de suporte Bitz.</p>
+                                <div style="background-color: white; padding: 15px; border-radius: 8px; margin-top: 10px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                                        <i class="fas fa-ticket-alt" style="color: #1a73e8; margin-right: 10px;"></i>
+                                        <strong>Criar Ticket:</strong> Macro "Stone - Problemas Técnicos"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Integração com Stone - Bitz Softwares | Atualizado em 2023</p>
+            <p>Sistema completo de pagamentos com cartão e PIX para hotéis.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Configurar toggle switch interativo
+            const toggleSwitch = document.querySelector('.toggle-switch');
+            if (toggleSwitch) {
+                toggleSwitch.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    
+                    // Mostrar mensagem
+                    const configScreen = this.closest('.config-screen');
+                    if (configScreen) {
+                        const message = document.createElement('div');
+                        message.className = 'success-container';
+                        message.style.marginTop = '10px';
+                        message.style.fontSize = '12px';
+                        message.style.padding = '10px';
+                        
+                        if (this.classList.contains('active')) {
+                            message.innerHTML = '<i class="fas fa-check-circle"></i> Gateway Stone habilitado com sucesso!';
+                        } else {
+                            message.innerHTML = '<i class="fas fa-times-circle"></i> Gateway Stone desabilitado.';
+                        }
+                        
+                        // Remover mensagens anteriores
+                        const existingMessages = configScreen.querySelectorAll('.success-container');
+                        existingMessages.forEach(msg => {
+                            if (msg !== message) msg.remove();
+                        });
+                        
+                        configScreen.appendChild(message);
+                        
+                        // Remover após 5 segundos
+                        setTimeout(() => {
+                            if (message.parentNode) {
+                                message.remove();
+                            }
+                        }, 5000);
+                    }
+                });
+            }
+            
+            // Simular download da aplicação no passo 4
+            const downloadStep = document.getElementById('step-4');
+            if (downloadStep) {
+                const simulateDownloadBtn = document.createElement('button');
+                simulateDownloadBtn.innerHTML = '<i class="fas fa-download"></i> Simular Download da Aplicação';
+                simulateDownloadBtn.className = 'nav-btn';
+                simulateDownloadBtn.style.margin = '20px auto';
+                simulateDownloadBtn.style.display = 'block';
+                simulateDownloadBtn.style.backgroundColor = '#1a73e8';
+                simulateDownloadBtn.style.color = 'white';
+                
+                const downloadBox = downloadStep.querySelector('.step-box:nth-child(3)');
+                if (downloadBox) {
+                    downloadBox.appendChild(simulateDownloadBtn);
+                    
+                    simulateDownloadBtn.addEventListener('click', function() {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Iniciando download...';
+                        this.disabled = true;
+                        
+                        // Simular download
+                        setTimeout(() => {
+                            this.innerHTML = '<i class="fas fa-check"></i> Download em andamento!';
+                            this.style.backgroundColor = '#10b981';
+                            
+                            // Criar mensagem de simulação
+                            const progressMsg = document.createElement('div');
+                            progressMsg.className = 'config-screen';
+                            progressMsg.style.marginTop = '10px';
+                            progressMsg.innerHTML = `
+                                <div class="screen-header">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    Download da Aplicação Stone
+                                </div>
+                                <div style="padding: 15px;">
+                                    <div style="margin-bottom: 10px;">
+                                        <strong>Status:</strong> Baixando...
+                                        <div style="width: 100%; height: 10px; background-color: #e2e8f0; border-radius: 5px; margin-top: 5px;">
+                                            <div id="download-progress" style="width: 0%; height: 100%; background-color: #1a73e8; border-radius: 5px; transition: width 5s linear;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 12px; color: #666;">
+                                        <i class="fas fa-info-circle"></i> Aplicação será instalada automaticamente após download
+                                    </div>
+                                </div>
+                            `;
+                            
+                            downloadBox.appendChild(progressMsg);
+                            
+                            // Animar progresso
+                            setTimeout(() => {
+                                const progressBar = document.getElementById('download-progress');
+                                if (progressBar) {
+                                    progressBar.style.width = '100%';
+                                }
+                            }, 100);
+                            
+                            // Finalizar simulação
+                            setTimeout(() => {
+                                progressMsg.innerHTML = `
+                                    <div class="screen-header">
+                                        <i class="fas fa-check-circle"></i>
+                                        Download Concluído!
+                                    </div>
+                                    <div style="padding: 15px; text-align: center;">
+                                        <i class="fas fa-check" style="font-size: 40px; color: #10b981; margin-bottom: 10px;"></i>
+                                        <div style="font-weight: bold; color: #10b981;">Aplicação instalada com sucesso!</div>
+                                        <div style="font-size: 12px; color: #666; margin-top: 10px;">
+                                            A máquina Stone está pronta para uso com o sistema Bitz.
+                                        </div>
+                                    </div>
+                                `;
+                                
+                                // Restaurar botão após 5 segundos
+                                setTimeout(() => {
+                                    this.innerHTML = originalText;
+                                    this.style.backgroundColor = '#1a73e8';
+                                    this.disabled = false;
+                                    
+                                    // Remover mensagem após 8 segundos
+                                    setTimeout(() => {
+                                        if (progressMsg.parentNode) {
+                                            progressMsg.remove();
+                                        }
+                                    }, 8000);
+                                }, 5000);
+                            }, 5000);
+                        }, 1000);
+                    });
+                }
+            }
+            
+            // Simular troubleshooting no passo 6
+            const troubleshootingStep = document.getElementById('step-6');
+            if (troubleshootingStep) {
+                const testConnectionBtn = document.createElement('button');
+                testConnectionBtn.innerHTML = '<i class="fas fa-wifi"></i> Testar Conexão POS';
+                testConnectionBtn.className = 'nav-btn';
+                testConnectionBtn.style.margin = '20px auto';
+                testConnectionBtn.style.display = 'block';
+                testConnectionBtn.style.backgroundColor = '#1a73e8';
+                testConnectionBtn.style.color = 'white';
+                
+                const connectionBox = troubleshootingStep.querySelector('.step-box:nth-child(3)');
+                if (connectionBox) {
+                    connectionBox.appendChild(testConnectionBtn);
+                    
+                    testConnectionBtn.addEventListener('click', function() {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testando conexão...';
+                        this.disabled = true;
+                        
+                        // Simular teste
+                        setTimeout(() => {
+                            const isConnected = Math.random() > 0.3; // 70% chance de sucesso
+                            
+                            if (isConnected) {
+                                this.innerHTML = '<i class="fas fa-check"></i> Conexão OK!';
+                                this.style.backgroundColor = '#10b981';
+                                
+                                // Mostrar mensagem de sucesso
+                                const successMsg = document.createElement('div');
+                                successMsg.className = 'success-container';
+                                successMsg.style.marginTop = '10px';
+                                successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Conexão estabelecida com sucesso. POS online e pronto para uso.';
+                                connectionBox.appendChild(successMsg);
+                            } else {
+                                this.innerHTML = '<i class="fas fa-times"></i> Falha na conexão';
+                                this.style.backgroundColor = '#ef4444';
+                                
+                                // Mostrar mensagem de erro
+                                const errorMsg = document.createElement('div');
+                                errorMsg.className = 'critical-box';
+                                errorMsg.style.marginTop = '10px';
+                                errorMsg.style.padding = '10px';
+                                errorMsg.innerHTML = '<h3><i class="fas fa-exclamation-triangle"></i> Falha na Conexão</h3><p>Verifique a conexão com a internet e reinicie o POS.</p>';
+                                connectionBox.appendChild(errorMsg);
+                            }
+                            
+                            // Restaurar botão após 4 segundos
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.style.backgroundColor = '#1a73e8';
+                                this.disabled = false;
+                                
+                                // Remover mensagens após 6 segundos
+                                setTimeout(() => {
+                                    if (successMsg && successMsg.parentNode) {
+                                        successMsg.remove();
+                                    }
+                                    if (errorMsg && errorMsg.parentNode) {
+                                        errorMsg.remove();
+                                    }
+                                }, 6000);
+                            }, 4000);
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (e.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

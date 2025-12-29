@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa Tarifário</title>
+    <title>Tabela de Preço</title>
     <link rel="icon" href="../logo.png" type="image/x-icon">
-    
+
     <style>
         * {
             margin: 0;
@@ -116,6 +116,7 @@
             background: linear-gradient(135deg, #2980b9, #34495e);
         }
 
+        /* Botão Voltar*/
         .back-button {
             display: inline-block;
             background: #95a5a6;
@@ -131,7 +132,7 @@
             background: #7f8c8d;
         }
 
-         /* Estilos do Buscador */
+        /* Estilos do Buscador */
         .search-section {
             margin-bottom: 30px;
             padding: 0 10px;
@@ -179,6 +180,75 @@
             margin-top: 10px;
             padding: 0;
         }
+        
+        /* Cabeçalho dos resultados */
+        .results-header {
+            padding: 20px 20px 15px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fafafa;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .results-title {
+            font-size: 18px;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .results-count {
+            font-size: 14px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Lista de resultados - ESTILO VERTICAL */
+        .results-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .result-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .result-item:hover {
+            background-color: #f8fafc;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Cabeçalho do item */
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        
+        .item-title {
+            font-size: 16px;
+            color: #2c3e50;
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        
+        .item-type {
+            font-size: 11px;
+            color: #3498db;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: #e3f2fd;
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -187,51 +257,37 @@
         <a href="../index.html" class="back-button">← Voltar</a>
 
         <header>
-            <h1>Mapa Tarifário</h1>
+            <h1>Tabela de Preço</h1>
             <p class="subtitle">Ferramentas e utilitários do sistema Bitz Hotel</p>
         </header>
 
         <!-- Buscador Adicionado Aqui -->
-            <div class="search-section">
-                <div class="search-container">
-                    <input type="text" id="searchInput" class="search-box" 
-                         placeholder="🔍 Buscar módulos e conteúdos...">
-                    <div class="search-results" id="searchResults"></div>
-                 </div>
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" 
+                       placeholder="🔍 Buscar módulos e conteúdos...">
+                <div class="search-results" id="searchResults"></div>
             </div>
+        </div>
         
         <div class="grid-container">
-            <!-- Widget 1 -->
+             <div class="grid-container">
+            <!-- Tema 1 -->
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Como editar o valor da tarifa na V2</h2>
+                    <h2 class="card-title">Tabela de Preço Motel Imperium</h2>
                 </div>
                 <div class="card-body">
                     <p class="card-description">Em breve você vai aprender algo top aqui.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EditarValorTarifa.html" class="access-button">
+                        <a href="../SubmodulosMotel/TabelaPreço.html" class="access-button">
                             Clique Aqui
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Widget 2 -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Como visualizar o valor da tarifa na V2</h2>
-                </div>
-                <div class="card-body">
-                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
-                    <div class="card-footer">
-                        <a href="../SubmodulosHotel/ValorTarifa.html" class="access-button">
-                           Clique Aqui
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Widget 3 -->
+            <!-- Tema 2 -->
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Em Desenvolvimento...</h2>
@@ -239,7 +295,22 @@
                 <div class="card-body">
                     <p class="card-description">Em breve você vai aprender algo top aqui.</p>
                     <div class="card-footer">
-                        <a href="../SubmodulosHotel/EmDesenvolvimento.html" class="access-button">
+                        <a href="../ModulosHotel/EmDesenvolvimento.html" class="access-button">
+                           Clique Aqui
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tema 3 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Em Desenvolvimento...</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">Em breve você vai aprender algo top aqui.</p>
+                    <div class="card-footer">
+                        <a href="../ModulosHotel/EmDesenvolvimento.html" class="access-button">
                            Clique Aqui
                         </a>
                     </div>
@@ -253,32 +324,27 @@
     const courseData = [
         {
             id: 1,
-            title: "Como editar o valor da tarifa na V2",
-            description: "Aqui você aprenderá como reenviar o link de satisfação.",
-            link: "../SubmodulosHotel/LinkSatisfacao.html"
+            title: "Em Desenvolvimento...",
+            description: "Em breve você vai aprender algo top aqui.",
+            link: "../ModulosHotel/EmDesenvolvimento.html"
         },
+
         {
             id: 2,
-            title: "2",
-            description: "Aqui você aprenderá como imprimir um extrato de hospedagem que já está encerrada",
-            link: "../SubmodulosHotel/ImpressãoDeExtratoDaHospedagemJaEncerrada.html"
+            title: "Em Desenvolvimento...",
+            description: "Em breve você vai aprender algo top aqui.",
+            link: "../ModulosHotel/EmDesenvolvimento.html"
         },
         {
             id: 3,
-            title: "3",
-            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre Responsáveis.",
-            link: "../SubmodulosHotel/TransferirResponsavelConsumo.html"
-        },
-        {
-            id: 4,
-            title: "4",
-            description: "Neste conteúdo você verá como fazer uma transferência de consumo entre quartos(UHs).",
-            link: "../SubmodulosHotel/TransferenciaConsumosQuartos.html"
-        },        
+            title: "Em Desenvolvimento...",
+            description: "Em breve você vai aprender algo top aqui.",
+            link: "../ModulosHotel/EmDesenvolvimento.html"
+        }
     
     ];
 
-    // Variável para controlar os cards originais
+     // Variável para controlar os cards originais
     let originalCardsHTML = '';
 
     // Função de busca

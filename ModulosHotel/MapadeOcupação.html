@@ -130,6 +130,54 @@
         .back-button:hover {
             background: #7f8c8d;
         }
+        /* Estilos do Buscador */
+        .search-section {
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .search-box:focus {
+            border-color: #3498db;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+        
+        .search-box::placeholder {
+            color: #95a5a6;
+        }
+        
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 500px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            margin-top: 10px;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -141,6 +189,15 @@
             <h1>Mapa de Ocupação</h1>
             <p class="subtitle">Ferramentas e utilitários do sistema Bitz Hotel</p>
         </header>
+
+        <!-- Buscador Adicionado Aqui -->
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" 
+                       placeholder="🔍 Buscar módulos e conteúdos...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
         
         <div class="grid-container">
             <!-- Modulo 1 -->

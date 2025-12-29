@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integração Rede</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .prerequisite-box {
+            background-color: #fff8e6;
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .prerequisite-box h2 {
+            color: #e65100;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .prerequisite-box h2 i {
+            margin-right: 10px;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #e6f0ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .warning-box {
+            background-color: #fff8e6;
+            border-left: 5px solid #ff9800;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h3 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .info-box {
+            background-color: #e8f0fe;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-box h3 {
+            color: #1a73e8;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .config-screen {
+            background-color: #f0f7ff;
+            border: 1px solid #1a73e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .screen-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: -20px -20px 20px -20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .screen-header i {
+            margin-right: 10px;
+        }
+        
+        .table-visual {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .table-header {
+            background-color: #1a73e8;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .table-row.header {
+            background-color: #e8f0fe;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .table-cell {
+            padding: 8px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .button-small {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 2px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .button-small:hover {
+            background-color: #0d47a1;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .credential-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #1a73e8;
+        }
+        
+        .credential-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .credential-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .credential-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .field-label {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 150px;
+        }
+        
+        .field-value {
+            font-family: monospace;
+            background-color: #f1f5f9;
+            padding: 5px 10px;
+            border-radius: 4px;
+            flex-grow: 1;
+            color: #1a73e8;
+        }
+        
+        .copy-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #0d47a1;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: process;
+        }
+        
+        .process-steps li {
+            margin-bottom: 20px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .process-steps li:before {
+            content: counter(process);
+            counter-increment: process;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .contact-box {
+            background-color: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .contact-box h3 {
+            color: #0369a1;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-box h3 i {
+            margin-right: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e8f0fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #1a73e8;
+            font-size: 20px;
+        }
+        
+        .contact-details h4 {
+            color: #1a73e8;
+            margin-bottom: 5px;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .panel-screenshot {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .screenshot-title {
+            color: #1a73e8;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .screenshot-placeholder {
+            background-color: #f8fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 8px;
+            padding: 60px 20px;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .menu-path {
+            background-color: #f1f5f9;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: monospace;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .field-label {
+                min-width: 120px;
+            }
+            
+            .credential-field {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .field-value {
+                width: 100%;
+                margin-top: 5px;
+            }
+            
+            .copy-btn {
+                margin-left: 0;
+                margin-top: 10px;
+                width: 100%;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .table-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModuloBoasPraticas/ConfiguraçõesGerais.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <div>
+                    <h1>Integração Rede</h1>
+                    <p class="subtitle">Guia completo para configuração do gateway de pagamento</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Esta documentação orienta sobre o processo completo para habilitar a integração com a Rede, desde a coleta das credenciais até a configuração no sistema Imperium.</p>
+            </div>
+        </header>
+        
+        <div class="prerequisite-box">
+            <h2><i class="fas fa-clipboard-check"></i> Pré-requisito</h2>
+            <p>O cliente deve possuir um cadastro ativo na Rede para prosseguir com a integração.</p>
+            <p>Se o cliente ainda não possui cadastro, é necessário criar uma conta no site da Rede antes de iniciar o processo.</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Dados Necessários
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Localizar Credenciais
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Encaminhar Dados
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Configuração no Sistema
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Motor de Reservas
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. Dados Necessários para Integração</h2>
+                    <div class="step-description">
+                        <p>Para habilitar a integração, é preciso coletar duas informações fundamentais dentro do painel administrativo da Rede.</p>
+                        
+                        <div class="credential-box">
+                            <div class="credential-header">
+                                <i class="fas fa-key"></i>
+                                <span>Credenciais Obrigatórias</span>
+                            </div>
+                            
+                            <div class="credential-field">
+                                <span class="field-label">Merchant ID:</span>
+                                <span class="field-value" id="merchant-id">ID_DA_LOJA_EXEMPLO</span>
+                                <button class="copy-btn" data-target="merchant-id">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            
+                            <div class="credential-field">
+                                <span class="field-label">Merchant Key:</span>
+                                <span class="field-value" id="merchant-key">CHAVE_SECRETA_EXEMPLO</span>
+                                <button class="copy-btn" data-target="merchant-key">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h3><i class="fas fa-info-circle"></i> O que são estas credenciais?</h3>
+                            <p><strong>Merchant ID (ID da Loja):</strong> Identificador único da loja dentro da plataforma Rede.</p>
+                            <p><strong>Merchant Key (Chave da Loja):</strong> Chave de segurança para autenticação das transações.</p>
+                            <p>Estes dados são sensíveis e devem ser tratados com confidencialidade.</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Atenção</h3>
+                            <p>Não compartilhe estas credenciais por e-mail não seguro ou mensagens não criptografadas. Utilize canais seguros para envio ao Giovani.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. Como Localizar as Credenciais</h2>
+                    <div class="step-description">
+                        <p>Siga os passos abaixo para encontrar as credenciais dentro do painel administrativo da Rede.</p>
+                        
+                        <ol class="process-steps">
+                            <li>Acesse o painel ADMIN da Rede com as credenciais do cliente.</li>
+                            <li>No menu principal, navegue até <strong>Configurações > Geral > Dados da Loja</strong>.</li>
+                            <li>Localize os campos na seção de informações da loja.</li>
+                            <li>Copie os valores dos campos:
+                                <ul style="margin-left: 20px; margin-top: 10px;">
+                                    <li><strong>ID da Loja (Merchant ID)</strong></li>
+                                    <li><strong>Chave da Loja (Merchant Key)</strong></li>
+                                </ul>
+                            </li>
+                            <li>Anote ou copie estes dados para envio.</li>
+                        </ol>
+                        
+                        <div class="panel-screenshot">
+                            <div class="screenshot-title">
+                                <i class="fas fa-desktop"></i> Painel ADMIN da Rede
+                            </div>
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-image fa-3x" style="margin-bottom: 15px; display: block;"></i>
+                                Visualização da tela "Dados da Loja" no painel Rede<br>
+                                <small>(Imagem ilustrativa - interface pode variar)</small>
+                            </div>
+                            <div style="margin-top: 15px; font-size: 14px; color: #666;">
+                                <i class="fas fa-lightbulb"></i> Dica: As credenciais geralmente estão na parte superior da página de configurações.
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-search"></i> Não encontrou as credenciais?</h3>
+                            <p>Se você não encontrar os campos Merchant ID e Merchant Key na seção "Dados da Loja", verifique:</p>
+                            <ul style="margin-left: 20px; margin-top: 10px;">
+                                <li>Se você possui permissões de administrador</li>
+                                <li>Na seção "API" ou "Integrações"</li>
+                                <li>Nas configurações de "Segurança" ou "Chaves de API"</li>
+                                <li>Entre em contato com o suporte da Rede se necessário</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. Encaminhamento dos Dados</h2>
+                    <div class="step-description">
+                        <p>Após coletar as credenciais, é necessário encaminhá-las para o responsável pela integração.</p>
+                        
+                        <div class="contact-box">
+                            <h3><i class="fas fa-user-tie"></i> Responsável pela Integração</h3>
+                            
+                            <div class="contact-info">
+                                <div class="contact-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Giovani</h4>
+                                    <p>Responsável pelo cadastro e configuração da integração</p>
+                                    <p><i class="fas fa-envelope"></i> Envie as credenciais para o e-mail corporativo</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h3><i class="fas fa-paper-plane"></i> Como encaminhar os dados</h3>
+                            <p>Siga estas recomendações para envio seguro das credenciais:</p>
+                            <ol class="process-steps">
+                                <li>Envie as duas informações (Merchant ID e Merchant Key) juntas</li>
+                                <li>Identifique claramente qual é cada informação</li>
+                                <li>Informe o nome do cliente/estabelecimento</li>
+                                <li>Use canais seguros (e-mail corporativo, sistema interno)</li>
+                                <li>Confirme o recebimento com o Giovani</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-envelope"></i>
+                                Modelo de Mensagem
+                            </div>
+                            
+                            <div style="background-color: white; padding: 20px; border-radius: 8px;">
+                                <p><strong>Assunto:</strong> Credenciais Rede - [Nome do Cliente]</p>
+                                <p><strong>Mensagem:</strong></p>
+                                <div style="background-color: #f8fafc; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 14px; margin: 10px 0;">
+                                    Olá Giovani,<br><br>
+                                    Segue as credenciais para integração com Rede:<br><br>
+                                    <strong>Cliente:</strong> [Nome do Cliente]<br>
+                                    <strong>Merchant ID:</strong> [ID_COPIADO_AQUI]<br>
+                                    <strong>Merchant Key:</strong> [CHAVE_COPIADA_AQUI]<br><br>
+                                    Por favor, confirme o recebimento e avise quando a integração estiver concluída.<br><br>
+                                    Att.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-clock"></i> Tempo de Processamento</h3>
+                            <p>Após o envio das credenciais, o processo de cadastro e configuração leva aproximadamente <strong>24 a 48 horas úteis</strong> para ser concluído pelo Giovani.</p>
+                            <p>Você será notificado quando a integração estiver pronta para ser configurada no sistema.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. Configuração no Sistema Imperium</h2>
+                    <div class="step-description">
+                        <p>Após o cadastro realizado pelo Giovani, siga os passos abaixo para habilitar a integração no sistema.</p>
+                        
+                        <div class="menu-path">
+                            Cadastro > Operacional > Parâmetros de Pagamento
+                        </div>
+                        
+                        <ol class="process-steps">
+                            <li>Acesse o menu conforme indicado acima</li>
+                            <li>Clique no botão <span class="highlight">+ (Adicionar)</span></li>
+                            <li>Preencha os campos conforme as opções que serão utilizadas</li>
+                            <li>Salve as informações</li>
+                        </ol>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-cog"></i>
+                                Tela: Parâmetros de Pagamento
+                            </div>
+                            
+                            <div class="table-visual">
+                                <div class="table-header">Campos de Configuração</div>
+                                
+                                <div class="table-row header">
+                                    <div class="table-cell">Campo</div>
+                                    <div class="table-cell">Descrição</div>
+                                    <div class="table-cell">Exemplo/Valor</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Descrição</div>
+                                    <div class="table-cell">Nome identificador</div>
+                                    <div class="table-cell">Rede - Cartão de Crédito</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Tipo</div>
+                                    <div class="table-cell">Tipo de pagamento</div>
+                                    <div class="table-cell">Cartão de Crédito</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Gateway</div>
+                                    <div class="table-cell">Gateway de pagamento</div>
+                                    <div class="table-cell">Rede</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Status</div>
+                                    <div class="table-cell">Ativo/Inativo</div>
+                                    <div class="table-cell">Ativo</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Taxa (%)</div>
+                                    <div class="table-cell">Taxa do gateway</div>
+                                    <div class="table-cell">3.99</div>
+                                </div>
+                                
+                                <div class="table-row">
+                                    <div class="table-cell">Parcelas</div>
+                                    <div class="table-cell">Nº máximo de parcelas</div>
+                                    <div class="table-cell">12</div>
+                                </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button class="button-small" style="padding: 10px 20px;">
+                                    <i class="fas fa-save"></i> Salvar Parâmetro
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h3><i class="fas fa-lightbulb"></i> Dicas de Configuração</h3>
+                            <p><strong>Para múltiplas configurações:</strong> Crie um parâmetro para cada tipo (Cartão de Crédito, Débito, etc.)</p>
+                            <p><strong>Taxas:</strong> Consulte com o cliente qual a taxa cobrada pela Rede para configurar corretamente.</p>
+                            <p><strong>Parcelas:</strong> Defina conforme acordo comercial com a operadora.</p>
+                        </div>
+                        
+                        <div class="warning-box">
+                            <h3><i class="fas fa-check-circle"></i> Verificação</h3>
+                            <p>Após salvar, a opção cadastrada ficará disponível para seleção dentro do módulo Motor de Reservas.</p>
+                            <p>Verifique se o parâmetro aparece na listagem antes de prosseguir para o próximo passo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. Configuração no Motor de Reservas</h2>
+                    <div class="step-description">
+                        <p>Finalize a configuração habilitando a integração no Motor de Reservas.</p>
+                        
+                        <div class="menu-path">
+                            Cadastros > Operacional > Parâmetros Motor de Reservas
+                        </div>
+                        
+                        <ol class="process-steps">
+                            <li>Acesse o menu conforme indicado acima</li>
+                            <li>Localize a configuração do Motor de Reservas do estabelecimento</li>
+                            <li>Na seção de pagamentos, selecione a opção <strong>Gateway de Pagamento</strong></li>
+                            <li>Informe a <strong>Rede</strong> (Rede)</li>
+                            <li>Selecione o parâmetro criado anteriormente</li>
+                            <li>Salve as configurações</li>
+                        </ol>
+                        
+                        <div class="config-screen">
+                            <div class="screen-header">
+                                <i class="fas fa-calendar-alt"></i>
+                                Configuração do Motor de Reservas
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Gateway de Pagamento</div>
+                                <select class="form-select">
+                                    <option value="">Selecione...</option>
+                                    <option value="maxipago" selected>Rede</option>
+                                    <option value="outro">Outro Gateway</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Rede</div>
+                                <input type="text" class="input-field" value="Rede">
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="form-label">Parâmetro de Pagamento</div>
+                                <select class="form-select">
+                                    <option value="">Selecione...</option>
+                                    <option value="1">Rede - Cartão de Crédito</option>
+                                    <option value="2">Rede - Cartão de Débito</option>
+                                </select>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 20px;">
+                                <button class="button-small" style="padding: 10px 20px;">
+                                    <i class="fas fa-save"></i> Salvar Configuração
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h3><i class="fas fa-check-double"></i> Teste da Integração</h3>
+                            <p>Após concluir a configuração, realize os seguintes testes:</p>
+                            <ol class="process-steps">
+                                <li>Crie uma reserva de teste no Motor de Reservas</li>
+                                <li>Tente realizar um pagamento com valor simbólico (ex: R$ 1,00)</li>
+                                <li>Verifique se a transação é processada corretamente</li>
+                                <li>Confirme se o status da reserva é atualizado</li>
+                                <li>Verifique os logs de transação no sistema</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="success-container">
+                            <i class="fas fa-check-circle"></i>
+                            Integração configurada com sucesso! O sistema está pronto para processar pagamentos através da Rede.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Integração Rede | Documentação Técnica | Atualizado em 2025</p>
+            <p>Configuração completa do gateway de pagamento para processamento de transações online.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            let currentStep = 1;
+            const totalSteps = 5;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Funcionalidade de copiar credenciais
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const textToCopy = targetElement.textContent;
+                        
+                        // Usar a API de Clipboard
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            // Feedback visual
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                            this.style.backgroundColor = '#10b981';
+                            
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.style.backgroundColor = '#1a73e8';
+                            }, 2000);
+                        }).catch(err => {
+                            // Fallback para navegadores mais antigos
+                            console.error('Erro ao copiar: ', err);
+                            alert('Não foi possível copiar. Selecione e copie manualmente.');
+                        });
+                    }
+                });
+            });
+            
+            // Simular salvamento de configurações
+            const saveButtons = document.querySelectorAll('.button-small');
+            
+            saveButtons.forEach(button => {
+                if (button.textContent.includes('Salvar')) {
+                    button.addEventListener('click', function() {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Salvando...';
+                        this.disabled = true;
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                            
+                            // Mostrar mensagem de sucesso
+                            const successMsg = document.createElement('div');
+                            successMsg.className = 'success-container';
+                            successMsg.style.marginTop = '15px';
+                            successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Configuração salva com sucesso!';
+                            
+                            this.parentElement.appendChild(successMsg);
+                            
+                            setTimeout(() => {
+                                successMsg.remove();
+                            }, 3000);
+                        }, 1500);
+                    });
+                }
+            });
+            
+            // Permitir navegação por teclado
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (event.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Gerar credenciais de exemplo (para demonstração)
+            function generateExampleCredentials() {
+                const merchantId = 'MP' + Math.random().toString(36).substring(2, 10).toUpperCase();
+                const merchantKey = 'KEY_' + Math.random().toString(36).substring(2, 15).toUpperCase() + '_' + Date.now().toString(36);
+                
+                document.getElementById('merchant-id').textContent = merchantId;
+                document.getElementById('merchant-key').textContent = merchantKey;
+            }
+            
+            generateExampleCredentials();
+        });
+    </script>
+</body>
+</html>
