@@ -3,67 +3,463 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mestres da Calma: Treinamento de Inteligência Emocional no Atendimento</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Mestres da Calma: Treinamento de Inteligência Emocional - Sistema Imperium</title>
     <link rel="icon" href="../logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f4f8; /* Fundo suave */
+        }
+        
+        body {
+            background-color: #f5f7fa;
             color: #333;
+            line-height: 1.6;
         }
-        .header-section {
-            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Azul escuro corporativo */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
             color: white;
-            padding: 50px 20px;
-            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
             margin-bottom: 40px;
-            border-bottom: 8px solid #f9a03f; /* Laranja de destaque */
         }
-        .header-section h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
         }
-        .header-section p {
-            font-size: 1.2rem;
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-        .module-accordion .accordion-button {
-            background-color: #e9ecef;
-            color: #1e3c72;
-            font-weight: 600;
-            font-size: 1.3rem;
-            border-radius: 8px !important;
-        }
-        .module-accordion .accordion-item {
-            border: 1px solid #dee2e6;
+        
+        .step-nav-item {
+            padding: 15px 15px;
             margin-bottom: 10px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
         }
-        .activity-card {
-            border-left: 4px solid #f9a03f; /* Laranja para atividades */
-            background-color: #fff9f4;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
         }
-        .tip-card {
-            border-left: 4px solid #28a745; /* Verde para dicas/conceitos */
-            background-color: #eaf7ed;
-            padding: 15px;
-            margin-top: 15px;
-            border-radius: 5px;
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
         }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .module-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #1a73e8;
+        }
+        
         .section-title {
-            color: #1e3c72;
-            font-weight: 600;
-            margin-top: 25px;
+            color: #1a73e8;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
-        .divider {
-            border-top: 2px dashed #ccc;
-            margin: 30px 0;
+        
+        .section-title i {
+            margin-right: 10px;
         }
-         .back-button {
+        
+        .activity-card {
+            background-color: #fff9f4;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .activity-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #fef3c7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #d97706;
+            font-size: 18px;
+        }
+        
+        .activity-title {
+            color: #d97706;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .tip-card {
+            background-color: #eaf7ed;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .tip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .tip-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #d1fae5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #047857;
+            font-size: 18px;
+        }
+        
+        .tip-title {
+            color: #047857;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .communication-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .communication-table th {
+            background-color: #1a73e8;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .communication-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .communication-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .bad-communication {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        
+        .good-communication {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        .scenario-list {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .scenario-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: white;
+            border-radius: 6px;
+            border-left: 4px solid #1a73e8;
+            display: flex;
+            align-items: center;
+        }
+        
+        .scenario-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: white;
+        }
+        
+        .badge-danger {
+            background-color: #ef4444;
+        }
+        
+        .badge-warning {
+            background-color: #f59e0b;
+        }
+        
+        .badge-info {
+            background-color: #3b82f6;
+        }
+        
+        .checklist-box {
+            background-color: #d1fae5;
+            border-left: 5px solid #10b981;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .checklist-title {
+            color: #047857;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist-title i {
+            margin-right: 10px;
+        }
+        
+        .checklist-ol {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+        
+        .checklist-ol li {
+            padding: 8px 0;
+            font-weight: bold;
+        }
+        
+        .tips-box {
+            background-color: #f0f9ff;
+            border-left: 5px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .tips-title {
+            color: #0369a1;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tips-title i {
+            margin-right: 10px;
+        }
+        
+        .tips-list {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .tips-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #c2d7f0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .tips-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tips-list i {
+            color: #0ea5e9;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
             display: inline-block;
             background: #95a5a6;
             color: white;
@@ -73,216 +469,517 @@
             margin-bottom: 20px;
             transition: background 0.3s ease;
         }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .quote-box {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .protocol-card {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .protocol-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .protocol-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #0369a1;
+            font-size: 18px;
+        }
+        
+        .protocol-title {
+            color: #0369a1;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .communication-table {
+                font-size: 14px;
+            }
+            
+            .communication-table th,
+            .communication-table td {
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Botão Voltar -->
-        <a href="../index.html" class="back-button">← Voltar</a>
+        <a href="../ModuloBoasPraticas/TecnicasAvançadas.html" class="back-button">← Voltar</a>
 
-    <header class="header-section">
-        <div class="container">
-            <h1>Mestres da Calma: Transformando Conflitos em Fidelidade 🧘</h1>
-            <p>Workshop Prático de Inteligência Emocional e Gestão de Conflitos para Equipes de Alto Impacto.</p>
-            <hr class="text-white opacity-75">
-        </div>
-    </header>
-
-    <div class="container my-5">
-
-        <div class="accordion module-accordion" id="trainingModules">
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Módulo 1: O "Porquê" e a Empatia
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#trainingModules">
-                    <div class="accordion-body">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <h1>Mestres da Calma: Transformando Conflitos em Fidelidade</h1>
+                    <p class="subtitle">Workshop Prático de Inteligência Emocional e Gestão de Conflitos para Equipes de Alto Impacto</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Este treinamento visa desenvolver habilidades de inteligência emocional para transformar situações difíceis em oportunidades de fidelização, criando uma experiência positiva mesmo em momentos de conflito.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Empatia e Acolhimento
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Autoconhecimento
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Comunicação Positiva
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Laboratório Prático
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Encerramento
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Material de Apoio
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. Empatia e Acolhimento</h2>
+                    <div class="step-description">
+                        <p>Entender os sentimentos do cliente e acolhê-los é o primeiro passo para transformar um conflito em uma oportunidade de conexão.</p>
+                    </div>
+                    
+                    <div class="module-section">
+                        <h3 class="section-title"><i class="fas fa-users"></i> Abertura e Quebra-Gelo</h3>
                         
-                        <h4 class="section-title">1. Abertura e Quebra-Gelo:</h4>
                         <div class="activity-card">
-                            <h6>Atividade: "O Pior Cliente do Mundo"</h6>
-                            <p><strong>Dinâmica:</strong> Cada um conta, em 1 minuto, uma experiência ruim que teve como cliente em outra empresa.</p>
+                            <div class="activity-header">
+                                <div class="activity-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="activity-title">Atividade: "O Pior Cliente do Mundo"</div>
+                            </div>
+                            <p><strong>Dinâmica:</strong> Cada participante conta, em 1 minuto, uma experiência ruim que teve como cliente em outra empresa.</p>
                             <p><strong>Conclusão:</strong> Anotar e discutir os sentimentos (raiva, frustração, impotência) para mostrar que o cliente que liga bravo está sentindo isso.</p>
                         </div>
                         
-                        <h4 class="section-title">2. Teoria Simplificada:</h4>
+                        <h3 class="section-title"><i class="fas fa-lightbulb"></i> Teoria Simplificada</h3>
+                        
                         <div class="tip-card">
-                            <p><strong>Conceito Chave:</strong> O cliente não está com raiva de você, ele está com raiva da situação ou da empresa.</p>
-                            <h6>O Tripé do Acolhimento:</h6>
+                            <div class="tip-header">
+                                <div class="tip-icon">
+                                    <i class="fas fa-key"></i>
+                                </div>
+                                <div class="tip-title">Conceito Chave</div>
+                            </div>
+                            <p>O cliente não está com raiva de você, ele está com raiva da situação ou da empresa.</p>
+                            
+                            <h4 style="color: #047857; margin-top: 15px;">O Tripé do Acolhimento:</h4>
                             <ol>
-                                <li>Escutar sem interromper</li>
-                                <li>Validar o sentimento</li>
-                                <li>Focar na solução</li>
+                                <li><strong>Escutar sem interromper</strong> - Deixe o cliente expressar suas emoções</li>
+                                <li><strong>Validar o sentimento</strong> - Reconheça a legitimidade das emoções</li>
+                                <li><strong>Focar na solução</strong> - Transicione do problema para a solução</li>
                             </ol>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Módulo 2: Autoconhecimento e Gatilhos
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#trainingModules">
-                    <div class="accordion-body">
-                        
-                        <h4 class="section-title">1. Identificando o "Sequestro Emocional":</h4>
-                        <div class="activity-card">
-                            <h6>"O que me tira do sério?"</h6>
-                            <p>O que mais irrita me irrita? (ex: cliente que grita, cliente arrogante).</p>
-                        </div>
-                        
-                        <h4 class="section-title">2. Técnicas de Respiração e Pausa:</h4>
-                        <div class="tip-card">
-                            <h6>Técnica do Mute (Salvador)</h6>
-                            <p> Se o cliente ofender, coloque no mudo, respire fundo por 4 segundos, solte o ar, destrave e fale calmamente.</p>
-                            <h6>Dissociação (Armadura)</h6>
-                            <p>Lembrete: "Vestir o uniforme/crachá é como vestir uma armadura." As palavras batem na armadura, não em você.</p>
-                        </div>
-
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. Autoconhecimento e Gatilhos</h2>
+                    <div class="step-description">
+                        <p>Conhecer seus próprios gatilhos emocionais e desenvolver técnicas para gerenciá-los é fundamental para manter a calma em situações difíceis.</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Módulo 3: Comunicação Não-Violenta e Positiva
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#trainingModules">
-                    <div class="accordion-body">
+                    
+                    <div class="module-section">
+                        <h3 class="section-title"><i class="fas fa-search"></i> Identificando o "Sequestro Emocional"</h3>
                         
-                        <h4 class="section-title">1. O Poder das Palavras (Substituições):</h4>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Em Vez de (Negativo)</th>
-                                    <th>Diga (Positivo e Acolhedor)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>"Não posso fazer isso."</td>
-                                    <td>"O que eu consigo fazer por você nesta situação é..."</td>
-                                </tr>
-                                <tr>
-                                    <td>"Você tem que entender..." (Agressivo)</td>
-                                    <td>"Entendo seu ponto de vista, deixa eu explicar como funciona..."</td>
-                                </tr>
-                                <tr>
-                                    <td>"Calma, senhor!" (Nunca diga calma)</td>
-                                    <td>"Estou aqui para te ajudar, vamos resolver isso juntos."</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h4 class="section-title">2. A Técnica do Espelhamento e Validação:</h4>
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <div class="activity-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-title">"O que me tira do sério?"</div>
+                            </div>
+                            <p>Identifique o que mais irrita você durante o atendimento (ex: cliente que grita, cliente arrogante, cliente que não escuta).</p>
+                        </div>
+                        
+                        <h3 class="section-title"><i class="fas fa-wind"></i> Técnicas de Respiração e Pausa</h3>
+                        
                         <div class="tip-card">
-                            <p><strong>Instrução:</strong> Repetir o que o cliente disse para mostrar que entendeu, mas com um tom mais baixo e calmo para ancorar a tranquilidade.</p>
-                            <blockquote class="blockquote">
-                                <p>Cliente: "Isso é um absurdo, ninguém resolve!"</p>
-                                <footer class=>Atendente: "Entendo que o senhor esteja frustrado e peço desculpas pela demora. Agora eu vou assumir seu caso."</footer>
-                            </blockquote>
+                            <div class="tip-header">
+                                <div class="tip-icon">
+                                    <i class="fas fa-volume-mute"></i>
+                                </div>
+                                <div class="tip-title">Técnica do Mute (Salvador)</div>
+                            </div>
+                            <p>Se o cliente ofender ou gritar, coloque no mudo, respire fundo por 4 segundos, solte o ar lentamente por 6 segundos, destrave e fale calmamente.</p>
+                            
+                            <div class="tip-header" style="margin-top: 20px;">
+                                <div class="tip-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="tip-title">Dissociação (Armadura)</div>
+                            </div>
+                            <p>Lembrete: "Vestir o uniforme/crachá é como vestir uma armadura." As palavras batem na armadura, não em você pessoalmente.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Módulo 4: O Laboratório Prático 🧪
-                    </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#trainingModules">
-                    <div class="accordion-body">
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. Comunicação Não-Violenta e Positiva</h2>
+                    <div class="step-description">
+                        <p>A escolha das palavras pode transformar completamente uma interação. Aprenda a comunicar-se de forma assertiva e acolhedora.</p>
+                    </div>
+                    
+                    <div class="module-section">
+                        <h3 class="section-title"><i class="fas fa-comments"></i> O Poder das Palavras (Substituições)</h3>
                         
-                        <h4 class="section-title">Dinâmica: "A Cadeira Quente" (Role-play)</h4>
-                        <p><strong>Instrução:</strong> Dividir em duplas/trios.
-                           <p>Papéis: Cliente Difícil, Atendente e Observador.</p>
+                        <div class="table-container">
+                            <table class="communication-table">
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-times-circle"></i> Em Vez de (Negativo)</th>
+                                        <th><i class="fas fa-check-circle"></i> Diga (Positivo e Acolhedor)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="bad-communication">"Não posso fazer isso."</td>
+                                        <td class="good-communication">"O que eu consigo fazer por você nesta situação é..."</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bad-communication">"Você tem que entender..." (Agressivo)</td>
+                                        <td class="good-communication">"Entendo seu ponto de vista, deixa eu explicar como funciona..."</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="bad-communication">"Calma, senhor!" (Nunca diga calma)</td>
+                                        <td class="good-communication">"Estou aqui para te ajudar, vamos resolver isso juntos."</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h3 class="section-title"><i class="fas fa-mirror"></i> Técnica do Espelhamento e Validação</h3>
+                        
+                        <div class="tip-card">
+                            <div class="tip-header">
+                                <div class="tip-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="tip-title">Instrução</div>
+                            </div>
+                            <p>Repetir o que o cliente disse para mostrar que entendeu, mas com um tom mais baixo e calmo para ancorar a tranquilidade.</p>
+                            
+                            <div class="quote-box">
+                                <p><strong>Cliente:</strong> "Isso é um absurdo, ninguém resolve!"</p>
+                                <p><strong>Atendente:</strong> "Entendo que o senhor esteja frustrado e peço desculpas pela demora. Agora eu vou assumir seu caso."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. Laboratório Prático 🧪</h2>
+                    <div class="step-description">
+                        <p>A prática é essencial para internalizar as técnicas. Simule situações reais para desenvolver habilidades de forma segura e construtiva.</p>
+                    </div>
+                    
+                    <div class="module-section">
+                        <h3 class="section-title"><i class="fas fa-chair"></i> Dinâmica: "A Cadeira Quente" (Role-play)</h3>
+                        <p><strong>Instrução:</strong> Dividir em duplas/trios. Papéis: Cliente Difícil, Atendente e Observador.</p>
                         
                         <div class="activity-card">
-                            <h6>Cenários para Simular (Rotacionar):</h6>
-                            <ul class="list-unstyled">
-                                <li><span class="badge bg-danger">A</span> Cliente que grita e não deixa falar (Aplica-se Mute/Pausa).</li>
-                                <li><span class="badge bg-warning">B</span> Cliente que está decepcionado e triste (Aplica-se Validação/Acolhimento).</li>
-                                <li><span class="badge bg-info">C</span> Cliente "sabichão" que acha que sabe mais que o atendente (Aplica-se Espelhamento/Foco na Solução).</li>
+                            <div class="activity-header">
+                                <div class="activity-icon">
+                                    <i class="fas fa-theater-masks"></i>
+                                </div>
+                                <div class="activity-title">Cenários para Simular (Rotacionar)</div>
+                            </div>
+                            <ul class="scenario-list">
+                                <li>
+                                    <span class="scenario-badge badge-danger">A</span>
+                                    Cliente que grita e não deixa falar (Aplica-se Mute/Pausa)
+                                </li>
+                                <li>
+                                    <span class="scenario-badge badge-warning">B</span>
+                                    Cliente que está decepcionado e triste (Aplica-se Validação/Acolhimento)
+                                </li>
+                                <li>
+                                    <span class="scenario-badge badge-info">C</span>
+                                    Cliente "sabichão" que acha que sabe mais que o atendente (Aplica-se Espelhamento/Foco na Solução)
+                                </li>
                             </ul>
                         </div>
                         
-                        <div class="tip-card bg-danger-subtle border-danger">
-                            Regra de Ouro da Dinâmica: O objetivo não é resolver o problema técnico na hora, mas fazer o "cliente" terminar a simulação mais calmo do que começou.
+                        <div class="tip-card" style="border-left-color: #ef4444; background-color: #fee2e2;">
+                            <div class="tip-header">
+                                <div class="tip-icon" style="background-color: #fecaca; color: #dc2626;">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <div class="tip-title" style="color: #dc2626;">Regra de Ouro da Dinâmica</div>
+                            </div>
+                            <p>O objetivo não é resolver o problema técnico na hora, mas fazer o "cliente" terminar a simulação mais calmo do que começou.</p>
                         </div>
                         
-                        <h4 class="section-title">Feedback:</h4>
+                        <h3 class="section-title"><i class="fas fa-comment-dots"></i> Feedback</h3>
                         <p>Após cada rodada, o grupo discute o que funcionou e o que poderia melhorar. Foco no tom de voz e nas palavras escolhidas.</p>
-                        
                     </div>
                 </div>
-            </div>
-
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        Módulo 5: Encerramento e "Ritual de Limpeza"✨
-                    </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#trainingModules">
-                    <div class="accordion-body">
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. Encerramento e "Ritual de Limpeza"✨</h2>
+                    <div class="step-description">
+                        <p>Aprenda a desconectar-se emocionalmente após situações difíceis e estabeleça um sistema de apoio mútuo na equipe.</p>
+                    </div>
+                    
+                    <div class="module-section">
+                        <h3 class="section-title"><i class="fas fa-broom"></i> O Ritual de Saída (Não Levar o Problema para Casa)</h3>
                         
-                        <h4 class="section-title">1. O Ritual de Saída (Não Levar o Problema para Casa):</h4>
-                        <div class="activity-card">
-                            <h6>Protocolo Pós-Conflito:</h6>
-                            <p>Criem um protocolo como por exemplo Levantar, beber um copo d'água, esticar os braços e "se sacudir", para que a tensão saia antes de pegar a próxima chamada.</p>
+                        <div class="protocol-card">
+                            <div class="protocol-header">
+                                <div class="protocol-icon">
+                                    <i class="fas fa-list-check"></i>
+                                </div>
+                                <div class="protocol-title">Protocolo Pós-Conflito</div>
+                            </div>
+                            <p>Criem um protocolo como por exemplo: Levantar, beber um copo d'água, esticar os braços e "se sacudir", para que a tensão saia antes de pegar a próxima chamada.</p>
                         </div>
-
-                        <h4 class="section-title">2. Pacto da Equipe (Apoio Mútuo):</h4>
+                        
+                        <h3 class="section-title"><i class="fas fa-handshake"></i> Pacto da Equipe (Apoio Mútuo)</h3>
+                        
                         <div class="tip-card">
+                            <div class="tip-header">
+                                <div class="tip-icon">
+                                    <i class="fas fa-hand-sparkles"></i>
+                                </div>
+                                <div class="tip-title">Sinal de Apoio</div>
+                            </div>
                             <p>Estabelecer um sinal de apoio (ex: levantar a caneta vermelha) que significa "Preciso de ajuda urgente, estou perdendo a paciência". Compromisso de intervenção rápida e sem julgamentos.</p>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">6. Material de Apoio e Dicas</h2>
+                    <div class="step-description">
+                        <p>Recursos práticos para aplicar no dia a dia e manter as técnicas sempre à mão.</p>
+                    </div>
+                    
+                    <div class="checklist-box">
+                        <h3 class="checklist-title"><i class="fas fa-clipboard-list"></i> Checklist "Roteiro de Resgate"</h3>
+                        <p>Este resumo deve ser laminado e colado na mesa de trabalho:</p>
+                        <ol class="checklist-ol">
+                            <li><strong>Escuta Ativa:</strong> Deixe o cliente desabafar (o balão precisa esvaziar)</li>
+                            <li><strong>Validação:</strong> "Sinto muito que isso tenha acontecido", "Eu entendo sua frustração"</li>
+                            <li><strong>Assuma o Comando:</strong> "A partir de agora eu vou cuidar disso para o senhor/a senhora"</li>
+                            <li><strong>Foco na Solução:</strong> Apresente opções (o que pode ser feito)</li>
+                            <li><strong>Acolhimento Final:</strong> "Ficou alguma dúvida? Agradeço sua paciência conosco"</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="tips-box">
+                        <h3 class="tips-title"><i class="fas fa-lightbulb"></i> Dicas para Aplicar no Dia a Dia</h3>
+                        <ul class="tips-list">
+                            <li>
+                                <i class="fas fa-star"></i>
+                                <div>
+                                    <strong>Monitoria Positiva:</strong> Elogiem publicamente um ao outro sempre que alguém usar uma técnica de controle emocional.
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-book"></i>
+                                <div>
+                                    <strong>Banco de Melhores Respostas:</strong> Criem um documento compartilhado para registrar respostas geniais a objeções difíceis.
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>
+                                    <strong>Cultura do Erro:</strong> Errar o procedimento técnico é tolerável no início, mas perder a educação com o cliente não é!
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success-container">
+                        <i class="fas fa-graduation-cap"></i>
+                        <strong>Treinamento Concluído!</strong> Você agora possui todas as ferramentas necessárias para transformar conflitos em oportunidades de fidelização e criar experiências positivas mesmo em situações desafiadoras.
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
-            
         </div>
-
-        <div class="divider"></div>
-
-        <div class="card bg-success text-white mb-4">
-            <div class="card-header">
-                <h3>📋 Material de Apoio: Checklist "Roteiro de Resgate"</h3>
-            </div>
-            <div class="card-body">
-                <p>Este resumo deve ser laminado e colado na mesa de trabalho:</p>
-                <ol>
-                    <li>Escuta Ativa: Deixe o cliente desabafar (o balão precisa esvaziar).</li>
-                    <li>Validação: "Sinto muito que isso tenha acontecido", "Eu entendo sua frustração".</li>
-                    <li>Assuma o Comando: "A partir de agora eu vou cuidar disso para o senhor/a senhora".</li>
-                    <li>Foco na Solução: Apresente opções (o que pode ser feito).</li>
-                    <li>Acolhimento Final: "Ficou alguma dúvida? Agradeço sua paciência conosco".</li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="card bg-light border-0 shadow-sm">
-            <div class="card-body">
-                <h4 class="card-title text-primary">⭐ Dicas para Você aplicar no dia a dia:</h4>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Monitoria Positiva:</strong> Elogiem publicamente um ao outro sempre que alguém usar uma técnica de controle emocional.</li>
-                    <li class="list-group-item"><strong>Banco de Melhores Respostas:</strong> Criem um documento compartilhado para registrar respostas geniais a objeções difíceis.</li>
-                    <li class="list-group-item"><strong>Cultura do Erro:</strong> Errar o procedimento técnico é tolerável no início, mas perder a educação com o cliente não é!</li>
-                </ul>
-            </div>
-        </div>
-
+        
+        <footer>
+            <p>Mestres da Calma: Treinamento de Inteligência Emocional | Sistema Imperium | Atualizado em 2023</p>
+            <p>Workshop prático para desenvolvimento de habilidades emocionais no atendimento ao cliente.</p>
+        </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            let currentStep = 1;
+            const totalSteps = 6;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo (em dispositivos móveis)
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.steps-content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Atualizar estado dos botões de navegação
+            function updateNavigation() {
+                // Botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'flex';
+                }
+            }
+            
+            // Permitir navegação por teclado
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft' && currentStep > 1) {
+                    goToStep(currentStep - 1);
+                } else if (event.key === 'ArrowRight' && currentStep < totalSteps) {
+                    goToStep(currentStep + 1);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

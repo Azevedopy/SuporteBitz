@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento: Processos de Tickets - Sistema Imperium</title>
+    <link rel="icon" href="../logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-right: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid white;
+        }
+        
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .steps-nav {
+            flex: 0 0 250px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .steps-content {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-nav-item {
+            padding: 15px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid transparent;
+        }
+        
+        .step-nav-item:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .step-nav-item.active {
+            background-color: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background-color: #e8f0fe;
+            color: #1a73e8;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+        
+        .step-nav-item.active .step-number {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .step-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .step-description {
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+        
+        .objective-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .objective-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .objective-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .objective-list i {
+            color: #10b981;
+            margin-right: 10px;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+        
+        .learning-path {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .learning-path li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .learning-path li:last-child {
+            border-bottom: none;
+        }
+        
+        .learning-path i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 16px;
+            margin-top: 2px;
+        }
+        
+        .channels-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .channel-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .channel-icon {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 15px;
+        }
+        
+        .channel-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .triage-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: triage;
+        }
+        
+        .triage-steps li {
+            margin-bottom: 20px;
+            padding-left: 45px;
+            position: relative;
+        }
+        
+        .triage-steps li:before {
+            content: counter(triage);
+            counter-increment: triage;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .ticket-process {
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .incident-process {
+            background-color: #fef3f2;
+            border-left-color: #ef4444;
+        }
+        
+        .improvement-process {
+            background-color: #f0f9ff;
+            border-left-color: #10b981;
+        }
+        
+        .process-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .incident-title {
+            color: #ef4444;
+        }
+        
+        .improvement-title {
+            color: #10b981;
+        }
+        
+        .process-title i {
+            margin-right: 10px;
+        }
+        
+        .process-steps {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .process-steps li {
+            margin-bottom: 15px;
+        }
+        
+        .process-step-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .incident-step-title {
+            color: #dc2626;
+        }
+        
+        .improvement-step-title {
+            color: #059669;
+        }
+        
+        .process-step-title i {
+            margin-right: 8px;
+        }
+        
+        .priority-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .priority-card {
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid;
+        }
+        
+        .priority-low {
+            background-color: #f0f9ff;
+            border-top-color: #10b981;
+        }
+        
+        .priority-medium {
+            background-color: #fefce8;
+            border-top-color: #f59e0b;
+        }
+        
+        .priority-high {
+            background-color: #fef3f2;
+            border-top-color: #ef4444;
+        }
+        
+        .priority-critical {
+            background-color: #f5f5f5;
+            border-top-color: #6b7280;
+        }
+        
+        .priority-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .priority-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .priority-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .low-title {
+            color: #10b981;
+        }
+        
+        .medium-title {
+            color: #f59e0b;
+        }
+        
+        .high-title {
+            color: #ef4444;
+        }
+        
+        .critical-title {
+            color: #6b7280;
+        }
+        
+        .procedure-list {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .procedure-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .procedure-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .procedure-list i {
+            color: #1a73e8;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .closure-steps {
+            list-style-type: none;
+            margin: 20px 0;
+            counter-reset: closure;
+        }
+        
+        .closure-steps li {
+            margin-bottom: 15px;
+            padding-left: 45px;
+            position: relative;
+        }
+        
+        .closure-steps li:before {
+            content: counter(closure);
+            counter-increment: closure;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #1a73e8;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .improvement-closure li:before {
+            background-color: #10b981;
+        }
+        
+        .incident-closure li:before {
+            background-color: #3b82f6;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-btn {
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .prev-btn {
+            background-color: #f0f7ff;
+            color: #1a73e8;
+        }
+        
+        .next-btn {
+            background-color: #1a73e8;
+            color: white;
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn i {
+            margin: 0 5px;
+        }
+        
+        .success-container {
+            background-color: #d1fae5;
+            color: #10b981;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: #7f8c8d;
+        }
+        
+        .example-box {
+            background-color: #f8fafc;
+            border-left: 4px solid #cbd5e0;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            font-style: italic;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .steps-nav {
+                flex: 0 0 100%;
+                position: static;
+                margin-bottom: 20px;
+            }
+            
+            .steps-content {
+                padding: 20px;
+            }
+            
+            .step-title {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .channels-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .priority-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Botão Voltar -->
+        <a href="../ModuloBoasPraticas/ProcessosPadronizacoes.html" class="back-button">← Voltar</a>
+
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div>
+                    <h1>Treinamento: Processos de Tickets</h1>
+                    <p class="subtitle">Processos e Padronização dos Tickets</p>
+                </div>
+            </div>
+            
+            <div class="intro-box">
+                <p>Bem-vindo ao nosso programa de capacitação. Esta plataforma interativa foi desenhada para fornecer as ferramentas, processos e a mentalidade necessários para transformar cada interação com o ticket em uma experiência de solução eficaz e positiva, garantindo a padronização.</p>
+            </div>
+        </header>
+        
+        <div class="steps-container">
+            <div class="steps-nav">
+                <div class="step-nav-item active" data-step="1">
+                    <span class="step-number">1</span>
+                    Objetivos e Trilha
+                </div>
+                <div class="step-nav-item" data-step="2">
+                    <span class="step-number">2</span>
+                    Entrada e Triagem
+                </div>
+                <div class="step-nav-item" data-step="3">
+                    <span class="step-number">3</span>
+                    Ticket Incidente
+                </div>
+                <div class="step-nav-item" data-step="4">
+                    <span class="step-number">4</span>
+                    Ticket Melhoria
+                </div>
+                <div class="step-nav-item" data-step="5">
+                    <span class="step-number">5</span>
+                    Prioridades
+                </div>
+                <div class="step-nav-item" data-step="6">
+                    <span class="step-number">6</span>
+                    Procedimentos
+                </div>
+                <div class="step-nav-item" data-step="7">
+                    <span class="step-number">7</span>
+                    Encerramento
+                </div>
+            </div>
+            
+            <div class="steps-content">
+                <!-- Passo 1 -->
+                <div class="step-content active" id="step-1">
+                    <h2 class="step-title">1. Objetivos e Trilha de Aprendizado</h2>
+                    <div class="step-description">
+                        <p>Nosso objetivo é fornecer as ferramentas, processos e a mentalidade necessários para transformar cada interação com o ticket em uma experiência de solução eficaz e positiva, garantindo a padronização.</p>
+                    </div>
+                    
+                    <h3 style="color: #1a73e8; margin: 20px 0 15px;">🎯 Nosso Grande Objetivo</h3>
+                    <ul class="objective-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Alinhar como identificar e registrar <strong>incidentes</strong> e <strong>solicitações de melhoria</strong></span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Garantir padronização no atendimento e resolução</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Reduzir tempo de resposta e retrabalho</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Aumentar satisfação e transparência com o cliente</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Capacitar a equipe na utilização efetiva do Movidesk</span>
+                        </li>
+                    </ul>
+                    
+                    <h3 style="color: #10b981; margin: 30px 0 15px;">🗺️ Trilha de Aprendizado</h3>
+                    <ul class="learning-path">
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Mudança na estrutura dos tickets de <strong>melhoria</strong></span>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Capacitação na criação de ticket de <strong>incidente</strong></span>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Vinculação de usuários a organizações</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <span>Vinculação de tickets filhos (relacionados)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Passo 2 -->
+                <div class="step-content" id="step-2">
+                    <h2 class="step-title">2. Entrada e Registro da Solicitação</h2>
+                    <div class="step-description">
+                        <p>O primeiro contato com o cliente é crucial para capturar todas as informações necessárias e direcionar corretamente a solicitação.</p>
+                    </div>
+                    
+                    <h3 style="color: #1a73e8; margin: 20px 0 15px;">📞 Canais de Atendimento</h3>
+                    <div class="channels-container">
+                        <div class="channel-card">
+                            <div class="channel-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4 class="channel-title">Chat</h4>
+                            <p>Para suporte rápido e comunicação instantânea</p>
+                        </div>
+                        
+                        <div class="channel-card">
+                            <div class="channel-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h4 class="channel-title">E-mail</h4>
+                            <p>Para solicitações que demandam mais detalhes ou anexos</p>
+                        </div>
+                        
+                        <div class="channel-card">
+                            <div class="channel-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h4 class="channel-title">Telefone</h4>
+                            <p>Para interações diretas e resolução imediata de urgências</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: #1a73e8; margin: 30px 0 15px;">🔍 Processo de Triagem</h3>
+                    <ul class="triage-steps">
+                        <li>
+                            <strong>Saudações:</strong> Início profissional e cordial do atendimento
+                        </li>
+                        <li>
+                            <strong>Coleta de Informações:</strong> Levantamento detalhado dos dados relevantes sobre a solicitação
+                        </li>
+                        <li>
+                            <strong>Contato Inicial:</strong> Ligar para o cliente para esclarecer dúvidas ou obter mais detalhes cruciais para a análise
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Passo 3 -->
+                <div class="step-content" id="step-3">
+                    <h2 class="step-title">3. Criação do Ticket Incidente</h2>
+                    <div class="step-description">
+                        <p>Um Incidente é uma interrupção inesperada em um serviço ou a redução de sua qualidade. A criação do ticket deve seguir 3 passos:</p>
+                    </div>
+                    
+                    <div class="ticket-process incident-process">
+                        <h3 class="process-title incident-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Processo de Incidente
+                        </h3>
+                        
+                        <ul class="process-steps">
+                            <li>
+                                <div class="process-step-title incident-step-title">
+                                    <i class="fas fa-search"></i>
+                                    Coleta de informações
+                                </div>
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Entender o relato do cliente em detalhe</li>
+                                    <li>Mapear todos os processos realizados até o erro</li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <div class="process-step-title incident-step-title">
+                                    <i class="fas fa-video"></i>
+                                    Gravação e Evidências
+                                </div>
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Solicitar <strong>vídeo da ocorrência</strong> (fluxo completo até o erro)</li>
+                                    <li>Contextualizar: descrever o ponto da divergência</li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <div class="process-step-title incident-step-title">
+                                    <i class="fas fa-repeat"></i>
+                                    Replicação da Situação
+                                </div>
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Reproduzir a ocorrência em <strong>base de testes</strong></li>
+                                    <li>Conferir se não houve falha de configuração ou etapa omitida</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Passo 4 -->
+                <div class="step-content" id="step-4">
+                    <h2 class="step-title">4. Criação do Ticket de Melhoria</h2>
+                    <div class="step-description">
+                        <p>Uma Melhoria é uma solicitação de alteração que não decorre de um erro, mas de uma nova funcionalidade ou aprimoramento.</p>
+                    </div>
+                    
+                    <div class="ticket-process improvement-process">
+                        <h3 class="process-title improvement-title">
+                            <i class="fas fa-star"></i>
+                            Processo de Melhoria
+                        </h3>
+                        
+                        <ul class="process-steps">
+                            <li>
+                                <div class="process-step-title improvement-step-title">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    Coleta de Necessidade
+                                </div>
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Entender qual é a <strong>real necessidade</strong> do cliente</li>
+                                    <li>Verificar se <strong>já existe</strong> uma funcionalidade no sistema</li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <div class="process-step-title improvement-step-title">
+                                    <i class="fas fa-brain"></i>
+                                    Entendimento da Solicitação
+                                </div>
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Detalhar como o cliente espera que a nova funcionalidade opere</li>
+                                    <li>Identificar o que ele deseja visualizar ou ajustar</li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <div class="process-step-title improvement-step-title">
+                                    <i class="fas fa-user-check"></i>
+                                    Validação com o Cliente
+                                </div>
+                                <ul style="margin-left: 20px; margin-top: 5px;">
+                                    <li>Repassar o entendimento coletado de forma clara e <strong>confirmar</strong></li>
+                                    <li>Evitar retrabalho garantindo alinhamento antes do registro definitivo</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Passo 5 -->
+                <div class="step-content" id="step-5">
+                    <h2 class="step-title">5. Níveis de Prioridade Detalhados</h2>
+                    <div class="step-description">
+                        <p>Classificar corretamente a prioridade dos tickets é essencial para garantir que os recursos sejam alocados de forma eficiente e que as urgências sejam tratadas adequadamente.</p>
+                    </div>
+                    
+                    <div class="priority-grid">
+                        <div class="priority-card priority-low">
+                            <div class="priority-header">
+                                <div class="priority-icon">🟢</div>
+                                <div class="priority-title low-title">Baixa</div>
+                            </div>
+                            <p><strong>Descrição:</strong> Utilizada apenas em tickets de atendimento (dúvidas, orientações)</p>
+                            <div class="example-box">
+                                <em>Exemplo: Pergunta sobre um recurso pouco utilizado, solicitação de um manual</em>
+                            </div>
+                        </div>
+                        
+                        <div class="priority-card priority-medium">
+                            <div class="priority-header">
+                                <div class="priority-icon">🟡</div>
+                                <div class="priority-title medium-title">Média</div>
+                            </div>
+                            <p><strong>Descrição:</strong> Incidentes que não interrompem as operações essenciais, mas causam algum desconforto ou limitação</p>
+                            <div class="example-box">
+                                <em>Exemplo: Problema intermitente em um sistema, falha de um recurso secundário</em>
+                            </div>
+                        </div>
+                        
+                        <div class="priority-card priority-high">
+                            <div class="priority-header">
+                                <div class="priority-icon">🔴</div>
+                                <div class="priority-title high-title">Alta</div>
+                            </div>
+                            <p><strong>Descrição:</strong> Incidentes que afetam diretamente e criticamente o operacional, causando <strong>paralisação</strong> ou <strong>impacto significativo</strong> nos serviços</p>
+                            <div class="example-box">
+                                <em>Exemplo: Sistema fora do ar, interrupção de serviço essencial</em>
+                            </div>
+                        </div>
+                        
+                        <div class="priority-card priority-critical">
+                            <div class="priority-header">
+                                <div class="priority-icon">⚫</div>
+                                <div class="priority-title critical-title">Crítica</div>
+                            </div>
+                            <p><strong>Descrição:</strong> Situações emergenciais de altíssimo impacto, que comprometem a <strong>continuidade do negócio</strong> (riscos financeiros/legais). Demandam resposta e mobilização imediata</p>
+                            <div class="example-box">
+                                <em>Exemplo: Indisponibilidade total da plataforma para todos os clientes, vazamento de dados sensíveis</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Passo 6 -->
+                <div class="step-content" id="step-6">
+                    <h2 class="step-title">6. Procedimento Pós-Registro</h2>
+                    <div class="step-description">
+                        <p>Após o registro do ticket, é fundamental garantir a rastreabilidade e o acompanhamento adequado para que nada fique parado ou sem retorno ao cliente.</p>
+                    </div>
+                    
+                    <h3 style="color: #1a73e8; margin: 20px 0 15px;">🔗 Vinculação dos Tickets</h3>
+                    <ul class="procedure-list">
+                        <li>
+                            <i class="fas fa-link"></i>
+                            <span>Sempre <strong>vincular tickets de atendimento</strong> ao ticket principal criado</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-history"></i>
+                            <span>Garante <strong>rastreabilidade</strong> e <strong>histórico único</strong></span>
+                        </li>
+                    </ul>
+                    
+                    <h3 style="color: #1a73e8; margin: 30px 0 15px;">📊 Acompanhamento</h3>
+                    <ul class="procedure-list">
+                        <li>
+                            <i class="fas fa-calendar-week"></i>
+                            <span>Revisão <strong>semanal</strong> dos status das solicitações</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Garantir que nada fique <strong>parado</strong> ou <strong>sem retorno</strong> ao cliente</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Passo 7 -->
+                <div class="step-content" id="step-7">
+                    <h2 class="step-title">7. Procedimento de Encerramento</h2>
+                    <div class="step-description">
+                        <p>O encerramento adequado dos tickets é tão importante quanto sua abertura. Garantir que o cliente esteja satisfeito e que tudo foi resolvido conforme acordado é fundamental para a qualidade do serviço.</p>
+                    </div>
+                    
+                    <h3 style="color: #10b981; margin: 20px 0 15px;">✅ Encerramento de Melhorias</h3>
+                    <ul class="closure-steps improvement-closure">
+                        <li>Validar se a melhoria foi entregue <strong>conforme especificado</strong></li>
+                        <li><strong>Comunicar</strong> ao cliente sobre a nova funcionalidade e <strong>orientar</strong> sobre o uso</li>
+                        <li>Solicitar <strong>feedback</strong> do cliente</li>
+                        <li><strong>Encerrar ticket</strong> após validação positiva</li>
+                    </ul>
+                    
+                    <h3 style="color: #3b82f6; margin: 30px 0 15px;">✅ Encerramento de Incidentes</h3>
+                    <ul class="closure-steps incident-closure">
+                        <li>Validar se o ajuste foi aplicado corretamente</li>
+                        <li>Entrar em <strong>contato com o cliente</strong> → solicitar testes em conjunto</li>
+                        <li>Após confirmação de funcionamento → proceder com <strong>encerramento</strong></li>
+                    </ul>
+                    
+                    <div class="success-container">
+                        <i class="fas fa-graduation-cap"></i>
+                        <strong>Treinamento Concluído!</strong> Você agora possui todas as ferramentas necessárias para gerenciar tickets de forma padronizada e eficiente, garantindo a satisfação do cliente e a qualidade do serviço prestado.
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn prev-btn" id="prev-btn">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <button class="nav-btn next-btn" id="next-btn">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Treinamento: Processos de Tickets | Sistema Imperium | Atualizado em 2023</p>
+            <p>Processos e padronização para gestão eficiente de tickets e atendimento ao cliente.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stepNavItems = document.querySelectorAll('.step-nav-item');
+            const stepContents = document.querySelectorAll('.step-content');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            let currentStep = 1;
+            const totalSteps = 7;
+            
+            // Inicializar navegação
+            updateNavigation();
+            
+            // Adicionar eventos aos itens do menu
+            stepNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const step = parseInt(this.getAttribute('data-step'));
+                    goToStep(step);
+                });
+            });
+            
+            // Eventos dos botões de navegação
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    goToStep(currentStep - 1);
+                }
+            });
+            
+            
+            // Função para ir para um passo específico
+            function goToStep(step) {
+                // Atualizar passo atual
+                currentStep = step;
+                
+                // Atualizar menu de navegação
+                stepNavItems.forEach(item => {
+                    const itemStep = parseInt(item.getAttribute('data-step'));
+                    if (itemStep === step) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar conteúdo
+                               stepContents.forEach(content => {
+                    if (content.id === `step-${step}`) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+                
+                // Atualizar navegação
+                updateNavigation();
+                
+                // Rolar para o topo do conteúdo
+                document.querySelector('.steps-content').scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Função para atualizar os botões de navegação
+            function updateNavigation() {
+                // Atualizar botão anterior
+                if (currentStep === 1) {
+                    prevBtn.style.visibility = 'hidden';
+                } else {
+                    prevBtn.style.visibility = 'visible';
+                }
+                
+                // Atualizar botão próximo
+                if (currentStep === totalSteps) {
+                    nextBtn.innerHTML = 'Concluir <i class="fas fa-check"></i>';
+                } else {
+                    nextBtn.innerHTML = 'Próximo <i class="fas fa-chevron-right"></i>';
+                }
+                
+                // Alterar comportamento do botão próximo no último passo
+                if (currentStep === totalSteps) {
+                    nextBtn.onclick = function() {
+                        // Exibir mensagem de conclusão
+                        alert('Parabéns! Você concluiu o treinamento sobre Processos de Tickets.\n\nAgora você está preparado para gerenciar tickets de forma padronizada e eficiente, garantindo a satisfação do cliente e a qualidade do serviço prestado.');
+                        
+                        // Opcional: redirecionar para a página inicial
+                        // window.location.href = '../index.html';
+                        
+                        // Ou voltar ao primeiro passo
+                        // goToStep(1);
+                    };
+                } else {
+                    nextBtn.onclick = function() {
+                        if (currentStep < totalSteps) {
+                            goToStep(currentStep + 1);
+                        }
+                    };
+                }
+            }
+            
+            // Adicionar atalhos de teclado
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    if (currentStep > 1) {
+                        goToStep(currentStep - 1);
+                        e.preventDefault();
+                    }
+                }
+                
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                    if (currentStep < totalSteps) {
+                        goToStep(currentStep + 1);
+                        e.preventDefault();
+                    }
+                }
+                
+                // Navegação por números (1-7)
+                if (e.key >= '1' && e.key <= '7') {
+                    const stepNumber = parseInt(e.key);
+                    if (stepNumber >= 1 && stepNumber <= totalSteps) {
+                        goToStep(stepNumber);
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
