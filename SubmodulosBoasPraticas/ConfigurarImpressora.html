@@ -1034,18 +1034,20 @@
                             
                             <div class="folder-structure">
                                 <div class="folder-item">C:\Bitz Softwares\</div>
-                                <div class="folder-item" style="padding-left: 40px;">APP\</div>
-                                <div class="file-item" style="padding-left: 60px;">Impressora.exe</div>
-                                <div class="folder-item" style="padding-left: 40px;">Ini\</div>
-                                <div class="file-item" style="padding-left: 60px;">arquivo.ini</div>
-                                <div class="file-item" style="padding-left: 20px;">DLLs gerais</div>
+                                <div class="folder-item" style="padding-left: 20px;">APP\</div>
+                                <div class="file-item" style="padding-left: 40px;">Impressora.exe</div>
+                                <div class="file-item" style="padding-left: 40px;">DLLs (arquivos)</div>
+                                <div class="folder-item" style="padding-left: 20px;">Ini\</div>
+                                <div class="file-item" style="padding-left: 40px;">arquivo.ini</div>
+                                
                             </div>
                             
                             <p><strong>Distribuição dos arquivos:</strong></p>
                             <ul class="info-list">
-                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">C:\Bitz Softwares</span> coloque as DLLs gerais</li>
-                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">APP</span> coloque o arquivo Impressora.exe</li>
-                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">Ini</span> coloque o arquivo .ini</li>
+                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">C:\Bitz Softwares</span> Cole a pasta compactada Dll  (gerais)</li>
+                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">C:\Bitz Softwares</span>crie a pasta APP e a pasta INI</li>
+                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">APP</span> coloque o arquivo Impressora.exe e extraia as DLLs</li>
+                                <li><i class="fas fa-arrow-right"></i> Na pasta <span class="highlight">Ini</span> coloque o arquivo ConfiguracaoImpressoraPedido.ini</li>
                             </ul>
                         </div>
                         
@@ -1070,7 +1072,7 @@
                 <div class="step-content" id="step-5">
                     <h2 class="step-title">Passo 5: Configuração da Impressora no Sistema Bitz</h2>
                     <div class="step-description">
-                        <p>No sistema Bitz, é necessário vincular a impressora para que a impressão ocorra corretamente.</p>
+                        <p>No sistema Bitz/Eatz, é necessário vincular a impressora para que a impressão ocorra corretamente.</p>
                         
                         <div class="path-indicator">
                             <div class="path-step">Cadastros</div>
@@ -1150,12 +1152,12 @@
                 <div class="step-content" id="step-6">
                     <h2 class="step-title">Passo 6: Configuração do Arquivo INI</h2>
                     <div class="step-description">
-                        <p>O arquivo .ini define o comportamento da impressão automática no sistema.</p>
+                        <p>O arquivo ConfiguracaoImpressoraPedido.ini define o comportamento da impressão automática no sistema.</p>
                         
                         <div class="config-screen">
                             <div class="screen-header">
                                 <i class="fas fa-file-code"></i>
-                                Exemplo de Arquivo INI
+                                Exemplo de Arquivo ConfiguracaoImpressoraPedido.ini
                             </div>
                             <pre style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto;">
 [Configuracao]
